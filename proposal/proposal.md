@@ -8,7 +8,7 @@ prove the correctness of some optimizations. Namely, add the support of
 look-arounds and anchors, prove correctness of prefix acceleration, and prove
 the optimization of bounded look-arounds.
 
-## Intruction
+## Introduction
 
 Classical regular expressions (regexes) have been studied for decades and
 believed to be well understood. However, modern regexes used in programming
