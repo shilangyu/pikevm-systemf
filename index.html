@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>2025_09_24</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <style>
+    html {
+      font-size: 100%;
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    body {
+      color: #444;
+      font-family: Georgia, Palatino, "Palatino Linotype", Times,
+        "Times New Roman", serif;
+      font-size: 12px;
+      line-height: 1.7;
+      padding: 1em;
+      margin: auto;
+      max-width: 42em;
+      background: #fefefe;
+    }
+    a {
+      color: #0645ad;
+      text-decoration: none;
+    }
+    a:visited {
+      color: #0b0080;
+    }
+    a:hover {
+      color: #06e;
+    }
+    a:active {
+      color: #faa700;
+    }
+    a:focus {
+      outline: thin dotted;
+    }
+    ::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    ::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    p {
+      margin: 1em 0;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #111;
+      line-height: 125%;
+      margin-top: 2em;
+      font-weight: 400;
+    }
+    h4,
+    h5,
+    h6 {
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 2em;
+    }
+    h3 {
+      font-size: 1.5em;
+    }
+    h4 {
+      font-size: 1.2em;
+    }
+    h5 {
+      font-size: 1em;
+    }
+    h6 {
+      font-size: 0.9em;
+    }
+    blockquote {
+      color: #666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #eee solid;
+    }
+    hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 1em 0;
+      padding: 0;
+    }
+    code,
+    kbd,
+    pre,
+    samp {
+      color: #000;
+      font-family: monospace, monospace;
+      font-size: 0.98em;
+    }
+    pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    b,
+    strong {
+      font-weight: 700;
+    }
+    dfn {
+      font-style: italic;
+    }
+    ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+    }
+    mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: 700;
+    }
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+    sup {
+      top: -0.5em;
+    }
+    sub {
+      bottom: -0.25em;
+    }
+    ol,
+    ul {
+      margin: 1em 0;
+      padding: 0 0 0 2em;
+    }
+    li p:last-child {
+      margin-bottom: 0;
+    }
+    ol ol,
+    ul ul {
+      margin: 0.3em 0;
+    }
+    dl {
+      margin-bottom: 1em;
+    }
+    dt {
+      font-weight: 700;
+      margin-bottom: 0.8em;
+    }
+    dd {
+      margin: 0 0 0.8em 2em;
+    }
+    dd:last-child {
+      margin-bottom: 0;
+    }
+    img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+    }
+    figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+    }
+    figure img {
+      border: none;
+      margin: 0 auto;
+    }
+    figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 0.8em;
+    }
+    table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+    table th {
+      padding: 0.2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+    }
+    table td {
+      padding: 0.2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+    }
+    .author {
+      font-size: 1.2em;
+      text-align: center;
+    }
+    @media only screen and (min-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+    }
+    @media print {
+      * {
+        background: 0 0 !important;
+        color: #000 !important;
+        filter: none !important;
+        -ms-filter: none !important;
+      }
+      body {
+        font-size: 12pt;
+        max-width: 100%;
+      }
+      a,
+      a:visited {
+        text-decoration: underline;
+      }
+      hr {
+        height: 1px;
+        border: 0;
+        border-bottom: 1px solid #000;
+      }
+      a[href]:after {
+        content: " (" attr(href) ")";
+      }
+      abbr[title]:after {
+        content: " (" attr(title) ")";
+      }
+      .ir a:after,
+      a[href^="#"]:after,
+      a[href^="javascript:"]:after {
+        content: "";
+      }
+      blockquote,
+      pre {
+        border: 1px solid #999;
+        padding-right: 1em;
+        page-break-inside: avoid;
+      }
+      img,
+      tr {
+        page-break-inside: avoid;
+      }
+      img {
+        max-width: 100% !important;
+      }
+      @page :left {
+        margin: 15mm 20mm 15mm 10mm;
+      }
+      @page :right {
+        margin: 15mm 10mm 15mm 20mm;
+      }
+      h2,
+      h3,
+      p {
+        orphans: 3;
+        widows: 3;
+      }
+      h2,
+      h3 {
+        page-break-after: avoid;
+      }
+    }
+  </style>
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
+  />
+  <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" />
+</head>
+<body>
+<h2 id="collected-notes">Collected notes</h2>
+<h3 id="leftmost-longest-vs-leftmost-greedy">Leftmost longest vs
+leftmost greedy</h3>
+<p>Both prioritize finding a match as early in the haystack as possible.
+Then, the second thing to consider is how long the match is. Given a
+choice in the matching (from <code>e1|e2</code> or <code>e*</code> etc),
+the longest semantics picks choices such that the final match is the
+longest possible. For greedy, we pick choices such that will lead to the
+match the quickest.</p>
+<h3 id="nullable-quantifiers">Nullable quantifiers</h3>
+<p>If <code>e</code> can match the empty string, iterations of
+<code>e{0,n}</code> cannot match the empty string.</p>
+<h3 id="capture-reset">Capture reset</h3>
+<p>After each quantifier iteration, the values of all capture groups
+inside are reset to undefined. So <code>/(?:(a)|b)*/</code> on “ab” will
+match the entirety of “ab”, but the group <code>(a)</code> will be
+undefined.</p>
+<h3
+id="backereferences-to-a-group-that-did-not-match-anything">Backereferences
+to a group that did not match anything</h3>
+<p>Then the backreference matches the empty string. This applied to both
+backreferences to a group which did not match anything preceeding the
+reference, and to a group following the reference.</p>
+<h2 id="to-discuss">To discuss</h2>
+<ul>
+<li><p>Getting started with Linden requires installing Warblre, would be
+good to include in the README. Or, if possible make the dune project
+reference the github repo with a pinned version</p>
+<p><code>opam pin add warblre https://github.com/epfl-systemf/Warblre.git</code></p></li>
+<li><p>Does the backtracking tree allow to reason about leftmost longest
+semantics as well?</p>
+<ul>
+<li>Although, look-arounds in the semantics (namely
+<code>lk_result</code>) returns the groups of the first branch that
+matched.</li>
+</ul></li>
+<li><p>Why the nullable quantifiers are only for
+<code>min = 0</code>?</p></li>
+<li><p>Why does the Warblre matching function return the end index only?
+What about the start? -&gt; see below the “full” algorithm of
+matching</p></li>
+</ul>
+<h2 id="action-items">Action items</h2>
+<ul>
+<li><p>Setup VSCode to work with Rocq, talk with Victor</p></li>
+<li><p>Pin the Warblre version in Linden and link it to the github
+URL</p></li>
+<li><p>Continue reading the paper</p></li>
+<li><p>Start working on anchors in PikeVM</p></li>
+<li><p>Do the exercise from branch <code>aurele/exercise</code></p></li>
+<li><p>Currently, matching is always anchored at some position in the
+haystack, and the general matching algorithm is defined as:</p>
+<pre><code>for i in 0..len(s):
+    if anchored_match(r, s[i:]):
+        return Matched</code></pre>
+<p>We want to establish an equivalence between the above algorithm an a
+rewrite of the regex into <code>.*?(r)_#0</code>: the regex is wrapped
+in a group indexed zero and is prefixed by a lazy dot-star.</p>
+<p>Once this is proven, we can prove that the prefix acceleration is
+also equivalent to this algorithm.</p></li>
+</ul>
+<h2 id="collected-notes-1">Collected notes</h2>
+<h3 id="presentation">Presentation</h3>
+<ul>
+<li>Give earlier the intuition what is the goal of the project</li>
+<li>The engines are not that easy to implement, saying during the
+motivation that it is easy does not help</li>
+<li>When saying different languages have different semantics, an
+interesting example could be engaging</li>
+<li>Give conjectures about how the problem can be approached</li>
+<li>Should I have all answers to questions during the proposal
+presentation? =&gt; don’t be afraid to say “I don’t know”</li>
+</ul>
+<h3 id="general-quantifiers-rmindeltagreedy">General quantifiers
+<code>r{min,delta,greedy}</code></h3>
+<p>The problem with general quantifiers is that their compilation
+expands the regex <code>min</code> amount of times in the bytecode. With
+an example such as <code>((a{20}){20}){20}</code>, this generates 20^3
+instructions.</p>
+<p>Implementing general quantifiers in the PikeVM can be approached from
+two perspectives, either,</p>
+<ul>
+<li>add the <code>?</code> and <code>??</code> quantifiers to the PikeVM
+mechanization <strong>and</strong> prove equivalence between general
+quantifiers and a regex AST rewrite + usage of
+<code>*</code>/<code>*?</code>/<code>?</code>/<code>??</code>,
+<em>or</em></li>
+<li>add general quantifiers to the PikeVM. This will work by first
+copying <code>r</code> <code>min</code> times, then doing either of
+<code>*</code>/<code>*?</code>/<code>?</code>/<code>??</code>.</li>
+</ul>
+<p>Since the complexity proof of linearity is in terms of the bytecode
+length, the second approach would work well. Otherwise, the first
+approach requires incorporating a separate AST rewrite step. It will be
+easy to incorporate in proofs if it is done in the compile function.
+That might be also good grounds for supporting proofs of AST rewrites
+for optimization.</p>
+<h3 id="adding-anchors-to-the-pikevm">Adding anchors to the PikeVM</h3>
+<p>Adding anchors to the PikeVM was a straightforward change. The
+following changes were needed:</p>
+<ol type="1">
+<li><p>Add a <code>CheckAnchor</code> bytecode instruction and define
+its semantics</p>
+<p>PikeVM’s small step semantics were extended to process this
+instruction. This is done by handling the <code>CheckAnchor</code>
+instruction when computing the epsilon step of a thread. When handling
+it, we check if the anchor is satisfied by using the
+<code>anchor_satisfied</code> function. It is exactly the same check
+performed by the backtracking tree semantics.</p>
+<ol type="1">
+<li>If the anchor is satisfied, the PikeVM progresses that thread to the
+next instruction (one program counter ahead)</li>
+<li>If not, the PikeVM kills that thread</li>
+</ol></li>
+<li><p>Compile the <code>Anchor</code> AST node to a
+<code>CheckAnchor</code> instruction. The next instruction to be
+executed is stored at the program counter following
+<code>CheckAnchor</code>’s.</p></li>
+<li><p>Add <code>Anchor</code> to the subset of regexes the PikeVM
+supports. Add <code>AnchorPass</code> to the subset of backtracking
+trees the PikeVM supports.</p></li>
+<li><p>Handle <code>AnchorPass</code> in the PikeTree algorithm by
+simply continuing exploration of the backtracking tree.</p></li>
+<li><p><strong>UNCLEAR WHAT THIS IS</strong>: Add anchor support to
+<code>tree_rep</code> in TreeRep.v</p></li>
+<li><p>State that a representation of the bytecode can start with a
+CheckAnchor instruction.</p></li>
+<li><p>Finally, update all proofs to handle the new cases.</p></li>
+</ol>
+<h2 id="to-discuss-1">To discuss</h2>
+<ul>
+<li>Is there some limitation (difficulty in proving) to support
+arbitrary quantifiers in pikevm? -&gt; no, explained an implementation
+plan above</li>
+</ul>
+<h2 id="action-items-1">Action items</h2>
+<ul>
+<li>Start working on the prefix acceleration proof. Outline the theorems
+(without proofs), axiomatize what is needed</li>
+</ul>
+<h2 id="collected-notes-2">Collected notes</h2>
+<h3 id="prefix-acceleration">Prefix acceleration</h3>
+<ol type="1">
+<li><p>Formalize substring searches on <code>string</code>. The
+definition should be roughly:
+<code>str_search : string -&gt; string -&gt; option nat</code>.</p>
+<p>This function should follow some axioms. Given
+<code>Definition starts_with (p s : string) := p = List.firstn (length p) s.</code></p>
+<ol type="1">
+<li>Produced results are indeed pointing to that substring:
+<code>forall s ss i, str_search s ss = Some i -&gt; starts_with ss (List.skipn i s)</code></li>
+<li>Produced result is the very first substring encountered:
+<code>forall s ss i, str_search s ss = Some i -&gt; forall i', i' &lt; i -&gt; ~ (starts_with ss (List.skipn i' s))</code></li>
+<li>If no substring is found, it is not present in the string:
+<code>forall s ss, str_search s ss = None -&gt; forall i, i &lt; length s -&gt; ~ (starts_with ss (List.skipn i s))</code></li>
+</ol>
+<p>Connect these to operating on <code>input</code>. To do so, a wrapper
+function is defined in terms of <code>str_search</code>:
+<code>input_search : input -&gt; string -&gt; option input</code> where
+the result is an advanced input. The following can be proven about it
+using only the axiomatization of <code>str_search</code>:</p>
+<ol type="1">
+<li>Produced results are strict suffixes:
+<code>forall i1 i2 p, input_search i1 p = Some i2 -&gt; strict_suffix i1 i2 forward</code></li>
+<li>Produced results are indeed pointing to that substring:
+<code>forall a1 b1 a2 b2 p, input_search (a1, b1) p = Some (a2, b2) -&gt; starts_with p a2</code></li>
+<li>Produced result is the very first substring encountered:
+<code>forall a1 b1 a2 b2 p, input_search (a1, b1) p = Some (a2, b2) -&gt; forall s1 s2, a1 = s1 ++ s2 ++ a2 -&gt; ~ (starts_with p s2)</code></li>
+<li>If no substring is found, it is not present in the string:
+<code>forall a1 b1 p, input_search (a1, b1) = None -&gt; forall s1 s2, a1 = s1 ++ s2 -&gt; ~ (starts_with p s2)</code></li>
+</ol>
+<p>Some of these axioms might be not needed for the proofs. They
+encompass everything about the substring search, but tells us more than
+what we need to know.</p></li>
+<li><p>Formalize literal extraction. The definition should be roughly:
+<code>extract_literal : regex -&gt; literal</code>. Where</p>
+<pre class="coq"><code>Inductive literal : Type :=
+| Exact (s : string) (* the entire match is exactly `s` *)
+| Prefix (s : string) (* the match starts with `s` *)
+| None. (* this indicates the match cannot exist, as opposed to Prefix [] which means we do not know anything about the match *)
+
+Definition prefix (l : literal) := match l with
+| Exact s =&gt; s
+| Prefix s =&gt; s
+| None =&gt; []
+end.</code></pre>
+<p>This function should follow these theorems:</p>
+<ol type="1">
+<li>Every match starts with the extracted literal:</li>
+</ol>
+<pre class="coq"><code>forall r tree a b result,
+    priotree_inp r (a, b) tree -&gt;
+    first_leaf tree (a, b) = Some result -&gt;
+    starts_with (prefix (extract_literal r)) a</code></pre>
+<ol start="2" type="1">
+<li>Every match is wholly <code>Exact s</code>:</li>
+</ol>
+<pre class="coq"><code>admit.</code></pre>
+<p>TODO: how to specify it and is it useful?</p>
+<ol start="3" type="1">
+<li>A <code>None</code> literal means there is no match:</li>
+</ol>
+<pre class="coq"><code>forall r tree inp,
+    priotree_inp r inp tree -&gt;
+    extract_literal r = None -&gt;
+    first_leaf tree inp = None</code></pre></li>
+<li><p>Write a function <code>prefix_accelerated_pikevm</code> which
+completes an entire (unanchored) search. Prove equivalence between the
+prefix accelerated version and the full search algorithm.</p>
+<ol type="1">
+<li>Prove equivalence between <code>[^]*?(r)_#0</code> and the for-loop
+algorithm of running <code>r</code> anchored at each index. This has to
+be done in Warblre, out of scope for this thesis, assume it is
+proven.</li>
+<li>For free we get that Linden’s <code>[^]*?(r)_#0</code> where
+<code>r</code> is restricted to the PikeVM regex features is equivalent
+to Warblre’s regex.</li>
+<li>Prove equivalence of <code>prefix_accelerated_pikevm</code> to the
+<code>[^]*?(r)_#0</code> regex.</li>
+</ol>
+<p>To do 3., we first can prove equivalence with respect to
+<code>first_leaf</code> of a backtracking tree and a “prefix tree” which
+skips branches that will never match due to lacking of a prefix.</p>
+<p>Instead of a <code>prefix_accelerated_pikevm</code> I think a more
+general full-search algorithm that will be continuously improved is
+better. Especially since we want to extract it to a function at some
+point. This can be done in the future.</p>
+<p>The accelerated version can skip running the pikevm completely if the
+prefix extraction returns an Exact.</p></li>
+</ol>
+<h2 id="to-discuss-2">To discuss</h2>
+<ul>
+<li></li>
+</ul>
+<h2 id="action-items-2">Action items</h2>
+<ul>
+<li>Implement the things above</li>
+</ul>
+<h2 id="collected-notes-3">Collected notes</h2>
+<h3 id="lessons-learned">Lessons learned</h3>
+<ul>
+<li><p>Trying to prove things about a definition can be extremely
+tedious. Sometimes it might be worth defining an inductive and proving
+it equivalent to some definition just to have the proofs be so much
+easier.</p></li>
+<li><p>Having <code>None</code> in <code>literal</code> is cool, but
+maybe unecessary. It gives life to the optimization of rejecting a regex
+completely, but that could be a separate analysis on the regex. At the
+moment None can arise only with the CdEmpty character class.</p></li>
+<li><p>Leaving things not proven is a better way to progress. Proving
+small simple but very time consuming lemmas is wasting time and not
+progressing the theory. However, on the other hand I did leave a lemma
+unproven once, and realized only later that it was actually not a true
+lemma despite me relying on that lemma in other proofs.</p></li>
+</ul>
+<h2 id="to-discuss-3">To discuss</h2>
+<ul>
+<li>There is a <code>LazyPrefix.v</code>. Some proofs there might be
+very useful.</li>
+</ul>
+<h2 id="action-items-3">Action items</h2>
+<p>Move onto proving equivalence of first_leaf on trees that are pruned
+if the string search does not find a match in this position of the
+haystack.</p>
+<h2 id="collected-notes-4">Collected notes</h2>
+<h3 id="pikevm-bytecode-optimizer">PikeVM bytecode optimizer</h3>
+<ul>
+<li>when generating <code>r*</code> we do a ResetRegs. We can remove all
+ResetRegs where <code>r</code> has no groups.</li>
+<li>when generating <code>r*</code> when the minimum matching length of
+<code>r</code> is 1 or larger, the <code>BeginLoop</code> and
+<code>EndLoop</code> is not needed (the boolean check will always
+succeed)</li>
+</ul>
+<h3 id="prefix-acceleration-once-with-abstract-engines">Prefix
+acceleration once with abstract engines</h3>
+<p>We define what it means to be an engine. It simply should accept a
+regex and an input, and return the result of the matching. The only
+axiom it must follow is that the returned result from the execution is
+the same as the one from the backtracking tree semantics
+<code>first_leaf</code>. We additionally allow engines to constrain the
+supported subset of regexes (for instance, the PikeVM does not support
+backreferences).</p>
+<p>Then, we prove that the generic algorithm of</p>
+<pre><code>for i in 0..len(input):
+    if match(r, input[i..]):
+        return result</code></pre>
+<p>gives exactly the same result as</p>
+<pre><code>start_pos = input_search(extract_literal(r), input)
+if start_pos == None:
+    return None
+
+for i in start_pos..len(input):
+    if match(r, input[i..]):
+        return result</code></pre>
+<p>Namely, this talks about allowing the skip some initial input, but
+also talks about if the literal is not present in the input, then we can
+skip the search all together.</p>
+<p>This proof works for any engine having the <code>match</code>
+function!</p>
+<p>Future work: an additional proof that the <code>for i</code>
+algorithm is equivalent to just running the <code>.*?r</code> regex
+(which, might be significantly more performant in some cases) yields the
+proof that we can run the engine just once.</p>
+<h3
+id="implementation-of-the-pikevm-algorithm-with-prefix-acceleration">Implementation
+of the PikeVM algorithm with prefix acceleration</h3>
+<p>The previous result is generic to any engine. But it means we can run
+prefix acceleration only a single time. To run it more than once, we
+must tightly integrate with the way the PikeVM works.</p>
+<p>The idea is two fold:</p>
+<ol type="1">
+<li>Simulate the <code>.*?</code> directly in the PikeVM rather than
+actually compiling <code>.*?</code></li>
+<li>Whenever the active/blocked threads of the PikeVM are in a favorable
+arrangement, run the prefix acceleration</li>
+</ol>
+<p>(see my paper notes in the drawer for a more in depth exploration of
+this topic)</p>
+<h2 id="to-discuss-4">To discuss</h2>
+<ul>
+<li>Computing the fuel needed for the functional version, shouldn’t this
+be the number of steps proved in Complexity? -&gt; Yes, we leave it as
+an axiom for now. Will be proven later.</li>
+</ul>
+<h2 id="action-items-4">Action items</h2>
+<ul>
+<li>Clean up and finish proof about running prefix acc once</li>
+<li>Try to add a proof that <code>lit = Impossible</code> means that
+there is no match</li>
+<li>Implement a non-deterministic tree that simulates <code>.*?r</code>.
+Then prove that there exists a tree of this sort that computes this
+<code>.*?r</code>. At a given position when <code>starts_with</code> is
+true, it should always try <code>r</code>. But if it is false, it should
+non-deterministically try <code>r</code> or not. Every tree should
+result in the same <code>first_leaf</code> result.</li>
+<li>Start thinking about look-arounds in the PikeVM</li>
+</ul>
+<h2 id="collected-notes-5">Collected notes</h2>
+<p>The Rocq proof of linearity of the prefixed pikevm is out of
+scope.</p>
+<h2 id="to-discuss-5">To discuss</h2>
+<ul>
+<li>Thesis format? Typst? -&gt; possible, needs to check rules. People
+in general did it in Latex</li>
+<li>If we add <code>?</code> and <code>??</code> and then prove
+equivalence between general quantifiers and expansion on the AST + usage
+of <code>*</code>/<code>*?</code>/<code>?</code>/<code>??</code>, we
+could argue the same could have been done with anchors and look-arounds
+(which was proven to be equivalent). Maybe it is good to discuss where
+is the border between supporting directly vs through an equivalence. Is
+that why anchors were not implemented? -&gt; the decision is to add
+<code>?</code>/<code>??</code> to PikeVM, then have all quantifiers
+through equivalence
+<ul>
+<li>It would seem adding them directing and doing the expansion in the
+bytecode is easier than doing an AST rewrite. But doing an AST rewrite
+can give good foundation for future proofs.</li>
+</ul></li>
+<li>Is there any way to do a shallow simplification and choose the exact
+subterms? I want it to compute the fuel and the bytecode for me. -&gt;
+hard to answer, old question</li>
+<li>Does linden do “Linear Matching of the Capture Reset Property”?
+-&gt; yes, through GroupReset and Check/Progress.</li>
+</ul>
+<h2 id="action-items-5">Action items</h2>
+<ul>
+<li>Write an outline of the thesis</li>
+<li>Finish non-det proof</li>
+<li>Re-investigate the linearity of the prefixed pikevm</li>
+</ul>
+<h2 id="collected-notes-6">Collected notes</h2>
+<h3 id="complexity-of-prefix-acc">Complexity of prefix-acc</h3>
+<p>We assume the complexity of a substring search to be <span
+class="math inline">O(mn)</span> where <span
+class="math inline">m</span> is the needle length and <span
+class="math inline">n</span> is the haystack length. Moreover, we assume
+that if a match exists at position <span class="math inline">k &lt;
+n</span>, then it will be found in <span
+class="math inline">O(mk)</span>. Therefore,
+<code>str_search needle haystack = k</code> executes in <span
+class="math inline">O(mk)</span>.</p>
+<p>An input search performs the substring search once and advances the
+input by this many characters. Advancing an input by <span
+class="math inline">k</span> characters is done in <span
+class="math inline">O(k)</span>. Therefore the input search has a
+runtime of <span class="math inline">O(mk) + O(k) = O(mk)</span>.</p>
+<p>Let us now consider any algorithm where the input search is called
+multiple times, but each call is performed on a strict suffix of the
+previous result of an input search. Let <span
+class="math inline">c</span> be the amount of input search calls
+performed in total. Since each call is performed on a strict suffix,
+<span class="math inline">c</span> is bounded above by <span
+class="math inline">n</span>. Let <span class="math inline">k_i</span>
+be the amount of characters we advance by in call number <span
+class="math inline">i</span>. The complexity of all the calls is:</p>
+<p><span class="math display">
+O(mk_1) + O(mk_2) + \cdots + O(mk_c) = O(m(k_1 + k_2 + \cdots + k_c))
+</span></p>
+<p>But <span class="math inline">\sum_{i=1}^c k_i \le n</span>. So <span
+class="math inline">O(m(k_1 + k_2 + \cdots + k_c)) = O(mn)</span>.</p>
+<p>If we consider a base algorithm with some complexity <span
+class="math inline">O(Q)</span>, then the input search calls are only an
+additive runtime cost, so the entire’s algorithm complexity is <span
+class="math inline">O(Q) + O(mn)</span>. In our case the needle size is
+proportional to the regex size <span class="math inline">m =
+O(|r|)</span>, the needle is <span class="math inline">n = |s|</span>,
+and the base algorithm in the case of a linear regex engine (PikeVM) has
+complexity <span class="math inline">O(Q) = O(|r| \cdot |s|)</span>.
+Thus,</p>
+<p>a linear regex engine using input searches on consecutive strict
+suffixes has complexity</p>
+<p><span class="math display">
+O(|r| \cdot |s|) + O(|r| \cdot |s|) = O(|r| \cdot |s|)
+</span></p>
+<p><span class="math inline">\square.</span></p>
+<h3 id="more-advanced-general-alg">More advanced general alg</h3>
+<p>The general alg that does not care about the underlying engine can be
+generalized to skip not only at the very start, but also during
+iteration. We can keep track of what is the next place the prefix
+matches and skip all of the things in between. TODO: investigate whether
+this is useful at all for any engine (not for pikevm, which would
+simulate <code>.*?</code> on its own to achieve linearity)</p>
+<h3 id="extracted-prefix-size">Extracted prefix size</h3>
+<p>We want to prove that the extracted prefix is of a size proportional
+to <span class="math inline">O(|R|)</span> where <span
+class="math inline">R</span> is the expanded regex <span
+class="math inline">r</span> (i.e., <code>r = /x{4,5}/</code> but
+<code>R = /xxxxx?/</code>).</p>
+<p>We first define what is the size of a regex <span
+class="math inline">r</span>.</p>
+<pre class="coq"><code>Fixpoint regex_size (r: regex) : nat :=
+    match r with
+    | Epsilon =&gt; 1
+    | Regex.Character _ =&gt; 1
+    | Disjunction r1 r2 =&gt; 1 + regex_size r1 + regex_size r2
+    | Sequence r1 r2 =&gt; 1 + regex_size r1 + regex_size r2
+    | Quantified _ min delta r1 =&gt;
+            1 + min * regex_size r1 +
+                (match delta with
+                | NoI.Inf =&gt; regex_size r1
+                | NoI.N n =&gt; n * regex_size r1
+                end)
+    | Lookaround _ r1 =&gt; 1 + regex_size r1
+    | Group _ r1 =&gt; 1 + regex_size r1
+    | Anchor _ =&gt; 1
+    | Backreference _ =&gt; 1
+    end.</code></pre>
+<p>Thus, <span class="math inline">|R| =</span>
+<code>regex_size r</code>.</p>
+<p>We want to prove the following theorem:</p>
+<pre class="coq"><code>Theorem extract_literal_size_bound:
+  forall r,
+    length (prefix (extract_literal r)) &lt;= regex_size r.</code></pre>
+<p>This proves that we are bound by <span
+class="math inline">O(|R|)</span>.</p>
+<p>With help of a few lemmas about <code>chain_literals</code> and
+<code>merge_literals</code> returned lengths, the theorem is easily
+proven mostly by <code>lia</code>.</p>
+<h3 id="investigation-of-prefix-acceleration-strategies">Investigation
+of prefix acceleration strategies</h3>
+<p>We want to see in the real world how much does prefix acceleration
+help. We evaluate four strategies implemented in rust using
+<code>rebar</code></p>
+<ol type="1">
+<li>No prefix acceleration</li>
+<li>Prefix acceleration once at the beginning</li>
+<li>Prefix acceleration each time we are out of PikeVM states (this is
+what rust-regex does)</li>
+<li>Prefix acceleration done always one ahead, allowing us to know which
+start states are not needed</li>
+</ol>
+<p>The four strategies have been implemented in rust-regex (where the
+first is just a matter of disabling prefix acc, and the third one is the
+existing behavior). Changes can be found in the <a
+href="https://github.com/epfl-systemf/rust-regex/tree/mw/prefix-acc-cmp">epfl-systemf
+fork on the branch “mw/prefix-acc-cmp”</a>. This was done by adding an
+additional config to the PikeVM which allows to specify the prefiltering
+strategy:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">enum</span> PrefilterStrategy <span class="op">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">/// Use the prefilter only at the start of the search.</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    Once<span class="op">,</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">/// Use the prefilter whenever the PikeVM runs out of active states.</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">#[</span><span class="kw">default</span><span class="at">]</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    OnEmptyStates<span class="op">,</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">/// Use the prefilter in advance to know which positions to skip.</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    OneAhead<span class="op">,</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>When <code>PrefilterStrategy::OneAhead</code> is used, we always know
+about the next position where a prefix is present. This allows us to
+skip doing an epsilon closure to simulate <code>.*?</code> on positions
+that we know have no matches.</p>
+<p>Afterwards rebar (the rust-regex benchmarking suite) was extended to
+include engines which would be configured to our wanted four strategies.
+Changes can be found in the <a
+href="https://github.com/epfl-systemf/rebar/tree/mw/prefix-acc-cmp">epfl-systemf
+fork on the branch “mw/prefix-acc-cmp”</a>. This was done by extending
+the existing “regex-automata” engine which benched individual regex
+engines of rust-regex (dfa, pikevm, onepass, backtracking, etc.). The
+<code>rust-regex</code> dependency was rewired to point to our fork with
+the implemented <code>PrefilterStrategy</code>. Additional targets
+(“pikevm/noAcc”, “pikevm/accOnce”, “pikevm/accEmptyState”,
+“pikevm/accOneAhead”) were added. Then, these targets were added to
+<em>all</em> existing benchmarks and run on a silent system. The
+benchmarking result were <a
+href="https://github.com/epfl-systemf/rebar/blob/mw/prefix-acc-cmp/prefilters.csv">commited
+to the rebar fork</a>.</p>
+<p>Results were generated by:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rebar</span> build <span class="at">-e</span> <span class="st">&#39;rust/regex/pikevm/(?:noAcc|accOnce|accEmptyStates|accOneAhead)&#39;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">rebar</span> measure <span class="at">-e</span> <span class="st">&#39;rust/regex/pikevm/(?:noAcc|accOnce|accEmptyStates|accOneAhead)&#39;</span> <span class="kw">|</span> <span class="fu">tee</span> prefilters.csv</span></code></pre></div>
+<h4 id="result-analysis">Result analysis</h4>
+<p>(we will always exclude compile benchmark model using
+<code>-M compile</code>, we are not interested in comparing compilation
+times)</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rebar</span> rank prefilters.csv <span class="at">-e</span> <span class="st">&#39;rust/regex/pikevm/(?:accOnce|noAcc)&#39;</span> <span class="at">-M</span> compile</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">rebar</span> cmp prefilters.csv <span class="at">-e</span> <span class="st">&#39;rust/regex/pikevm/(?:accOnce|noAcc)&#39;</span> <span class="at">-M</span> compile</span></code></pre></div>
+<p>Reveals that doing prefix acceleration even just once is on par with
+doing no acceleration at all. <code>accOnce</code> is never slower than
+<code>noAcc</code>. Whenever <code>accOnce</code> is faster than
+<code>noAcc</code>, it is so by a very large margin (up to 600x faster).
+This speed-up can be attributed to either skipping the entire haystack
+or a large portion of it thanks to prefix acc.</p>
+<hr />
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rebar</span> rank prefilters.csv <span class="at">-e</span> <span class="st">&#39;rust/regex/pikevm/(?:accEmptyStates|accOnce)&#39;</span> <span class="at">-M</span> compile</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">rebar</span> cmp prefilters.csv <span class="at">-e</span> <span class="st">&#39;rust/regex/pikevm/(?:accEmptyStates|accOnce)&#39;</span> <span class="at">-M</span> compile</span></code></pre></div>
+<p>Similarly, <code>accEmptyStates</code> is strictly faster than
+<code>accOnce</code>. After all, <code>accEmptyStates</code> does
+<code>accOnce</code>, plus more. <code>accEmptyStates</code> is
+resilient to degenerative cases where for example the prefix matches on
+the very start of the string. This can be seen by <code>accOnce</code>
+being slower by up to 80x in some cases.</p>
+<hr />
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rebar</span> rank prefilters.csv <span class="at">-e</span> <span class="st">&#39;rust/regex/pikevm/(?:accOneAhead|accEmptyStates)&#39;</span> <span class="at">-M</span> compile</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">rebar</span> cmp prefilters.csv <span class="at">-e</span> <span class="st">&#39;rust/regex/pikevm/(?:accOneAhead|accEmptyStates)&#39;</span> <span class="at">-M</span> compile</span></code></pre></div>
+<p>This time there are cases where <code>accOneAhead</code> is slower
+than <code>accEmptyStates</code>, but only up to a factor of 2. On the
+other hand, <code>accOneAhead</code> in some cases is up to 20x faster
+than <code>accEmptyStates</code>.</p>
+<h3 id="prefix-accelerated-pikevm">Prefix accelerated PikeVM</h3>
+<p>We want to prove a version of the PikeVM that does prefix
+acceleration. To do so, we extend the PikeTree non-deterministic
+algorithm to skip branches that do not have matching leaf. This should
+not change the correctness: there were no matches there, so we are free
+to drop it. This approach allows for the PikeVM to use strategies that
+drop some execution paths if there is no result there (this is similar
+to the SeenSet). This should make the relation between the PikeVM and
+the PikeTree easier to establish.</p>
+<p>We still need to remember that the PikeVM needs to simulate the
+<code>.*?</code> itself, that is what makes the relation with the
+PikeTree difficult, as the PikeTree only executes on a given start
+position. We still need to relate <code>.*?</code> with trying at every
+input position.</p>
+<p>TODO: extend the PikeTree with that dropping semantic</p>
+<p>TODO: think of a proof sketch on how to connect prefixed PikeVM and
+PikeTree.</p>
+<h2 id="to-discuss-6">To discuss</h2>
+<ul>
+<li>Add a CI to Linden to check if proofs compile</li>
+<li>How difficult is it to update Warblre to newer ECMAScript?</li>
+<li>The pipeline of the PikeVM proof</li>
+<li>Proof of linearity of PikeVM is done on the small step semantics.
+Shouldn’t we prove on the functional version?</li>
+</ul>
+<h2 id="action-items-6">Action items</h2>
+</body>
+</html>
