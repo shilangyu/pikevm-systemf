@@ -34,6 +34,7 @@ runs:
     - name: Install fonts
       if: steps.cache-fonts.outputs.cache-hit != 'true'
       shell: bash
+      working-directory: report
       run: |
         mkdir -p ~/.local/share/fonts
         cp -r fonts/*/*.otf ~/.local/share/fonts/
@@ -41,13 +42,18 @@ runs:
 
     - name: Check formatting
       shell: bash
+      working-directory: report
       run: typstyle --check --line-with 120 .
 
     - run: typst compile thesis.typ thesis.pdf
       shell: bash
+      working-directory: report
     - run: typst compile proposal.typ proposal.pdf
       shell: bash
+      working-directory: report
     - run: typst compile registration_certificate.typ registration_certificate.pdf
       shell: bash
+      working-directory: report
     - run: typst compile feedbacklog.typ feedbacklog.pdf
       shell: bash
+      working-directory: report
