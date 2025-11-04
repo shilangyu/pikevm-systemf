@@ -1,0 +1,50 @@
+name: Build report
+description: Builds the report and lints it
+runs:
+  using: "composite"
+  steps:
+    - uses: typst-community/setup-typst@v4
+      with:
+        typst-version: ^0.14.0
+
+    - name: Install typstyle
+      shell: bash
+      run: |
+        wget https://github.com/typstyle-rs/typstyle/releases/download/v0.14.0/typstyle-x86_64-unknown-linux-gnu
+        echo "$(pwd)/typstyle-x86_64-unknown-linux-gnu" >> "$GITHUB_PATH"
+
+    - name: Print versions
+      shell: bash
+      run: |
+        typst --version
+        typstyle --version
+
+    - name: Cache fonts
+      id: cache-fonts
+      uses: actions/cache@v4
+      with:
+        path: ~/.local/share/fonts
+        key: fonts-${{ runner.os }}
+        restore-keys: |
+          fonts-
+
+    - name: Install fonts
+      if: steps.cache-fonts.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        mkdir -p ~/.local/share/fonts
+        cp -r fonts/*/*.otf ~/.local/share/fonts/
+        fc-cache -f -v  # Refresh font cache
+
+    - name: Check formatting
+      shell: bash
+      run: typstyle --check --line-with 120 .
+
+    - run: typst compile thesis.typ thesis.pdf
+      shell: bash
+    - run: typst compile proposal.typ proposal.pdf
+      shell: bash
+    - run: typst compile registration_certificate.typ registration_certificate.pdf
+      shell: bash
+    - run: typst compile feedbacklog.typ feedbacklog.pdf
+      shell: bash
