@@ -1,0 +1,26 @@
+name: Build site
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: "0"
+          lfs: true
+
+      - name: Install pandoc
+        run: |
+          sudo apt-get update -qq
+          curl https://github.com/jgm/pandoc/releases/download/3.8.2.1/pandoc-3.8.2.1-1-amd64.deb -L --output pandoc.deb
+          sudo apt install ./pandoc.deb
+
+      - name: Build site
+        run: |
+          ./public/generate.sh
