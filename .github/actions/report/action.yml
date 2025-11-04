@@ -43,7 +43,7 @@ runs:
     - name: Check formatting
       shell: bash
       working-directory: report
-      run: typstyle --check --line-with 120 .
+      run: typstyle --check --line-width 120 .
 
     - run: typst compile thesis.typ thesis.pdf
       shell: bash
