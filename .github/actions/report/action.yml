@@ -1,11 +1,17 @@
 name: Build report
 description: Builds the report and lints it
+
+inputs:
+  typst-version:
+    description: The version of Typst to use
+    required: true
+
 runs:
   using: "composite"
   steps:
     - uses: typst-community/setup-typst@v4
       with:
-        typst-version: ${{ vars.TYPST_VERSION }}
+        typst-version: ${{ inputs.typst-version }}
 
     - name: Install typstyle
       shell: bash
