@@ -48,12 +48,3 @@ runs:
     - run: typst compile thesis.typ thesis.pdf
       shell: bash
       working-directory: report
-    - run: typst compile proposal.typ proposal.pdf
-      shell: bash
-      working-directory: report
-    - run: typst compile registration_certificate.typ registration_certificate.pdf
-      shell: bash
-      working-directory: report
-    - run: typst compile feedbacklog.typ feedbacklog.pdf
-      shell: bash
-      working-directory: report
