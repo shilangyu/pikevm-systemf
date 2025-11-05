@@ -28,29 +28,11 @@ runs:
         typst --version
         typstyle --version
 
-    - name: Cache fonts
-      id: cache-fonts
-      uses: actions/cache@v4
-      with:
-        path: ~/.local/share/fonts
-        key: fonts-${{ runner.os }}
-        restore-keys: |
-          fonts-
-
-    - name: Install fonts
-      if: steps.cache-fonts.outputs.cache-hit != 'true'
-      shell: bash
-      working-directory: report
-      run: |
-        mkdir -p ~/.local/share/fonts
-        cp -r fonts/*/*.otf ~/.local/share/fonts/
-        fc-cache -f -v  # Refresh font cache
-
     - name: Check formatting
       shell: bash
       working-directory: report
       run: typstyle --check --line-width 120 .
 
-    - run: typst compile thesis.typ thesis.pdf
+    - run: typst compile thesis.typ thesis.pdf --font-path fonts/
       shell: bash
       working-directory: report
