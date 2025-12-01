@@ -1,4 +1,4 @@
-#import "/style/thesis_template.typ": *
+#import "/style/thesis.typ": *
 #import "/metadata.typ": *
 #import "/utils/todo.typ": *
 
@@ -29,6 +29,8 @@
   - Things like figures should be able to use all of the space
 ]
 
+#NOTE[Consider using a glossary for abbreviations]
+
 #NOTE[Appendix reference does not use the "Appendix" supplement]
 
 #NOTE[
@@ -38,7 +40,6 @@
     - Bullet points do not get auto completed (this should be done with the https://github.com/rust-lang/rust-analyzer/blob/master/docs/dev/lsp-extensions.md#on-enter event)
     - No autoimport
 ]
-
 
 #include "/content/introduction.typ"
 #include "/content/background.typ"

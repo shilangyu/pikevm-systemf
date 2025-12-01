@@ -1,0 +1,53 @@
+linearjsregex:
+  type: article
+  title: Linear Matching of JavaScript Regular Expressions
+  author:
+    - Barrière, Aurèle
+    - Pit-Claudel, Clément
+  date: 2024-06
+  url: https://doi.org/10.1145/3656431
+  serial-number:
+    doi: 10.1145/3656431
+  abstract: "Modern regex languages have strayed far from well-understood traditional regular expressions: they include features that fundamentally transform the matching problem. In exchange for these features, modern regex engines at times suffer from exponential complexity blowups, a frequent source of denial-of-service vulnerabilities in JavaScript applications. Worse, regex semantics differ across languages, and the impact of these divergences on algorithmic design and worst-case matching complexity has seldom been investigated.This paper provides a novel perspective on JavaScript’s regex semantics by identifying a larger-than-previously-understood subset of the language that can be matched with linear time guarantees. In the process, we discover several cases where state-of-the-art algorithms were either wrong (semantically incorrect), inefficient (suffering from superlinear complexity) or excessively restrictive (assuming certain features could not be matched linearly). We introduce novel algorithms to restore correctness and linear complexity. We further advance the state-of-the-art in linear regex matching by presenting the first nonbacktracking algorithms for matching lookarounds in linear time: one supporting captureless lookbehinds in any regex language, and another leveraging a JavaScript property to support unrestricted lookaheads and lookbehinds. Finally, we describe new time and space complexity tradeoffs for regex engines. All of our algorithms are practical: we validated them in a prototype implementation, and some have also been merged in the V8 JavaScript implementation used in Chrome and Node.js."
+  parent:
+    type: periodical
+    title: Proc. ACM Program. Lang.
+    publisher:
+      name: Association for Computing Machinery
+      location: New York, NY, USA
+    issue: PLDI
+    volume: 8
+
+# TODO: replace with POPL release
+linden:
+  type: misc
+  title: "Formal Verification for JavaScript Regular Expressions: a Proven Semantics and its Applications (Extended Version)"
+  author:
+    - Barrière, Aurèle
+    - Deng, Victor
+    - Pit-Claudel, Clément
+  date: 2025
+  url: https://arxiv.org/abs/2507.13091
+  serial-number:
+    arxiv: "2507.13091"
+
+warblre:
+  type: article
+  title: A Coq Mechanization of JavaScript Regular Expression Semantics
+  author:
+    - De Santo, Noé
+    - Barrière, Aurèle
+    - Pit-Claudel, Clément
+  date: 2024-08
+  url: https://doi.org/10.1145/3674666
+  serial-number:
+    doi: 10.1145/3674666
+  abstract: "We present an executable, proven-safe, faithful, and future-proof Coq mechanization of JavaScript regular expression (regex) matching, as specified by the latest published edition of ECMA-262 section 22.2. This is, to our knowledge, the first time that an industrial-strength regex language has been faithfully mechanized in an interactive theorem prover. We highlight interesting challenges that arose in the process (including issues of encoding, corner cases, and executability), and we document the steps that we took to ensure that the result is straightforwardly auditable and that our understanding of the specification aligns with existing implementations. We demonstrate the usability and versatility of the mechanization through a broad collection of analyses, case studies, and experiments: we prove that JavaScript regex matching always terminates and is safe (no assertion failures); we identify subtle corner cases that led to mistakes in previous publications; we verify an optimization extracted from a state-of-the-art regex engine; we show that some classic properties described in automata textbooks and used in derivatives-based matchers do not hold in JavaScript regexes; and we demonstrate that the cost of updating the mechanization to account for changes in the original specification is reasonably low. Our mechanization can be extracted to OCaml and JavaScript and linked with Unicode libraries to produce an executable regex engine that passes the relevant parts of the official Test262 conformance test suite."
+  parent:
+    type: periodical
+    title: Proc. ACM Program. Lang.
+    publisher:
+      name: Association for Computing Machinery
+      location: New York, NY, USA
+    issue: ICFP
+    volume: 8
