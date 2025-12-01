@@ -1,3 +1,5 @@
 {
-  "tinymist.fontPaths": ["./fonts"]
+  "tinymist.fontPaths": ["./fonts"],
+  "tinymist.formatterMode": "typstyle",
+  "tinymist.formatterPrintWidth": 120
 }
