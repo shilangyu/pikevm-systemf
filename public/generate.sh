@@ -19,6 +19,14 @@ echo "[proposal](proposal/proposal.html)" >> "$index"
 
 echo "" >> "$index"
 
+echo "## Progress presentation" >> "$index"
+rm -r progress || true; mkdir -p progress
+pandoc ../progress_presentation/script.md -H headers.html --katex -s -o "progress/script.html"
+cp ../progress_presentation/presentation.svg progress/
+echo "[script](progress/script.html)" >> "$index"
+
+echo "" >> "$index"
+
 rm -r meeting-notes || true; mkdir -p meeting-notes
 echo "## Meeting notes" >> "$index"
 for f in ../meeting_notes/*.md; do
