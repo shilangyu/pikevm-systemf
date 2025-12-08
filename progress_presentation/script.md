@@ -54,10 +54,13 @@ We cannot just run the engine at every input position: this will ruin our comple
 # In practice
 
 - Implemented in the rust-regex crate (Optim 2 already present, optim 1 implemented by me)
+- This is done by doing classical substring searches which are much faster than running an engine
+  - We keep a counter indicating in how many characters the prefix will match
+  - If the counter is non-zero, we do Optim 1
 - In rebar which is supposed to be a real world benchmarking suit
-  1. optim 2 can lead to 600x times speedups
-  2. optim 1 can lead to 20x times speedups
-- Arguably the most important regex matching optimization
+  1. optim 2 can lead to 600x times speedups -> skipping large portions of the input
+  2. optim 1 can lead to 20x times speedups -> not keeping the PikeVM alive when not needed
+- Arguably the most important regex matching optimization for large inputs
 
 # Proof
 
@@ -74,7 +77,9 @@ Hopefully by now you have the intuition that this algorithm is correct. But how 
 ## PikeTree
 
 - Operates on backtracking trees -> firstLeaf equivalence
+  - Each step of the PikeTree preserves the result
 - Explores like the PikeVM -> PikeVM equivalence
+  - There exists an execution of the PikeTree which corresponds to one from the PikeVM
 - The subtrees are $\alpha$ at different positions
 - When we added $\alpha$ in the PikeVM, here we add a subtree. But we optimize by not adding the subtree if it contains no results
 
