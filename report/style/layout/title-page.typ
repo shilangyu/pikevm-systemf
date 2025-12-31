@@ -27,7 +27,10 @@
     )
   }
 
-  assert(degree in ("Bachelor", "Master"), message: "The degree must be either 'Bachelor' or 'Master'")
+  assert(
+    degree in ("Bachelor", "Master"),
+    message: "The degree must be either 'Bachelor' or 'Master'",
+  )
 
   set page(
     margin: (left: 20mm, right: 20mm, top: 30mm, bottom: 30mm),
@@ -47,7 +50,12 @@
   align(center, image("/figures/EPFL_logo.png", width: 26%))
 
   v(5mm)
-  align(center, text(font: fonts.sans, 2em, weight: 700, "École Polytechnique Fédérale de Lausanne"))
+  align(center, text(
+    font: fonts.sans,
+    2em,
+    weight: 700,
+    "École Polytechnique Fédérale de Lausanne",
+  ))
 
   v(5mm)
   align(center, text(
@@ -81,7 +89,10 @@
     entries.push((supervisorField, supervisors.join(", ")))
   }
   entries.push(("Start Date", startDate.display("[day].[month].[year]")))
-  entries.push(("Submission Date", submissionDate.display("[day].[month].[year]")))
+  entries.push((
+    "Submission Date",
+    submissionDate.display("[day].[month].[year]"),
+  ))
 
   v(1cm)
   title-table(entries)

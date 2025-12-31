@@ -21,6 +21,7 @@
   abstract: include "/content/abstract.typ",
   abstractFrench: include "/content/abstract_french.typ",
   acknowledgements: include "/content/acknowledgements.typ",
+  glossary: glossary,
   appendix: include "/content/appendixes/appendixes.typ",
 )
 
@@ -28,8 +29,6 @@
   make left/right margins depend on the page parity
   - Things like figures should be able to use all of the space
 ]
-
-#NOTE[Consider using a glossary for abbreviations]
 
 #NOTE[Appendix reference does not use the "Appendix" supplement]
 

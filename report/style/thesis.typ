@@ -3,6 +3,7 @@
 #import "/style/layout/acknowledgement.typ": *
 #import "/style/layout/appendix.typ": appendix as appendix_layout
 #import "/style/layout/abstract.typ": abstract as abstract_layout
+#import "/style/layout/glossary.typ": *
 #import "/style/fonts.typ": *
 
 
@@ -23,9 +24,12 @@
   abstract: "",
   abstractFrench: "",
   acknowledgements: "",
+  glossary: dictionary,
   appendix: "",
   body,
 ) = {
+  show ref: glossary-ref-format(glossary)
+
   title-page(
     title: title,
     titleFrench: titleFrench,
@@ -116,9 +120,11 @@
 
   body
 
+  bibliography("/bibliography.yml")
+
+  glossary-table(glossary)
+
   // Appendix.
   pagebreak()
   appendix_layout(appendix)
-
-  bibliography("/bibliography.yml")
 }
