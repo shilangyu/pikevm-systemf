@@ -1,10 +1,21 @@
 #import "/style/thesis.typ": *
 #import "/metadata.typ": *
 #import "/utils/todo.typ": *
+#import "@preview/catppuccin:1.0.1": catppuccin, flavors
 
 #set document(title: titleEnglish, author: author)
 
+#show: catppuccin.with(flavors.latte)
+
 #TODO-outline()
+
+#show raw.where(lang: "regex"): it => {
+  if it.block {
+    it
+  } else {
+    [/] + it + [/]
+  }
+}
 
 #show: thesis.with(
   title: titleEnglish,
