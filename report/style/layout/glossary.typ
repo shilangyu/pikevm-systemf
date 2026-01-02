@@ -1,7 +1,4 @@
 // TODO: when doing @term:intro, put the definition in the margin
-
-#let style = underline.with(stroke: (thickness: 1pt, dash: "loosely-dotted"))
-
 #let capitalize(word) = {
   if word.len() == 0 {
     ""
@@ -32,7 +29,7 @@
 #let glossary-ref-format(entries) = it => {
   let parts = str(it.target).split(":")
   if parts.at(0) in entries.keys() {
-    link(label(parts.at(0)))[#style[#format-with-modifiers(parts.slice(1), entries.at(parts.at(0)))]]
+    link(label(parts.at(0)))[#format-with-modifiers(parts.slice(1), entries.at(parts.at(0)))]
   } else {
     it
   }
@@ -40,7 +37,7 @@
 
 
 #let glossary-table(entries) = [
-  #heading(numbering: none)[#style[Glossary]]
+  #heading(numbering: none)[Glossary]
 
   #table(
     columns: (auto, 1fr, 2fr),
