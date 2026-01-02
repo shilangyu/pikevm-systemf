@@ -1,0 +1,13 @@
+{
+	"File with prelude": {
+		"isFileTemplate": true,
+		"scope": "typst",
+		"prefix": "prelude",
+		"body": [
+			"#import \"/prelude.typ\": *",
+			"",
+			"$0"
+		],
+		"description": "Creates a new Typst file with prelude imported"
+	}
+}

@@ -1,3 +1,3 @@
-#import "/utils/todo.typ": *
+#import "/prelude.typ": *
 
 #TODO[Chapters]

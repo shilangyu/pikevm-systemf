@@ -1,4 +1,6 @@
-#let style = underline.with(stroke: (thickness: 1pt, dash: "loosely-dashed"))
+// TODO: when doing @term:intro, put the definition in the margin
+
+#let style = underline.with(stroke: (thickness: 1pt, dash: "loosely-dotted"))
 
 #let capitalize(word) = {
   if word.len() == 0 {
@@ -8,24 +10,22 @@
   }
 }
 
-#let decapitalize(word) = {
-  if word.len() == 0 {
-    ""
-  } else {
-    lower(word.at(0)) + word.slice(1)
-  }
-}
-
 // TODO: add panic for unknown modifiers
 #let format-with-modifiers(modifiers, entry) = {
-  let cap(term) = if modifiers.contains("cap") { capitalize(term) } else { decapitalize(term) }
-  let short = if modifiers.contains("plural") { decapitalize(entry.shortPlural) } else { decapitalize(entry.short) }
-  let long = if modifiers.contains("plural") { decapitalize(entry.longPlural) } else { decapitalize(entry.long) }
+  let cap(term) = if modifiers.contains("cap") { capitalize(term) } else { term }
+  let short = if modifiers.contains("plural") { entry.shortPlural } else { entry.short }
+  let long = if modifiers.contains("plural") { entry.longPlural } else { entry.long }
 
   if modifiers.contains("intro") {
-    [#cap(long) (#short)]
+    if long == short {
+      cap(long)
+    } else {
+      [#cap(long) (#short)]
+    }
+  } else if modifiers.contains("long") {
+    cap(long)
   } else {
-    cap(entry.short)
+    cap(short)
   }
 }
 
@@ -47,8 +47,8 @@
     [*Term*], [*Full name*], [*Description*],
     ..for (key, value) in entries.pairs().sorted(key: ((_, v)) => v.short) {
       (
-        [#table.cell[#value.short] #label(key)],
-        value.long,
+        [#table.cell[#capitalize(value.short)] #label(key)],
+        capitalize(value.long),
         value.description,
       )
     },

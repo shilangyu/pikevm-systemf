@@ -1,4 +1,4 @@
-#import "/utils/todo.typ": TODO
+#import "/prelude.typ": *
 
 = Related Work
 

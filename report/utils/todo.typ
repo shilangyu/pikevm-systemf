@@ -1,5 +1,4 @@
-#import "@preview/drafting:0.2.2": *
-#import "@preview/colorful-boxes:1.4.3": stickybox
+#import "/packages.typ": colorful-boxes.stickybox, drafting.inline-note, drafting.margin-note, drafting.note-outline
 
 #let sticky-box(stroke: none, fill: none, width: 100%, content) = {
   stickybox(rotation: 3deg, width: width, content)
