@@ -51,7 +51,7 @@
 ]
 
 #include "/content/introduction.typ"
-#include "/content/background.typ"
+#include "/content/background/background.typ"
 #include "/content/chapters/chapters.typ"
 #include "/content/evaluation.typ"
 #include "/content/related_work.typ"

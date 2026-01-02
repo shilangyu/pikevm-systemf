@@ -16,9 +16,7 @@
   if modifiers.contains("intro") {
     if long == short {
       cap(long)
-    } else {
-      [#cap(long) (#short)]
-    }
+    } else [#cap(long) (#short)]
   } else if modifiers.contains("long") {
     cap(long)
   } else {
