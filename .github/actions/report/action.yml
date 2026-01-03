@@ -33,6 +33,6 @@ runs:
       working-directory: report
       run: typstyle --check --line-width 120 .
 
-    - run: typst compile thesis.typ thesis.pdf --font-path fonts/
+    - run: ./build.sh
       shell: bash
       working-directory: report

@@ -1,5 +1,10 @@
 {
-  "tinymist.fontPaths": ["./fonts"],
   "tinymist.formatterMode": "typstyle",
-  "tinymist.formatterPrintWidth": 120
+  "tinymist.formatterPrintWidth": 120,
+  "tinymist.typstExtraArgs": [
+    "--input",
+    "LINDEN_REF=cd3ea4b3267d060bc58caecd74a624a94a798700",
+    "--font-path",
+    "./fonts"
+  ]
 }

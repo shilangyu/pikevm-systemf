@@ -40,7 +40,8 @@ echo "" >> "$index"
 
 echo "## Report" >> "$index"
 rm -r report || true; mkdir -p report
-typst compile ../report/thesis.typ "report/thesis.pdf" --font-path ../report/fonts
+../report/build.sh
+mv ../report/thesis.pdf report/
 echo "[report](report/thesis.pdf)" >> "$index"
 
 pandoc "$index" -H headers.html --katex -s -o index.html
