@@ -5,7 +5,7 @@
 ) = {
   set par(justify: false)
 
-  let content = body.pos().intersperse((none,) * 4).flatten()
+  let content = body.pos().intersperse((none,) * 8).flatten()
 
   table(
     columns: (
