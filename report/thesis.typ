@@ -1,10 +1,10 @@
 #import "/style/thesis.typ": *
 #import "/metadata.typ": *
-#import "prelude.typ": catppuccin.catppuccin, catppuccin.flavors
+#import "prelude.typ": catppuccin.catppuccin
 
 #set document(title: titleEnglish, author: author)
 
-#show: catppuccin.with(flavors.latte)
+#show: catppuccin.with(flavor)
 
 #TODO-outline()
 

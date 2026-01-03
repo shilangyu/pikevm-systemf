@@ -5,6 +5,7 @@
 #import "/style/layout/abstract.typ": abstract as abstract_layout
 #import "/style/layout/glossary.typ": *
 #import "/style/fonts.typ": *
+#import "/style/colors.typ": *
 
 
 // The main thesis layout bootstrapper.
@@ -32,8 +33,7 @@
   let document-link-style = underline.with(stroke: (thickness: 1pt, dash: "loosely-dotted"))
   show link: it => {
     if type(it.dest) == str {
-      // this is an external link
-      it
+      text(external-link-color)[#it]
     } else {
       document-link-style(it)
     }

@@ -1,4 +1,4 @@
-#import "/packages.typ": catppuccin.flavors
+#import "/style/colors.typ": flavor
 
 // A haystack
-#let hay(s) = text(flavors.latte.colors.yellow.rgb)["#s"]
+#let hay(s) = text(flavor.colors.yellow.rgb)["#s"]
