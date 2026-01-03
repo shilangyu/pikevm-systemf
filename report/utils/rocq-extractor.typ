@@ -45,7 +45,7 @@
 /// -> array
 #let list-statements(file) = {
   let contents = read("/Linden/" + file)
-  let header = regex("(?:[\s--\n]*)(?:Definition|Theorem|Lemma|Fixpoint|Inductive)\s+([\w\d_']+)[^\.]+\.")
+  let header = regex("(?:[\s--\n]*)(?:Definition|Theorem|Variant|Lemma|Fixpoint|Inductive)\s+([\w\d_']+)[^\.]+\.")
 
   contents
     .matches(header)
@@ -63,7 +63,9 @@
 /// - file (str): Linden Rocq source file
 /// - name (str): Name of the Rocq statement
 #let find-statement(file, name) = {
-  list-statements(file).find(e => e.name == name)
+  let stmt = list-statements(file).find(e => e.name == name)
+  assert(stmt != none, message: "Statement '" + name + "' not found in file '" + file + "'")
+  stmt
 }
 
 /// Generates a GitHub hyperlink to the source code of a statement.
@@ -97,6 +99,6 @@
 
   [#figure(
       raw(stmt.code, lang: "rocq", block: true),
-      caption: caption + link(source-hyperlink(stmt))[Source.],
+      caption: caption + [ ] + link(source-hyperlink(stmt))[Source.],
     ) #lbl]
 }
