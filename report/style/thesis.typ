@@ -30,7 +30,14 @@
 ) = {
   // Links which link within the document have this style
   let document-link-style = underline.with(stroke: (thickness: 1pt, dash: "loosely-dotted"))
-  show link: document-link-style
+  show link: it => {
+    if type(it.dest) == str {
+      // this is an external link
+      it
+    } else {
+      document-link-style(it)
+    }
+  }
   show ref: document-link-style
 
   show ref: glossary-ref-format(glossary)
