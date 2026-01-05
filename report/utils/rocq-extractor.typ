@@ -17,12 +17,12 @@
   }
 
   // find indent level
-  let indent = 0
+  let indent = none
   for line in lines {
     if line.trim() == "" { continue }
 
     let count = line.position(regex("\S|$"))
-    if indent == 0 or count < indent { indent = count }
+    if indent == none or count < indent { indent = count }
   }
 
   // remove indent
@@ -45,13 +45,24 @@
 /// -> array
 #let list-statements(file) = {
   let contents = read("/Linden/" + file)
-  let header = regex("(?:[\s--\n]*)(?:Definition|Theorem|Variant|Lemma|Fixpoint|Inductive)\s+([\w\d_']+)[^\.]+\.")
+  let header = regex({
+    // include all whitespace before the statement, will be needed for correct dedent
+    "(?:[\s--\n]*)"
+    // header
+    "(Definition|Theorem|Variant|Lemma|Fixpoint|Inductive|Notation)"
+    "\s+"
+    // name
+    "([\w\d_']+)"
+    // body
+    "(?:[^.]|\.\w)+\."
+  })
 
   contents
     .matches(header)
     .map(s => (
       file: file,
-      name: s.captures.at(0),
+      kind: s.captures.at(0),
+      name: s.captures.at(1),
       // remove trailing dot and normalize indentation
       code: dedent(s.text.slice(0, -1)),
       line: (start: line-number(contents, s.start), end: line-number(contents, s.end)),
