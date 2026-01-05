@@ -1,3 +1,5 @@
+#import "/utils/theorem.typ": *
+
 /// Removes common leading indentation from all lines in a given string.
 /// Additionally it trims redundant whitespace.
 ///
@@ -98,18 +100,36 @@
   )
 }
 
-/// Creates a listing of Linden Rocq code for a given statement.
+/// Creates a listing of Linden Rocq code for the given statements.
 ///
 /// - file (str): Linden Rocq source file
-/// - name (str): Name of the Rocq statement
-/// - lbl (label): Figure label
+/// - names (str): Names of the Rocq statements
 /// - caption (content): Caption text
 /// -> content
-#let linden-listing(file, name, lbl, caption) = {
+#let linden-listing(file, names, caption) = {
+  let stmts = names.map(name => find-statement(file, name))
+
+  figure(
+    raw(stmts.map(s => s.code).join("\n"), lang: "rocq", block: true),
+    caption: caption
+      + [ ]
+      // TODO: put this in the margin instead?
+      + stmts
+        .map(stmt => link(source-hyperlink(stmt), raw(
+          stmt.file + "#" + str(stmt.line.start) + "-" + str(stmt.line.end),
+        )))
+        .join(" "),
+  )
+}
+
+
+#let linden-theorem(file, name) = {
   let stmt = find-statement(file, name)
 
-  [#figure(
-      raw(stmt.code, lang: "rocq", block: true),
-      caption: caption + [ ] + link(source-hyperlink(stmt))[Source.],
-    ) #lbl]
+  // TODO: don't show header and name of the statement in the theorem
+  theorem(
+    name,
+    raw(stmt.code, lang: "rocq"),
+    supplement: stmt.kind,
+  )
 }
