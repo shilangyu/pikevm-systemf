@@ -82,4 +82,7 @@ The abstract syntax of Linden regexes is shown in @fig:regex. All ECMAScript reg
 
 Discussion of backreferences is omitted as backreference matching is NP-hard @backref-nphard and here we focus on engines that run in worst-case linear time.
 
-#TODO[Describe semantics]
+#TODO[
+  Throughout the report we will tend to use the ECMAScript syntax for regexes for brevity and familiarity, ie. ```regex ^this+|syntax*(?=!!!)```. The theorems will, however, be stated in terms of the Linden abstract regex syntax.
+][Make it a nice "Hint" box]
+#TODO[Describe semantics and flags and that we can about matching anywhere in the haystack (unanchored)]

@@ -38,6 +38,7 @@
 #NOTE[
   make left/right margins depend on the page parity
   - Things like figures should be able to use all of the space
+  - When referencing a heading, use the heading number and put the heading titles in the margin
 ]
 
 #NOTE[Appendix reference does not use the "Appendix" supplement]
