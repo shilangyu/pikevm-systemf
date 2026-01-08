@@ -1,4 +1,5 @@
 #import "/utils/theorem.typ": *
+#import "/env.typ": *
 
 /// Removes common leading indentation from all lines in a given string.
 /// Additionally it trims redundant whitespace.
@@ -90,7 +91,7 @@
 
   (
     "https://github.com/epfl-systemf/Linden/blob/"
-      + sys.inputs.LINDEN_REF
+      + linden-ref
       + "/"
       + file
       + "#L"
