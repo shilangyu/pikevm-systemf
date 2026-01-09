@@ -61,7 +61,7 @@ cloudflare-vuln:
   organization: Cloudflare
   url: https://blog.cloudflare.com/details-of-the-cloudflare-outage-on-july-2-2019/
 
-redos:
+redos-study:
   type: article
   title: "Freezing the Web: A Study of {ReDoS} Vulnerabilities in {JavaScript-based} Web Servers"
   author:
