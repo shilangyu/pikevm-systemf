@@ -6,7 +6,7 @@
 #let program = "Computer Science"
 #let specialization = "Computer Science Theory"
 #let school = "School of Computer and Communication Sciences"
-#let examiner = TODO[EXAMINER NAME][examiner name]
+#let examiner = "Nate Foster"
 #let supervisors = ("Aurèle Barrière", "Clément Pit-Claudel")
 #let author = "Marcin Wojnarowski"
 #let startDate = datetime(day: 22, month: 9, year: 2025)

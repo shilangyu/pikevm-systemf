@@ -49,19 +49,20 @@ We will commonly want to weaken a literal into just the information of what pref
 
 #TODO[Bad layout of the above. Should be one listing]
 
-We must additionally define two useful operators on literals. The first one is _chaining_ defined in @lst:chain-literals. It computes the literal resulting from two immediately consecutive literals. If any of the inputs is ```rocq Impossible```, the result is also ```rocq Impossible```. The intuition is that if one of the literals says that no match can exist, then adding anything to the left or right of that does not change this fact. Naturally, chaining is not commutative, it is akin to string contamination. If the left operand is ```rocq Prefix```, then the right operand cannot be used because there might be some unknown characters in between. The second operator is _merging_ defined in @lst:merge-literals. It computes the result of overlapping two literals. If the literals are the same, the result is that literal. Otherwise we must degrade into a ```rocq Prefix``` with the string that is the longest common prefix of both. We can see that in both operators ```rocq Exact``` literals are quite brittle. To get an ```rocq Exact``` literal out of the operators, both operands must be ```rocq Exact```. This is expected, as ```rocq Exact``` literals encode a very strong property about matches.
+We must additionally define two important operators on literals. The first one is _chaining_ defined in @lst:chain-literals. It computes the literal resulting from two immediately consecutive literals. If any of the inputs is ```rocq Impossible```, the result is also ```rocq Impossible```. The intuition is that if one of the literals says that no match can exist, then adding anything to the left or right of that does not change this fact. Naturally, chaining is not commutative, it is akin to string contamination. If the left operand is ```rocq Prefix```, then the right operand cannot be used because there might be some unknown characters in between. The second operator is _merging_ defined in @lst:merge-literals. It computes the result of overlapping two literals. If the literals are the same, the result is that literal. Otherwise we must degrade into a ```rocq Prefix``` with the string that is the longest common prefix of both. We can see that in both operators ```rocq Exact``` literals are quite brittle. To get an ```rocq Exact``` literal out of the operators, both operands must be ```rocq Exact```. This is expected, as ```rocq Exact``` literals encode a very strong property about matches.
 
-What follows are a couple of lemmas about those operators.
+What follows are a couple of useful lemmas about those operators.
 
 #linden-theorem("Engine/Prefix.v", "chain_literals_assoc")
 #linden-theorem("Engine/Prefix.v", "chain_literals_impossible")
-#linden-theorem("Engine/Prefix.v", "starts_with_common_prefix")
 #linden-theorem("Engine/Prefix.v", "merge_literals_comm")
 #linden-theorem("Engine/Prefix.v", "merge_literals_impossible")
 
 With this setup in place, we can now define the literal extraction function as seen in @lst:extract-literal. A common pattern appearing here is that if the thing we are analyzing can potentially match two different characters, we cannot extract any #underline[certain] literal and so we return with an ```rocq Unknown```.
 
 #TODO[Continue this]
+#TODO[Mention the implicit `rer`]
+#TODO[Explain `repeat_literal`]
 
 #linden-listing("Engine/Prefix.v", (
   "extract_literal_char",

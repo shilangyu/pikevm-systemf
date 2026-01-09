@@ -47,7 +47,7 @@
   set par(leading: 0.5em)
 
   v(1cm)
-  align(center, image("/figures/EPFL_logo.png", width: 26%))
+  align(center, image("/figures/EPFL_logo.pdf", width: 26%))
 
   v(5mm)
   align(center, text(
