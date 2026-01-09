@@ -6,7 +6,7 @@
 #import "/style/layout/glossary.typ": *
 #import "/style/fonts.typ": *
 #import "/style/colors.typ": *
-
+#import "/prelude.typ": *
 
 // The main thesis layout bootstrapper.
 
@@ -29,6 +29,8 @@
   appendix: "",
   body,
 ) = {
+  show: setup-theorems
+  show: glossary-setup.with(glossary)
   // Links which link within the document have this style
   let document-link-style = underline.with(stroke: (thickness: 1pt, dash: "loosely-dotted"))
   show link: it => {
@@ -40,7 +42,6 @@
   }
   show ref: document-link-style
 
-  show ref: glossary-ref-format(glossary)
 
   title-page(
     title: title,
@@ -66,9 +67,15 @@
   abstract_layout(lang: "fr")[#abstractFrench]
 
   set page(
-    margin: (left: 30mm, right: 30mm, top: 40mm, bottom: 40mm),
     numbering: none,
+    // TODO: alternate pages between left/right align
     number-align: center,
+  )
+
+  show: marginalia.setup.with(
+    inner: (width: 7mm),
+    outer: (width: 40mm),
+    book: book,
   )
 
   set text(
@@ -105,7 +112,20 @@
   set cite(style: "alphanumeric")
 
   // --- Figures ---
-  show figure: set text(size: 0.85em)
+  show figure: set text(size: 0.8em)
+  show figure.caption.where(position: bottom): note.with(
+    alignment: "bottom",
+    counter: none,
+    shift: "avoid",
+    keep-order: true,
+  )
+  show figure.caption.where(position: top): note.with(
+    alignment: "top",
+    counter: none,
+    shift: "avoid",
+    keep-order: true,
+    dy: -0.01pt, // this is so that the caption is placed above wide figures.
+  )
 
   // --- Table of Contents ---
   show outline.entry.where(level: 1): it => {

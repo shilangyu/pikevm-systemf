@@ -24,13 +24,16 @@
   }
 }
 
-#let glossary-ref-format(entries) = it => {
-  let parts = str(it.target).split(":")
-  if parts.at(0) in entries.keys() {
-    link(label(parts.at(0)))[#format-with-modifiers(parts.slice(1), entries.at(parts.at(0)))]
-  } else {
-    it
+#let glossary-setup(entries, body) = {
+  show ref: it => {
+    let parts = str(it.target).split(":")
+    if parts.at(0) in entries.keys() {
+      link(label(parts.at(0)))[#format-with-modifiers(parts.slice(1), entries.at(parts.at(0)))]
+    } else {
+      it
+    }
   }
+  body
 }
 
 

@@ -1,5 +1,6 @@
-#import "/utils/theorem.typ": *
+#import "/style/theorem.typ": *
 #import "/env.typ": *
+#import "/utils/todo.typ": note
 
 /// Removes common leading indentation from all lines in a given string.
 /// Additionally it trims redundant whitespace.
@@ -57,7 +58,7 @@
     // name
     "([\w\d_']+)"
     // body
-    "(?:[^.]|\.\w)+\."
+    "((?:[^.]|\.\w)+)\."
   })
 
   contents
@@ -68,6 +69,7 @@
       name: s.captures.at(1),
       // remove trailing dot and normalize indentation
       code: dedent(s.text.slice(0, -1)),
+      code-body: dedent(s.captures.at(2)),
       line: (start: line-number(contents, s.start), end: line-number(contents, s.end)),
     ))
 }
@@ -85,11 +87,11 @@
 /// Generates a GitHub hyperlink to the source code of a statement.
 ///
 /// - stmt ():
-/// -> str
+/// -> link
 #let source-hyperlink(stmt) = {
   let (file, line) = stmt
 
-  (
+  let url = (
     "https://github.com/epfl-systemf/Linden/blob/"
       + linden-ref
       + "/"
@@ -98,6 +100,11 @@
       + str(line.start)
       + "-L"
       + str(line.end)
+  )
+
+  link(
+    url,
+    raw(stmt.file + "#" + str(line.start) + "-" + str(line.end)),
   )
 }
 
@@ -111,15 +118,21 @@
   let stmts = names.map(name => find-statement(file, name))
 
   figure(
-    raw(stmts.map(s => s.code).join("\n"), lang: "rocq", block: true),
-    caption: caption
-      + [ ]
-      // TODO: put this in the margin instead?
-      + stmts
-        .map(stmt => link(source-hyperlink(stmt), raw(
-          stmt.file + "#" + str(stmt.line.start) + "-" + str(stmt.line.end),
-        )))
-        .join(" "),
+    align(left)[
+      #for stmt in stmts {
+        stack(
+          dir: ltr,
+          note(
+            source-hyperlink(stmt),
+            dy: 0.4em,
+            keep-order: true,
+          ),
+          raw(stmt.code, lang: "rocq", block: true),
+        )
+      }
+    ],
+    caption: caption,
+    gap: 0pt,
   )
 }
 
@@ -127,10 +140,10 @@
 #let linden-theorem(file, name) = {
   let stmt = find-statement(file, name)
 
-  // TODO: don't show header and name of the statement in the theorem
   theorem(
     name,
-    raw(stmt.code, lang: "rocq"),
+    [#note(source-hyperlink(stmt), numbering: none)#raw(stmt.code-body, lang: "rocq"),
+    ],
     supplement: stmt.kind,
   )
 }
