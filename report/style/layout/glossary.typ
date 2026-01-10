@@ -10,8 +10,8 @@
 // TODO: add panic for unknown modifiers
 #let format-with-modifiers(modifiers, entry) = {
   let cap(term) = if modifiers.contains("cap") { capitalize(term) } else { term }
-  let short = if modifiers.contains("plural") { entry.shortPlural } else { entry.short }
-  let long = if modifiers.contains("plural") { entry.longPlural } else { entry.long }
+  let short = if modifiers.contains("plural") { entry.short-plural } else { entry.short }
+  let long = if modifiers.contains("plural") { entry.long-plural } else { entry.long }
 
   if modifiers.contains("intro") {
     if long == short {

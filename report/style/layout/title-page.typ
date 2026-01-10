@@ -2,7 +2,7 @@
 
 #let title-page(
   title: "",
-  titleFrench: "",
+  title-french: "",
   degree: "",
   program: "",
   specialization: "",
@@ -10,8 +10,8 @@
   examiner: "",
   supervisors: (),
   author: "",
-  startDate: datetime,
-  submissionDate: datetime,
+  start-date: datetime,
+  submission-date: datetime,
 ) = {
   let title-table(entries) = {
     align(
@@ -78,20 +78,20 @@
 
 
   align(center, text(font: fonts.sans, 2em, weight: 700, title))
-  align(center, text(font: fonts.sans, 2em, weight: 500, titleFrench))
+  align(center, text(font: fonts.sans, 2em, weight: 500, title-french))
 
   let entries = ()
   entries.push(("Author", author))
   entries.push(("Examiner", examiner))
   // Only show supervisors if there are any
   if supervisors.len() > 0 {
-    let supervisorField = "Supervisor" + if supervisors.len() > 1 [s]
-    entries.push((supervisorField, supervisors.join(", ")))
+    let supervisor-field = "Supervisor" + if supervisors.len() > 1 [s]
+    entries.push((supervisor-field, supervisors.join(", ")))
   }
-  entries.push(("Start Date", startDate.display("[day].[month].[year]")))
+  entries.push(("Start Date", start-date.display("[day].[month].[year]")))
   entries.push((
     "Submission Date",
-    submissionDate.display("[day].[month].[year]"),
+    submission-date.display("[day].[month].[year]"),
   ))
 
   v(1cm)
