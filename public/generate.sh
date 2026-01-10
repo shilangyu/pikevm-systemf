@@ -38,7 +38,7 @@ done
 
 echo "" >> "$index"
 
-echo "## Report" >> "$index"
+echo "## Report (draft)" >> "$index"
 rm -r report || true; mkdir -p report
 ../report/build.sh
 mv ../report/thesis.pdf report/

@@ -1,5 +1,6 @@
 #import "/packages.typ": colorful-boxes.stickybox, marginalia
 #import "/style/fonts.typ": *
+#import "/env.typ": *
 
 #let todos = state("todos", ())
 
@@ -33,9 +34,11 @@
     todos.update(e => (..e, (msg: to-str(msg), loc: loc)))
   }
 
-  set text(todo-color)
-  doc
-  note(msg)
+  if draft {
+    set text(todo-color)
+    doc
+    note(msg)
+  }
 }
 
 #let NOTE(body) = {
@@ -44,13 +47,13 @@
     todos.update(e => (..e, (msg: to-str(body), loc: loc)))
   }
 
-  stickybox(rotation: 3deg, width: 100%, body)
+  if draft { stickybox(rotation: 3deg, width: 100%, body) }
 }
 
-#let TODO-outline = context [
-  = TODOs
+#let TODO-outline = context if draft {
+  align(left, text(font: fonts.sans, 1.5em, weight: 700, "TODOs"))
 
-  #for (msg, loc) in todos.final() [
+  for (msg, loc) in todos.final() [
     - #link(loc, text(todo-color, msg)) #box(width: 1fr, repeat[.]) #{ loc.page() }
   ]
-]
+}

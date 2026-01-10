@@ -157,6 +157,6 @@
   glossary-table(glossary)
 
   // Appendix.
-  pagebreak()
+  pagebreak(weak: true)
   appendix-layout(appendix)
 }
