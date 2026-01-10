@@ -1,8 +1,8 @@
 #import "/style/layout/title-page.typ": *
 #import "/style/syntax.typ": *
 #import "/style/layout/acknowledgement.typ": *
-#import "/style/layout/appendix.typ": appendix as appendix_layout
-#import "/style/layout/abstract.typ": abstract as abstract_layout
+#import "/style/layout/appendix.typ": appendix as appendix-layout
+#import "/style/layout/abstract.typ": abstract as abstract-layout
 #import "/style/layout/glossary.typ": *
 #import "/style/fonts.typ": *
 #import "/style/colors.typ": *
@@ -59,12 +59,12 @@
 
   pagebreak()
 
-  acknowledgement(acknowledgements)
+  abstract-layout(lang: "en")[#abstract]
+  abstract-layout(lang: "fr")[#abstractFrench]
 
   pagebreak()
 
-  abstract_layout(lang: "en")[#abstract]
-  abstract_layout(lang: "fr")[#abstractFrench]
+  acknowledgement(acknowledgements)
 
   set page(
     numbering: none,
@@ -158,5 +158,5 @@
 
   // Appendix.
   pagebreak()
-  appendix_layout(appendix)
+  appendix-layout(appendix)
 }
