@@ -57,4 +57,11 @@
     long-plural: "Regular expression Denial of Service",
     description: [An exploit of unfavorable regex matching performance characteristics. When a regex comes from user input, it can be used to attack by crafting a regex which makes matching take exponential time. This most commonly affects backtracking @engine:plural which have worst-time exponential runtime.],
   ),
+  simd: (
+    short: "SIMD",
+    short-plural: "SIMDs",
+    long: "Single Instruction, Multiple Data",
+    long-plural: "Single Instruction, Multiple Data",
+    description: [A parallel computing paradigm where a single instruction operates on multiple data points simultaneously. Modern CPUs often support SIMD instructions that can process multiple pieces of data in parallel, speeding up operations by a healthy constant factor.],
+  ),
 )

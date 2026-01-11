@@ -22,6 +22,8 @@ contexts:
     - include: tactics
     - include: operators
     - include: constants
+    - include: common-types
+    - include: common-constructors
     - include: identifiers
 
   comments:
@@ -70,7 +72,7 @@ contexts:
     - match: \b(Global|Local|Polymorphic|Monomorphic|Cumulative|Private|NonCumulative|Program)\s+
       scope: storage.modifier.rocq
     # Definitions that introduce a new name
-    - match: \b(Theorem|Lemma|Fact|Remark|Corollary|Proposition|Property|Goal|Definition|Example|Fixpoint|CoFixpoint|Inductive|CoInductive|Record|Structure|Class|Instance|Context|Axiom|Parameter|Conjecture|Hypothesis|Variable|Variables|Scheme|Variant)\b\s*({{ident}}*)?
+    - match: \b(Theorem|Lemma|Fact|Remark|Corollary|Proposition|Property|Goal|Definition|Example|Fixpoint|CoFixpoint|Function|Inductive|CoInductive|Record|Structure|Class|Instance|Context|Axiom|Parameter|Conjecture|Hypothesis|Variable|Variables|Scheme|Variant)\b\s*({{ident}}*)?
       captures:
         1: storage.type.vernacular.rocq
         2: entity.name.function.rocq
@@ -162,6 +164,30 @@ contexts:
       scope: constant.language.boolean.rocq
     - match: \b(tt)\b
       scope: constant.language.unit.rocq
+
+  common-types:
+    - match: \b(option|list|bool|nat|unit|prod|sum|eq|positive|string|ascii|byte)\b
+      scope: support.type.builtin.rocq
+
+  common-constructors:
+    # option constructors
+    - match: \b(Some|None)\b
+      scope: constant.language.option.rocq
+    # list constructors
+    - match: \b(nil|cons)\b
+      scope: constant.language.list.rocq
+    # nat constructors
+    - match: \b(S)\b
+      scope: constant.language.nat.rocq
+    # sum constructors
+    - match: \b(inl|inr)\b
+      scope: constant.language.sum.rocq
+    # pair constructor
+    - match: \b(pair)\b
+      scope: constant.language.prod.rocq
+    # eq constructor
+    - match: \b(eq_refl|refl_equal)\b
+      scope: constant.language.eq.rocq
 
   identifiers:
     - match: \b{{ident}}*\b

@@ -100,3 +100,27 @@ backref-nphard:
     - Abigail
     - Mark Jason Dominus
   url: https://perl.plover.com/NPC/NPC-3SAT.html
+
+rabin-karp:
+  type: article
+  title: Efficient randomized pattern-matching algorithms
+  author:
+    - Karp, Richard M.
+    - Rabin, Michael O.
+  date: 1987
+  page-range: 249-260
+  serial-number:
+    doi: 10.1147/rd.312.0249
+  parent:
+    type: periodical
+    title: IBM Journal of Research and Development
+    issue: 2
+    volume: 31
+
+hyperscan:
+  type: Web
+  title:
+  date: 2017-09-11
+  author:
+    - Xiang Wang
+  url: https://www.intel.com/content/www/us/en/developer/articles/technical/introduction-to-hyperscan.html

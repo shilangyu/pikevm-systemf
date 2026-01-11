@@ -53,7 +53,7 @@
     // include all whitespace before the statement, will be needed for correct dedent
     "(?:[\s--\n]*)"
     // header
-    "(Definition|Theorem|Variant|Lemma|Fixpoint|Inductive|Notation)"
+    "(Definition|Theorem|Variant|Lemma|Fixpoint|Function|Inductive|Notation|Class|Instance)"
     "\s+"
     // name
     "([\w\d_']+)"
@@ -97,14 +97,25 @@
       + "/"
       + file
       + "#L"
-      + str(line.start)
-      + "-L"
-      + str(line.end)
+      + if line.start == line.end {
+        str(line.start)
+      } else {
+        str(line.start) + "-L" + str(line.end)
+      }
   )
+
 
   link(
     url,
-    raw(stmt.file + "#" + str(line.start) + "-" + str(line.end)),
+    raw(
+      stmt.file
+        + "#"
+        + if line.start == line.end {
+          str(line.start)
+        } else {
+          str(line.start) + "-" + str(line.end)
+        },
+    ),
   )
 }
 
