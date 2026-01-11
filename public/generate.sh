@@ -41,11 +41,14 @@ done
 
 echo "" >> "$index"
 
-echo "## Report (draft)" >> "$index"
+echo "## Report" >> "$index"
 rm -r report || true; mkdir -p report
 ../report/build.sh
-mv ../report/thesis.pdf report/
-echo "[report](report/thesis.pdf)" >> "$index"
+mv ../report/thesis.pdf report/draft.pdf
+echo "- [draft](report/draft.pdf)" >> "$index"
+../report/build.sh --skip-setup --final
+mv ../report/thesis.pdf report/final.pdf
+echo "- [final](report/final.pdf)" >> "$index"
 
 pandoc "$index" -H headers.html --katex -s -o index.html
 

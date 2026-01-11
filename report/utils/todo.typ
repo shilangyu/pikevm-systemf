@@ -38,6 +38,8 @@
     set text(todo-color)
     doc
     note(msg)
+  } else {
+    doc
   }
 }
 
