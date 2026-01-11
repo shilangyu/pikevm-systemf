@@ -111,11 +111,12 @@
 /// Creates a listing of Linden Rocq code for the given statements.
 ///
 /// - file (str): Linden Rocq source file
-/// - names (str): Names of the Rocq statements
+/// - names (array|str): Names of the Rocq statements
 /// - caption (content): Caption text
 /// -> content
 #let linden-listing(file, names, caption) = {
-  let stmts = names.map(name => find-statement(file, name))
+  let names-normalized = if type(names) != array { (names,) } else { names }
+  let stmts = names-normalized.map(name => find-statement(file, name))
 
   figure(
     align(left)[

@@ -28,16 +28,12 @@ A literal as defined in @lst:literal is what we extract from a regex $r$. It is 
 
 Additionally we define two aliases, ```rocq Nothing``` which means $r$ matches exactly the empty string like the regex ```re //```, and ```rocq Unknown``` which means we cannot tell anything useful about the matches of $r$ like for the regex #ex-unanch.
 
-#linden-listing("Engine/Prefix.v", (
-  "prefix",
-))[Literal weakening defintion into just the prefix information.] <lst:prefix>
+#linden-listing("Engine/Prefix.v", "prefix")[Literal weakening defintion into just the prefix information.] <lst:prefix>
 
 We will commonly want to weaken a literal into just the information of what prefix the represent. The definition is given in @lst:prefix.
 
 #columns(2)[
-  #linden-listing("Engine/Prefix.v", (
-    "chain_literals",
-  ))[Literal chaining definition.] <lst:chain-literals>
+  #linden-listing("Engine/Prefix.v", "chain_literals")[Literal chaining definition.] <lst:chain-literals>
 
   #colbreak()
 
