@@ -6,5 +6,5 @@
 == Conclusion
 #TODO[Conclusion]
 
-== Future Work
+== Future Work <sec:future-work>
 #TODO[Future work]

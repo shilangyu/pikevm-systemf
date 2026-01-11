@@ -91,6 +91,12 @@
   // --- Headings ---
   show heading: set block(below: 0.85em, above: 1.75em)
   show heading: set text(font: fonts.body)
+  show heading.where(level: 4): set heading(outlined: false)
+  show heading.where(level: 4): it => {
+    set text(size: 1.1em, weight: 600)
+    it.body
+    [.]
+  }
   set heading(numbering: "1.1")
   // Reference first-level headings as "chapters"
   show ref: it => {

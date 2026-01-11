@@ -83,4 +83,27 @@ Discussion of backreferences is omitted as backreference matching is NP-hard @ba
 #TODO[
   Throughout the report we will tend to use the ECMAScript syntax for regexes for brevity and familiarity, ie. ```re /^this+|syntax*(?=!!!)/```. The theorems will, however, be stated in terms of the Linden abstract regex syntax.
 ][Make it a nice "Hint" box]
-#TODO[Describe semantics and flags and that we can about matching anywhere in the haystack (unanchored)]
+
+=== Regex size <sec:regex-size>
+
+We define the size of a regex by @lst:regex-size. From now on, whenever talking about the _"regex size"_, this is the precise definition we are referring to. As seen, the regex size is equal to the size of the unfolded regex, i.e. one where quantifier repetitions of any $r_1$ are unfolded. This does mean that the regex size can be exponentially larger than the size of the textual representation. This can be seen by the example of nested quantification ```regex /((a{5}){5}){5}/```. By just wrapping any regex $r$ with ```regex /(r){n}/``` for some number $n$, we increased its textual size by just $4 + log_2 n$ while the regex size increased by a factor of $n$.
+
+#linden-listing("Semantics/Regex.v", "regex_size")[Regex size definition.] <lst:regex-size>
+
+This unfolded regex definition of the size is what we bound the engine executions by, together with the haystack size which is just the length of the input string.
+
+=== Matching semantics
+
+We follow the discussion of regexes by outlining the relevant details of the matching semantics.
+
+==== Flags <sec:flags>
+Matching of a regex can be configured by a handful of boolean flags. These modify the semantics of matching in small but sometimes significant ways. In ECMAScript syntax, these flags appear after the closing `/`. Each flag is represented by a single character. Its presence means that the flag is *enabled*, otherwise it is *disabled*. For instance, the regex ```re /a*c/im``` has the flags `i` and `m` enabled, but all others disabled. Below we mention three of the flags which are of importance for this work.
+
+- *IgnoreCase*, `i` -- when true, the matching is case-insensitive. That means the regex ```re /aB/i``` matches the strings #hay[ab], #hay[aB], #hay[Ab], and #hay[AB], while ```re /aB/``` matches only #hay[aB].
+- *Multiline*, `m` -- when true, the anchors `^` and `$` additionally match respectively the start and the end of a line. That means the regex ```re /^abc$/m``` matches the string #hay("xyz\nabc\ndef"), while ```re /^abc$/``` does not.
+- *DotAll*, `s` -- when true, the dot character descriptor matches line terminators as well. That means the regex ```re /a.c/s``` matches the string #hay("a\nc"), while ```re /a.c/``` does not.
+
+In Linden, those flags are stored in the #TODO[```rocq RegExpRecord```][Allow syntax highlighting of a type even though here it is just standalone and not possible to tell what this token is. Maybe with tree-sitter queries] record type. An instance of this type will be implicitly available as the variable ```rocq rer```.
+
+
+#TODO[Describe semantics and that we can about matching anywhere in the haystack (unanchored)]
