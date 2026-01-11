@@ -8,9 +8,12 @@ index=`mktemp -d`/index.md
 cat > "$index" <<- EOM
 ---
 title: "PikeVM optimizations and regex features formalization"
-description: "TODO"
 ---
 EOM
+
+
+echo "[GitHub](https://github.com/shilangyu/pikevm-systemf)" >> "$index"
+echo "" >> "$index"
 
 echo "## Proposal" >> "$index"
 rm -r proposal || true; mkdir -p proposal
