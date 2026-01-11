@@ -43,7 +43,7 @@
   #table(
     columns: (auto, 1fr, 2fr),
     [*Term*], [*Full name*], [*Description*],
-    ..for (key, value) in entries.pairs().sorted(key: ((_, v)) => v.short) {
+    ..for (key, value) in entries.pairs().sorted(key: ((_, v)) => lower(v.short)) {
       (
         [#table.cell[#capitalize(value.short)] #label(key)],
         capitalize(value.long),
