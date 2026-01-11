@@ -1,5 +1,5 @@
 #import "/prelude.typ": *
 
-= Case Study / Evaluation
+= Evaluation
 
 #TODO[Evaluation]

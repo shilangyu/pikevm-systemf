@@ -48,5 +48,4 @@
 #include "/content/background/background.typ"
 #include "/content/chapters/chapters.typ"
 #include "/content/evaluation.typ"
-#include "/content/related_work.typ"
-#include "/content/summary.typ"
+#include "/content/discussion.typ"
