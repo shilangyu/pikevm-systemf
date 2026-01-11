@@ -13,6 +13,15 @@ if [[ ! "$*" =~ --skip-setup ]]; then
 	git -C Linden reset --hard "$LINDEN_REF"
 fi
 
+# Add FINAL flag
+if [[ "$*" =~ --final ]]; then
+	ARGS="$ARGS --input FINAL="
+fi
+# Add BOOK flag
+if [[ "$*" =~ --book ]]; then
+	ARGS="$ARGS --input BOOK="
+fi
+
 typst compile thesis.typ thesis.pdf $ARGS
 
 popd > /dev/null
