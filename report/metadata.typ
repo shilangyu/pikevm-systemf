@@ -34,7 +34,7 @@
     short-plural: "haystacks",
     long: "haystack",
     long-plural: "haystacks",
-    description: [In the context of regex *matching*, the haystack is the input text in which we search for occurrences of patterns defined by regular expressions. When we say that we want to match the regex ```re /a*b{3}/``` against #hay[abc], the string #hay[abc] is the haystack.],
+    description: [In the context of regex *matching*, the haystack is the input text in which we search for occurrences of patterns defined by regular expressions. When we say that we want to match the regex ```re /a*b{3}/``` against #hay[abc], the string #hay[abc] is the haystack. Newlines in the haystack are represented with the #hay("\n") character.],
   ),
   captures: (
     short: "capture",
