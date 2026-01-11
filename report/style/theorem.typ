@@ -38,13 +38,18 @@
   body
 }
 
-#let theorem(name, body, supplement: "Theorem") = {
+#let theorem(name, body, proof: none, supplement: "Theorem") = {
   metadata("theorem")
   metadata((name, supplement))
   show figure: set align(left)
 
   figure(
-    [#smallcaps(supplement) (#name)#body],
+    {
+      [#smallcaps(supplement) (#name)#body]
+      if proof != none {
+        block[*Proof.* #proof]
+      }
+    },
     kind: "theorem",
     supplement: supplement,
   )

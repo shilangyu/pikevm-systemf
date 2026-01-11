@@ -137,13 +137,13 @@
 }
 
 
-#let linden-theorem(file, name) = {
+#let linden-theorem(file, name, proof: none) = {
   let stmt = find-statement(file, name)
 
   theorem(
     name,
-    [#note(source-hyperlink(stmt), numbering: none)#raw(stmt.code-body, lang: "rocq"),
-    ],
+    [#note(source-hyperlink(stmt), numbering: none)#raw(stmt.code-body, lang: "rocq")],
+    proof: proof,
     supplement: stmt.kind,
   )
 }
