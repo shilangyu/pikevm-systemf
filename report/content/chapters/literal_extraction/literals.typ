@@ -1,17 +1,5 @@
 #import "/prelude.typ": *
 
-= Literal extraction <sec:literal-extraction>
-
-#let ex = ```re /abc\d+/```
-#let ex-unanch = ```re /.*abc\d+/```
-#let ex-hay = hay("abc")
-
-One characteristic of regexes which is often exploited for optimization in practice is the knowledge that certain parts of the regex matches literals. Take for example the regex #ex. We can see that any match this regex can produce must contain the constant string #ex-hay. So if a haystack does not contain #ex-hay, we can immediately conclude no match can be found. To speed up looking for matches one can also just look for matches in the neighborhoods of occurrences of #ex-hay in the haystack. Unfortunately, "_searching in the neighborhoods_" is too general of a notion to be useful in practice. Consider ```re /.*abc\d+/```. We still know that any match must contain #ex-hay, but what is the neighborhood of #ex-hay in this case? Because of the ```re /.*/``` preceding the #ex-hay, *everything* before #ex-hay can potentially be part of the match. This means we lost any benefit gained from knowing that there is this constant string there.
-
-Let's go back to the original example of #ex. A more precise information which we can extract here is that not only does any match has to contain #ex-hay, any match *must start* with #ex-hay. This stronger property can be used more directly: first we look for occurrences of #ex-hay and at this position exactly we try to match the regex. If we fail, we can simply move on to the next occurrence. This optimization is commonly referred to as the "prefix acceleration" and is deployed in many real-world regex engines. Informed by the #TODO[frequency at which such prefix constant strings appear in practice][Cite chapter about frequency analysis] and by the #TODO[very large speedups in matching they can provide][Cite chapter about performance analysis], we conjecture that this is the single *most important optimization* for regex matching in practice. Hence, the prefix acceleration optimization is the primary focus of this work.
-
-To get the proof of correctness for the prefix acceleration optimization we must first formalize this constant-strings-in-regex analysis, called _literal extraction_ (@sec:literals). Then we formalize the notion of looking for those literals in a haystack (@sec:substring-search). And finally, we tackle prefix acceleration proof together with the peculiarities of the PikeVM engine (@sec:prefix-acceleration).
-
 == Literals <sec:literals>
 
 #linden-listing("Engine/Prefix.v", (
@@ -23,10 +11,10 @@ To get the proof of correctness for the prefix acceleration optimization we must
 A literal as defined in @lst:literal is what we extract from a regex $r$. It is defined by its three constructors:
 
 1. ```rocq Exact s``` -- any match of $r$ is exactly the string $s$. For instance, ```rocq Exact "pppac"``` is the literal of ```re /p{3}(a|a)c/```,
-2. ```rocq Prefix s``` -- any match of $r$ starts with the string $s$. For instance, ```rocq Prefix "abc"``` is the literal of #ex,
+2. ```rocq Prefix s``` -- any match of $r$ starts with the string $s$. For instance, ```rocq Prefix "abc"``` is the literal of ```re /abc\d+/```,
 3. ```rocq Impossible``` -- the regex $r$ can never match. For instance, the literal of ```re /[]/``` is ```rocq Impossible```.
 
-Additionally we define two aliases, ```rocq Nothing``` which means $r$ matches exactly the empty string like the regex ```re //```, and ```rocq Unknown``` which means we cannot tell anything useful about the matches of $r$ like for the regex #ex-unanch.
+Additionally we define two aliases, ```rocq Nothing``` which means $r$ matches exactly the empty string like the regex ```re //```, and ```rocq Unknown``` which means we cannot tell anything useful about the matches of $r$ like for the regex ```re /.*abc\d+/```.
 
 #linden-listing("Engine/Prefix.v", "prefix")[Literal weakening defintion into just the prefix information.] <lst:prefix>
 
@@ -92,23 +80,3 @@ we show that the length of the extracted literal is bounded by the size of the r
 #linden-theorem("Engine/Prefix.v", "extract_literal_size_bound", proof: [
   Induction on $r$, using @thm:chain-literals-length, @thm:repeat-literal-length, and @thm:merge-literals-length where applicable.
 ])
-
-== Substring search <sec:substring-search>
-
-#TODO[Talk about how substring searches are much faster then full blown regex engines. intuition: substring search is a subproblem of regex matching]
-
-== Correctness of literal extraction <sec:literal-extraction-correctness>
-
-We now prove that the extracted literals correctly describe the matches of a regex. The properties which we care about are those which will allow us to accelerate regex matching. For that, we will consider each literal variant separately. For ```rocq Prefix s```, we want to show that any match of a regex $r$ whose literal is ```rocq Prefix s``` must start with the string $s$. Through the contrapositive (if a match does not start with $s$, it is not a match of $r$) we will be able to do prefix acceleration by skipping haystack positions where $s$ does no occur. For ```rocq Impossible```, we want to show that no match of $r$ whose literal is ```rocq Impossible``` can exist. This will allow us to immediately say that for such a regex and any haystack, there is no match. Finally, for ```rocq Exact s```, we want to show that any match of a regex $r$ whose literal is ```rocq Exact s``` is exactly the string $s$. This will allow us to skip running regex engines entirely and just use a much faster substring search.
-
-=== Correctness of ```rocq Prefix``` literals
-
-#TODO[Correctness of ```rocq Prefix``` literals]
-
-=== Correctness of ```rocq Impossible``` literals
-
-#TODO[Correctness of ```rocq Impossible``` literals]
-
-=== Correctness of ```rocq Exact``` literals
-
-#TODO[Correctness of ```rocq Exact``` literals]
