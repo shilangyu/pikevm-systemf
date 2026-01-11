@@ -18,7 +18,7 @@
       center,
       center,
       left,
-      left,
+      left + horizon,
     ),
     inset: 0.28em,
     stroke: none,

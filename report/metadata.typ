@@ -34,14 +34,14 @@
     short-plural: "haystacks",
     long: "haystack",
     long-plural: "haystacks",
-    description: [In the context of regex *matching*, the haystack is the input text in which we search for occurrences of patterns defined by regular expressions. When we say that we want to match the regex ```regex a*b{3}``` against #hay[abc], the string #hay[abc] is the haystack.],
+    description: [In the context of regex *matching*, the haystack is the input text in which we search for occurrences of patterns defined by regular expressions. When we say that we want to match the regex ```re /a*b{3}/``` against #hay[abc], the string #hay[abc] is the haystack.],
   ),
   captures: (
     short: "capture",
     short-plural: "captures",
     long: "capturing group",
     long-plural: "capturing groups",
-    description: [A feature in modern @regex:plural that allows parts of the matched text to be captured by a subpatterns and extracted later. They are annotated using parentheses. For instance, given ```regex (a(bc))d```, there are two capture groups: the outer group captures ```abc```, and the inner group captures ```bc```. When this regex matches the string #hay[abcd], the first capture group will contain #hay[abc] and the second will contain #hay[bc].],
+    description: [A feature in modern @regex:plural that allows parts of the matched text to be captured by a subpatterns and extracted later. They are annotated using parentheses. For instance, given ```re /(a(bc))d/```, there are two capture groups: the outer group captures ```abc```, and the inner group captures ```bc```. When this regex matches the string #hay[abcd], the first capture group will contain #hay[abc] and the second will contain #hay[bc].],
   ),
   engine: (
     short: "engine",

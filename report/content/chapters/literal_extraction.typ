@@ -2,11 +2,11 @@
 
 = Literal extraction <sec:literal-extraction>
 
-#let ex = ```regex abc\d+```
-#let ex-unanch = ```regex .*abc\d+```
+#let ex = ```re /abc\d+/```
+#let ex-unanch = ```re /.*abc\d+/```
 #let ex-hay = hay("abc")
 
-One characteristic of regexes which is often exploited for optimization in practice is the knowledge that certain parts of the regex matches literals. Take for example the regex #ex. We can see that any match this regex can produce must contain the constant string #ex-hay. So if a haystack does not contain #ex-hay, we can immediately conclude no match can be found. To speed up looking for matches one can also just look for matches in the neighborhoods of occurrences of #ex-hay in the haystack. Unfortunately, "_searching in the neighborhoods_" is too general of a notion to be useful in practice. Consider ```regex .*abc\d+```. We still know that any match must contain #ex-hay, but what is the neighborhood of #ex-hay in this case? Because of the ```regex .*``` preceding the #ex-hay, *everything* before #ex-hay can potentially be part of the match. This means we lost any benefit gained from knowing that there is this constant string there.
+One characteristic of regexes which is often exploited for optimization in practice is the knowledge that certain parts of the regex matches literals. Take for example the regex #ex. We can see that any match this regex can produce must contain the constant string #ex-hay. So if a haystack does not contain #ex-hay, we can immediately conclude no match can be found. To speed up looking for matches one can also just look for matches in the neighborhoods of occurrences of #ex-hay in the haystack. Unfortunately, "_searching in the neighborhoods_" is too general of a notion to be useful in practice. Consider ```re /.*abc\d+/```. We still know that any match must contain #ex-hay, but what is the neighborhood of #ex-hay in this case? Because of the ```re /.*/``` preceding the #ex-hay, *everything* before #ex-hay can potentially be part of the match. This means we lost any benefit gained from knowing that there is this constant string there.
 
 Let's go back to the original example of #ex. A more precise information which we can extract here is that not only does any match has to contain #ex-hay, any match *must start* with #ex-hay. This stronger property can be used more directly: first we look for occurrences of #ex-hay and at this position exactly we try to match the regex. If we fail, we can simply move on to the next occurrence. This optimization is commonly referred to as the "prefix acceleration" and is deployed in many real-world regex engines. Informed by the #TODO[frequency at which such prefix constant strings appear in practice][Cite chapter about frequency analysis] and by the #TODO[very large speedups in matching they can provide][Cite chapter about performance analysis], we conjecture that this is the single *most important optimization* for regex matching in practice. Hence, the prefix acceleration optimization is the primary focus of this work.
 
@@ -22,11 +22,11 @@ To get the proof of correctness for the prefix acceleration optimization we must
 
 A literal as defined in @lst:literal is what we extract from a regex $r$. It is defined by its three constructors:
 
-1. ```rocq Exact s``` -- any match of $r$ is exactly the string $s$. For instance, ```rocq Exact "pppac"``` is the literal of ```regex p{3}(a|a)c```,
+1. ```rocq Exact s``` -- any match of $r$ is exactly the string $s$. For instance, ```rocq Exact "pppac"``` is the literal of ```re /p{3}(a|a)c/```,
 2. ```rocq Prefix s``` -- any match of $r$ starts with the string $s$. For instance, ```rocq Prefix "abc"``` is the literal of #ex,
-3. ```rocq Impossible``` -- the regex $r$ can never match. For instance, the literal of ```regex []``` is ```rocq Impossible```.
+3. ```rocq Impossible``` -- the regex $r$ can never match. For instance, the literal of ```re /[]/``` is ```rocq Impossible```.
 
-Additionally we define two aliases, ```rocq Nothing``` which means $r$ matches exactly the empty string like the regex ```regex ```, and ```rocq Unknown``` which means we cannot tell anything useful about the matches of $r$ like for the regex #ex-unanch.
+Additionally we define two aliases, ```rocq Nothing``` which means $r$ matches exactly the empty string like the regex ```re //```, and ```rocq Unknown``` which means we cannot tell anything useful about the matches of $r$ like for the regex #ex-unanch.
 
 #linden-listing("Engine/Prefix.v", (
   "prefix",

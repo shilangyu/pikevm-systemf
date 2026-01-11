@@ -7,6 +7,30 @@ file_extensions: [re, regex]
 
 contexts:
   main:
+    # Look for the opening slash of the JavaScript-style regex literal
+    - match: "/"
+      scope: punctuation.definition.string.begin.regexp
+      push: slash_regex
+
+  slash_regex:
+    # 1. Look for the closing slash
+    - match: "/"
+      scope: punctuation.definition.string.end.regexp
+      set: regex_flags
+
+    # 2. Include the original regex highlighting logic
+    - include: regex_body
+
+  regex_flags:
+    # Match optional flags (e.g., g, i, m, y, u) after the closing slash
+    - match: "[a-zA-Z]+"
+      scope: keyword.other.flags.regexp
+      pop: true
+    # If no flags follow, immediately pop back to the parent context
+    - match: ""
+      pop: true
+
+  regex_body:
     # Comments (Extended mode #)
     - match: '(?<!\\)#.*$'
       scope: comment.line.number-sign.regexp
@@ -42,6 +66,7 @@ contexts:
       scope: support.constant.unicode.regexp
 
     # Escaped Characters (General)
+    # This correctly handles \/ so it doesn't trigger the closing slash early
     - match: '\\.'
       scope: constant.character.escape.regexp
 
@@ -92,6 +117,6 @@ contexts:
     - match: '\?(?:[:=!>]|<=|<!|#)'
       scope: keyword.control.group.assertion.regexp
       pop: true
-    # Default to main for standard capturing groups
+    # Default to standard capturing groups
     - match: "(?=[^?])"
       pop: true

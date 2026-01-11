@@ -8,13 +8,8 @@
 
 #TODO-outline
 
-#show raw.where(lang: "regex"): it => {
-  if it.block {
-    it
-  } else {
-    box[/#it/]
-  }
-}
+// don't allow regexes to be broken across pages/lines
+#show raw.where(lang: "re"): box
 
 #show: thesis.with(
   title: title-english,
