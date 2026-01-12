@@ -5,12 +5,25 @@ pushd "$(dirname "$0")" > /dev/null || exit 1
 
 ARGS=$(jq -r '."tinymist.typstExtraArgs" | join(" ")' .vscode/settings.json)
 LINDEN_REF=$(echo "$ARGS" | sed -n 's/.*LINDEN_REF=\([^ ]*\).*/\1/p')
+REGELK_REF=$(echo "$ARGS" | sed -n 's/.*REGELK_REF=\([^ ]*\).*/\1/p')
 
-# Download Linden at the specified ref. This will be used by typst during compilation.
+# Download some external dependencies that will be needed by Typst during compilation
 if [[ ! "$*" =~ --skip-setup ]]; then
+	# Linden: contains all the Rocq source code of this project
 	rm -rf Linden || true
 	git clone https://github.com/epfl-systemf/Linden Linden
 	git -C Linden reset --hard "$LINDEN_REF"
+
+	# RegElk: contains the regex corpora frequency analysis
+	rm -rf RegElk || true
+	git clone https://github.com/epfl-systemf/RegElk RegElk
+	git -C RegElk reset --hard "$REGELK_REF"
+	# Build RegElk and generate the frequency analysis data
+	pushd RegElk > /dev/null
+	  opam install . -y || true
+		make stats
+		./stats.native > ../regex_frequencies-$REGELK_REF.csv
+	popd > /dev/null
 fi
 
 # Add FINAL flag

@@ -4,6 +4,8 @@
   "tinymist.typstExtraArgs": [
     "--input",
     "LINDEN_REF=fc61a4b6288e949dad53607f5dd8cdd5d6700d0e",
+    "--input",
+    "REGELK_REF=bcbe0680eef0ba26dd3c303f942bd69955d9bcbb",
     "--font-path",
     "./fonts"
   ]

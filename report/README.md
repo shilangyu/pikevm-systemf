@@ -10,6 +10,10 @@ Build the report with [`./build.sh`](./build.sh). Needed software:
 
 - [Typst](https://typst.app/)
 - [`jq`](https://jqlang.org/)
+- [`opam`](https://opam.ocaml.org/)
+- `make`
+
+The first build might take a while, the report is built by reproducing data from source rather than copy pasting things into the report. On subsequent builds pass the `--skip-setup` flag to `build.sh`.
 
 ## Structure
 
