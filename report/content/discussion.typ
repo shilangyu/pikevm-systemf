@@ -4,11 +4,11 @@
 
 #TODO[Discussion]
 
-== Related Work
+== Related work
 
 #TODO[Related work]
 
-== Future Work <sec:future-work>
+== Future work <sec:future-work>
 
 #TODO[Future work]
 

@@ -44,6 +44,8 @@
 }
 
 #let NOTE(body) = {
+  set text(size: 0.7em)
+
   context {
     let loc = here()
     todos.update(e => (..e, (msg: to-str(body), loc: loc)))

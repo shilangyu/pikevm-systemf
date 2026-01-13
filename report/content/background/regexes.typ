@@ -68,7 +68,7 @@
   supplement: "Figure",
 ) <fig:regex>
 
-The abstract syntax of Linden regexes is shown in @fig:regex. All ECMAScript regexes can be expressed with this syntax. We now outline the most important aspects of the syntax.
+The abstract syntax of Linden regexes is shown in @fig:regex. This syntax slightly differs from the syntax of ECMAScript regexes, but regardless every ECMAScript regex can be expressed using the abstract regex syntax of Linden. We now outline the most important aspects of the syntax and underline the differences between the Linden and ECMAScript representation.
 
 ==== Epsilon $epsilon$
 The regex that matches the empty string. The ECMAScript regex ```re /|abc/``` is equivalent to $epsilon|"abc"$ in Linden.
@@ -83,10 +83,10 @@ A grouping construct that does not create a capture. The ECMAScript regex ```re 
 Specifies that the regex $r$ is to be repeated at least $m i n in NN$ times, and at most $m i n + Delta$ times. If $Delta$ is $infinity$, then there is no upper bound on the number of repetitions. The parameter $gamma$ specifies whether the quantifier is greedy ($top$) which means it should repeat $r$ as many times as possible or lazy ($bot$) which means it should repeat $r$ as few times as possible. For instance, the ECMAScript regex ```re /a{2,5}b?c*d+?/``` is equivalent to $a{2,3,top}b{0,1,top}c{0,infinity,top}d{1,infinity,bot}$ in Linden.
 
 ==== Character descriptor $c d$
-Describes sets of characters. If the match something in the haystack, they will match exactly one character. They can be single literal characters, ranges of characters, unions of character descriptors, the dot (which matches any character except line terminators), character classes (such as word characters, digits, whitespace, Unicode properties), inversion of character descriptors, the set of all characters, or the empty set (it never matches). For instance, the ECMAScript regex ```re /[a-c0-7]\d./``` is equivalent to $[range("a", "c")[range("0", "7")]]#h(0pt)esc("d") dot$ in Linden. For brevity, we will flatten descriptors in $[thin]$, giving us $[range("a", "c")range("0", "7")]$ instead of $[range("a", "c")[range("0", "7")]]$
+Describes sets of characters. If they match something in the haystack, they will always match exactly one character. They can be single literal characters, ranges of characters, unions of character descriptors, the dot (which matches any character except line terminators), character classes (such as word characters, digits, whitespace, Unicode properties), inversion of character descriptors, the set of all characters, or the empty set (it never matches). For instance, the ECMAScript regex ```re /[a-c0-7]\d./``` is equivalent to $[range("a", "c")[range("0", "7")]]#h(0pt)esc("d") dot$ in Linden. For brevity, we will flatten descriptors in $[thin]$, giving us $[range("a", "c")range("0", "7")]$ instead of $[range("a", "c")[range("0", "7")]]$
 
 ==== Anchor $a$
-Specifies a position in the haystack rather than characters. It is merely an assertion, it does not consume characters. The ECMAScript regex ```re /^abc$/``` is equivalent to $\^"abc"\$$ in Linden.
+Specifies a position in the haystack rather than characters. It is merely an assertion, it does not consume characters. `^` asserts that we are at the start of the haystack, and `$` asserts that we are at the end of the haystack. `\b` asserts that we are at a word boundary and `\B` that we are not. A word boundary is a position in the haystack where exactly one of the two adjacent characters is a word character and the other character is not, for example ```re /\ba\Bf \bc/``` matches #hay[af c]. The ECMAScript regex ```re /^abc$/``` is equivalent to $\^"abc"\$$ in Linden.
 
 ==== Lookaround $la(l k, r)$
 A zero-width assertion that $r$ matches or not at the current position. A lookahead ($l k$ is $=$ or $!$) asserts something about the text following the current position, while a lookbehind ($l k$ is $\<=$ or $<#h(0pt)!$) asserts something about the text preceding the current position. Positive lookarounds ($l k$ is $=$ or $\<=$) assert that $r$ has to match, negative lookarounds ($l k$ is $!$ or #box($<#h(0pt)!$)) that it has to not match. The ECMAScript regex ```re /(?=abc)def(?<!xyz)/``` is equivalent to $la(=, "abc")"def"la(<!, "xyz")$ in Linden.
@@ -99,7 +99,7 @@ Discussion of backreferences is omitted as backreference matching is NP-hard @ba
 
 === Regex size <sec:regex-size>
 
-We define the size of a regex by @lst:regex-size. From now on, whenever talking about the _"regex size"_, this is the precise definition we are referring to. As seen, the regex size is equal to the size of the unfolded regex, i.e. one where quantifier repetitions of any $r_1$ are unfolded. This does mean that the regex size can be exponentially larger than the size of the textual representation. This can be seen by the example of nested quantification ```regex /((a{5}){5}){5}/```. By just wrapping any regex $r$ with ```regex /(r){n}/``` for some number $n$, we increased its textual size by just $4 + log_2 n$ while the regex size increased by a factor of $n$.
+We define the size of a regex by @lst:regex-size. From now on, whenever talking about the _"regex size"_, this is the precise definition we are referring to. As seen, the regex size is equal to the size of the unfolded regex, i.e. one where quantifier repetitions of any $r_1$ are unfolded. This does mean that the regex size can be exponentially larger than the size of the textual representation. This can be seen by the example of nested quantification ```regex /((a{5}){5}){5}/```. By just wrapping any regex $r$ with ```regex /(r){n}/``` for some number $n$, we increased its textual size by just $4 + log_10 n$ while the regex size increased by a factor of $n$.
 
 #linden-listing("Semantics/Regex.v", "regex_size")[Regex size definition.] <lst:regex-size>
 

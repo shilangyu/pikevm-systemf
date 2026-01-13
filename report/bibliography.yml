@@ -144,12 +144,30 @@ rabin-karp:
     volume: 31
 
 hyperscan:
-  type: Web
-  title:
-  date: 2017-09-11
+  type: article
+  title: "Hyperscan: a fast multi-pattern regex matcher for modern CPUs"
   author:
-    - Xiang Wang
-  url: https://www.intel.com/content/www/us/en/developer/articles/technical/introduction-to-hyperscan.html
+    - Wang, Xiang
+    - Hong, Yang
+    - Chang, Harry
+    - Park, KyoungSoo
+    - Langdale, Geoff
+    - Hu, Jiayu
+    - Zhu, Heqing
+  date: 2019
+  page-range: 631-648
+  serial-number:
+    isbn: "9781931971492"
+  abstract: Regular expression matching serves as a key functionality of modern network security applications. Unfortunately, it often becomes the performance bottleneck as it involves compute-intensive scan of every byte of packet payload. With trends towards increasing network bandwidth and a large ruleset of complex patterns, the performance requirement gets ever more demanding.In this paper, we present Hyperscan, a high performance regular expression matcher for commodity server machines. Hyperscan employs two core techniques for efficient pattern matching. First, it exploits graph decomposition that translates regular expression matching into a series of string and finite automata matching. Unlike existing solutions, string matching becomes a part of regular expression matching, eliminating duplicate operations. Decomposed regular expression components also increase the chance of fast DFA matching as they tend to be smaller than the original pattern. Second, Hyperscan accelerates both string and finite automata matching using SIMD operations, which brings substantial throughput improvement. Our evaluation shows that Hyperscan improves the performance of Snort by a factor of 8.7 for a real traffic trace.
+  parent:
+    type: proceedings
+    title: Proceedings of the 16th USENIX Conference on Networked Systems Design and Implementation
+    publisher:
+      name: USENIX Association
+      location: Boston, MA, USA
+    parent:
+      type: proceedings
+      title: NSDI'19
 
 regex-in-the-wild1:
   type: article

@@ -79,4 +79,11 @@
     long-plural: "crates",
     description: [The name used to describe packages in the Rust ecosystem. Crates are most often published to and downloaded from the #link("https://crates.io/")[crates.io] repository.],
   ),
+  preorder: (
+    short: "preorder",
+    short-plural: "preorders",
+    long: "preorder",
+    long-plural: "preorders",
+    description: [A binary relation that is both reflexive and transitive.],
+  ),
 )
