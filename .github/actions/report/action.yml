@@ -22,15 +22,23 @@ runs:
         chmod +x "$bin/typstyle"
         echo "$bin" >> "$GITHUB_PATH"
 
+    - name: Install OCaml
+      uses: ocaml/setup-ocaml@v3
+      with:
+        ocaml-compiler: 5.0.0
+        dune-cache: true
+
     - name: Print versions
       shell: bash
       run: |
         typst --version
         typstyle --version
+        opam --version
 
     - name: Check formatting
       shell: bash
       working-directory: report
+      # keep in sync with /report/.vscode/settings.json
       run: typstyle --check --line-width 120 .
 
     - run: ./build.sh
