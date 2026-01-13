@@ -1,6 +1,6 @@
 #import "/style/layout/title-page.typ": *
 #import "/style/syntax.typ": *
-#import "/style/layout/acknowledgement.typ": *
+#import "/style/layout/preface.typ": preface as preface-layout
 #import "/style/layout/appendix.typ": appendix as appendix-layout
 #import "/style/layout/abstract.typ": abstract as abstract-layout
 #import "/style/layout/glossary.typ": *
@@ -24,7 +24,7 @@
   submission-date: datetime,
   abstract: "",
   abstract-french: "",
-  acknowledgements: "",
+  preface: "",
   glossary: dictionary,
   appendix: "",
   body,
@@ -64,7 +64,7 @@
 
   pagebreak()
 
-  acknowledgement(acknowledgements)
+  preface-layout(preface)
 
   set page(
     numbering: none,

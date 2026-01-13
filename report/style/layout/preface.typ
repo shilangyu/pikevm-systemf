@@ -1,6 +1,6 @@
 #import "/style/fonts.typ": *
 
-#let acknowledgement(body) = {
+#let preface(body) = {
   set page(
     margin: (left: 30mm, right: 30mm, top: 40mm, bottom: 40mm),
     numbering: none,
@@ -17,7 +17,7 @@
     justify: true,
   )
 
-  align(left, text(font: fonts.sans, 2em, weight: 700, "Acknowledgements"))
+  align(left, text(font: fonts.sans, 2em, weight: 700, "Preface"))
   v(15mm)
 
   body

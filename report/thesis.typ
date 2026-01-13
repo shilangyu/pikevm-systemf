@@ -25,7 +25,7 @@
   submission-date: submission-date,
   abstract: include "/content/abstract.typ",
   abstract-french: include "/content/abstract_french.typ",
-  acknowledgements: include "/content/acknowledgements.typ",
+  preface: include "/content/preface.typ",
   glossary: glossary,
   appendix: include "/content/appendixes/appendixes.typ",
 )
