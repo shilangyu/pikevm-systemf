@@ -12,6 +12,7 @@
 #let start-date = datetime(day: 22, month: 9, year: 2025)
 #let submission-date = datetime(day: 23, month: 1, year: 2026)
 
+// TODO: move glossary elsewhere?
 
 // Glossary entries as a dictionary:
 // - key: glossary term identifier (used for referencing @key)
@@ -70,5 +71,12 @@
     long: "Abstract Syntax Tree",
     long-plural: "Abstract Syntax Trees",
     description: [A tree representation of the syntactic structure of some source code. Usually some redundant information is omitted, hence the "abstract" part in the name.],
+  ),
+  crate: (
+    short: "crate",
+    short-plural: "crates",
+    long: "crate",
+    long-plural: "crates",
+    description: [The name used to describe packages in the Rust ecosystem. Crates are most often published to and downloaded from the #link("https://crates.io/")[crates.io] repository.],
   ),
 )

@@ -12,4 +12,5 @@
     - Use colors friendly for colorblind people (https://davidmathlogic.com/colorblind/#%23D81B60-%231E88E5-%23FFC107-%23004D40)
   - Rocq code references and extraction. Ref of the Linden commit
     - Theorems and statements are exactly like in the source code. This might be uncomfortable, but it removes the need for "double formalization" which means we restate things in math notation. Double formalization can lead to discrepancies. Additionally, they lead to the user having to learn two formalizations instead of one.
+  - RegElk ref commit
 ]

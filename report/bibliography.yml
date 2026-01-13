@@ -98,6 +98,25 @@ rust-regex:
     - Andrew Gallant
   date: 2016-05-19
   url: https://github.com/rust-lang/regex
+rebar:
+  type: Web
+  title: A biased barometer for gauging the relative speed of some regex engines on a curated set of tasks.
+  author:
+    - Andrew Gallant
+  date: 2023-01-27
+  url: https://github.com/BurntSushi/rebar
+re2:
+  type: Web
+  title: RE2, a regular expression library
+  abstract: |
+    RE2 is an efficient, principled regular expression library that has been used in production at Google and many other places since 2006.
+
+    Safety is RE2's primary goal.
+  author:
+    - Russ Cox
+    - Paul Wankadia
+  date: 2006
+  url: https://github.com/google/re2
 
 backref-nphard:
   type: Web

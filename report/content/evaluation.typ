@@ -91,4 +91,11 @@ For that we analyze the large corpora of regexes collected in @regex-in-the-wild
 
 == Prefix acceleration in `rust-regex` <sec:rust-regex>
 
-#TODO[evaluation of prefix acceleration in rust-regex]
+The `regex` @crate @rust-regex is the official regex library for the Rust programming language. It focuses on providing an efficient and safe implementation of regex engines. Only regex features for which we know a linear-time implementation are supported. Similarly to RE2 @re2, whose architecture served as inspiration for the `regex` crate, it implements a variety of regex engines which are then orchestrated by a single _meta_ engine. It consistently ranks among the fastest linear-time regex engines in benchmarks. It achieves it by employing a large variety of heuristics and optimization which perform well in practice. One of the crucial optimizations it employs is prefix acceleration. In this section we benchmark three different strategies for prefix acceleration using the rebar @rebar benchmarking tool. The benchmarking results underline the importance of this optimization by achieving speedups of up to 600$times$ compared to no prefix acceleration at all. Additionally, we implement our prefix acceleration strategy that has been proven correct in this work and show that in some benchmarks it outperforms the existing implementation by up to 20$times$.
+
+#TODO[evaluation of prefix acceleration in rust-regex: https://github.shilangyu.dev/pikevm-systemf/meeting-notes/2025_11_05.html]
+
+#TODO[Make reproducible directly from benchmarks rather than copy pasting results and code here. Use rebar to produce analysis reports.
+  - Rebar branch: https://github.com/epfl-systemf/rebar/tree/mw/prefix-acc-cmp/
+  - Rust regex branch: https://github.com/epfl-systemf/rust-regex/tree/mw/prefix-acc-cmp
+]
