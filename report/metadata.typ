@@ -64,4 +64,11 @@
     long-plural: "Single Instruction, Multiple Data",
     description: [A parallel computing paradigm where a single instruction operates on multiple data points simultaneously. Modern CPUs often support SIMD instructions that can process multiple pieces of data in parallel, speeding up operations by a healthy constant factor.],
   ),
+  ast: (
+    short: "AST",
+    short-plural: "ASTs",
+    long: "Abstract Syntax Tree",
+    long-plural: "Abstract Syntax Trees",
+    description: [A tree representation of the syntactic structure of some source code. Usually some redundant information is omitted, hence the "abstract" part in the name.],
+  ),
 )

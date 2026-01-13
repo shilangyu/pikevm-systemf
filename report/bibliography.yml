@@ -91,6 +91,13 @@ bug-rust:
     - Andrew Gallant
   date: 2021-05-12
   url: https://github.com/rust-lang/regex/issues/779
+rust-regex:
+  type: Web
+  title: Rust regex
+  author:
+    - Andrew Gallant
+  date: 2016-05-19
+  url: https://github.com/rust-lang/regex
 
 backref-nphard:
   type: Web
@@ -124,3 +131,53 @@ hyperscan:
   author:
     - Xiang Wang
   url: https://www.intel.com/content/www/us/en/developer/articles/technical/introduction-to-hyperscan.html
+
+regex-in-the-wild1:
+  type: article
+  title: "The impact of regular expression denial of service (ReDoS) in practice: an empirical study at the ecosystem scale"
+  author:
+    - Davis, James C.
+    - Coghlan, Christy A.
+    - Servant, Francisco
+    - Lee, Dongyoon
+  date: 2018
+  page-range: 246-256
+  url: https://doi.org/10.1145/3236024.3236027
+  serial-number:
+    doi: 10.1145/3236024.3236027
+    isbn: "9781450355735"
+  abstract: "Regular expressions (regexes) are a popular and powerful means of automatically manipulating text. Regexes are also an understudied denial of service vector (ReDoS). If a regex has super-linear worst-case complexity, an attacker may be able to trigger this complexity, exhausting the victim’s CPU resources and causing denial of service. Existing research has shown how to detect these superlinear regexes, and practitioners have identified super-linear regex anti-pattern heuristics that may lead to such complexity. In this paper, we empirically study three major aspects of ReDoS that have hitherto been unexplored: the incidence of super-linear regexes in practice, how they can be prevented, and how they can be repaired. In the ecosystems of two of the most popular programming languages — JavaScript and Python – we detected thousands of super-linear regexes affecting over 10,000 modules across diverse application domains. We also found that the conventional wisdom for super-linear regex anti-patterns has few false negatives but many false positives; these anti-patterns appear to be necessary, but not sufficient, signals of super-linear behavior. Finally, we found that when faced with a super-linear regex, developers favor revising it over truncating input or developing a custom parser, regardless of whether they had been shown examples of all three fix strategies. These findings motivate further research into ReDoS, since many modules are vulnerable to it and existing mechanisms to avoid it are insufficient. We believe that ReDoS vulnerabilities are a larger threat in practice than might have been guessed."
+  parent:
+    type: proceedings
+    title: Proceedings of the 2018 26th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering
+    publisher:
+      name: Association for Computing Machinery
+      location: Lake Buena Vista, FL, USA
+    parent:
+      type: proceedings
+      title: ESEC/FSE 2018
+regex-in-the-wild2:
+  type: article
+  title: Why aren’t regular expressions a lingua franca? an empirical study on the re-use and portability of regular expressions
+  author:
+    - Davis, James C.
+    - Michael IV, Louis G.
+    - Coghlan, Christy A.
+    - Servant, Francisco
+    - Lee, Dongyoon
+  date: 2019
+  page-range: 443-454
+  url: https://doi.org/10.1145/3338906.3338909
+  serial-number:
+    doi: 10.1145/3338906.3338909
+    isbn: "9781450355728"
+  abstract: "This paper explores the extent to which regular expressions (regexes) are portable across programming languages. Many languages offer similar regex syntaxes, and it would be natural to assume that regexes can be ported across language boundaries. But can regexes be copy/pasted across language boundaries while retaining their semantic and performance characteristics? In our survey of 158 professional software developers, most indicated that they re-use regexes across language boundaries and about half reported that they believe regexes are a universal language.We experimentally evaluated the riskiness of this practice using a novel regex corpus — 537,806 regexes from 193,524 projects written in JavaScript, Java, PHP, Python, Ruby, Go, Perl, and Rust. Using our polyglot regex corpus, we explored the hitherto-unstudied regex portability problems: logic errors due to semantic differences, and security vulnerabilities due to performance differences. We report that developers’ belief in a regex lingua franca is understandable but unfounded. Though most regexes compile across language boundaries, 15% exhibit semantic differences across languages and 10% exhibit performance differences across languages. We explained these differences using regex documentation, and further illuminate our findings by investigating regex engine implementations. Along the way we found bugs in the regex engines of JavaScript-V8, Python, Ruby, and Rust, and potential semantic and performance regex bugs in thousands of modules."
+  parent:
+    type: proceedings
+    title: Proceedings of the 2019 27th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering
+    publisher:
+      name: Association for Computing Machinery
+      location: Tallinn, Estonia
+    parent:
+      type: proceedings
+      title: ESEC/FSE 2019
