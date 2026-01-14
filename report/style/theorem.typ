@@ -44,15 +44,18 @@
   show figure: set align(left)
 
   figure(
-    {
-      [#smallcaps(supplement) (#name)#body]
-      if proof != none {
-        block[*Proof.* #proof]
-      }
-    },
+    [#smallcaps(supplement) (#name)#body],
     kind: "theorem",
     supplement: supplement,
   )
+
+  {
+    // This makes the styling of the proof the same as the one used in a figure
+    show figure: _ => if proof != none {
+      [*Proof.* #proof]
+    }
+    figure(none)
+  }
 }
 
 #let definition(name, body) = theorem(name, [: ] + body, supplement: "Definition")

@@ -160,7 +160,7 @@ contexts:
     # Decimal literal
     - match: \b\d+\b
       scope: constant.numeric.decimal.rocq
-    - match: \b(true|false)\b
+    - match: \b(true|True|false|False)\b
       scope: constant.language.boolean.rocq
     - match: \b(tt)\b
       scope: constant.language.unit.rocq

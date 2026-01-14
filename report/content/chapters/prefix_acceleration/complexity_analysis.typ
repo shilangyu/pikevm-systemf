@@ -42,12 +42,11 @@ We are now ready to state and prove the main theorem of this section.
   ],
   proof: [
     Consider an execution of $T$ where #ssearch is called $c$ times with substrings $m_1, m_2, ..., m_c$ and results $k_1, k_2, ..., k_c$. Then the total cost of all #ssearch calls is
+    $ O(m_1 k_1) + O(m_2 k_2) + ... + O(m_c k_c) <= O(max_i |m_i| dot (k_1 + k_2 + ... + k_c)) $
 
-    $O(m_1 k_1) + O(m_2 k_2) + ... + O(m_c k_c) <= O(max_i |m_i| dot (k_1 + k_2 + ... + k_c))$,
+    due to #ssearch being streaming-linear. By the progressing search property we have that
 
-    #TODO[fix indenting in this proof]due to #ssearch being streaming-linear. By the progressing search property we have that
-
-    $k_1 + k_2 + ... + k_c <= |s|$.
+    $ k_1 + k_2 + ... + k_c <= |s| $
 
     Thus, the total cost of all #ssearch calls is $O(max_i |m_i| dot |s|)$. Since calls to #ssearch are only an additive cost, the total runtime complexity of $T$ is $O(Q + max_i |m_i| dot |s|)$, yielding the desired result.
   ],
