@@ -1,9 +1,5 @@
 #import "/prelude.typ": *
 
-= Prefix acceleration <sec:prefix-acceleration>
-
-#TODO[Prefix acceleration]
-
 == Complexity analysis <sec:prefix-acceleration-complexity>
 
 We want to ensure that the prefix acceleration optimization does not degrade the asymptotic complexity our regex engines provide. To show no additional asymptotic complexity is incurred, we prove a more general results about prefix acceleration strategies and show that the one proven correct in this work fits into this framework.
