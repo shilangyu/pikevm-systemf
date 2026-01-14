@@ -77,4 +77,4 @@ we show that the length of the extracted literal is bounded by the size of the r
 
 #linden-theorem("Engine/Prefix.v", "extract_literal_size_bound", proof: [
   Induction on $r$, using @thm:chain-literals-length, @thm:repeat-literal-length, and @thm:merge-literals-length where applicable.
-])
+]) <thm:literal-size>

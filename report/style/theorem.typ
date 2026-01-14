@@ -54,3 +54,5 @@
     supplement: supplement,
   )
 }
+
+#let definition(name, body) = theorem(name, [: ] + body, supplement: "Definition")
