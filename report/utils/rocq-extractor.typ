@@ -53,7 +53,7 @@
     // include all whitespace before the statement, will be needed for correct dedent
     "(?:[\s--\n]*)"
     // header
-    "(Definition|Theorem|Variant|Lemma|Fixpoint|Function|Inductive|Notation|Class|Instance)"
+    "(Definition|Theorem|Variant|Lemma|Corollary|Fixpoint|Function|Inductive|Notation|Class|Instance)"
     "\s+"
     // name
     "([\w\d_']+)"
@@ -84,11 +84,11 @@
   stmt
 }
 
-/// Generates a GitHub hyperlink to the source code of a statement.
+/// Generates a GitHub permalink to the source code of a statement.
 ///
 /// - stmt ():
 /// -> link
-#let source-hyperlink(stmt) = {
+#let source-permalink(stmt) = {
   let (file, line) = stmt
 
   let url = (
@@ -135,7 +135,7 @@
         stack(
           dir: ltr,
           note(
-            source-hyperlink(stmt),
+            source-permalink(stmt),
             dy: 0.4em,
             keep-order: true,
           ),
@@ -154,7 +154,7 @@
 
   theorem(
     name,
-    [#note(source-hyperlink(stmt), numbering: none)#raw(stmt.code-body, lang: "rocq")],
+    [#note(source-permalink(stmt), numbering: none)#raw(stmt.code-body, lang: "rocq")],
     proof: proof,
     supplement: stmt.kind,
   )
