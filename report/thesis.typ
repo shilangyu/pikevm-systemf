@@ -57,6 +57,8 @@
   2. Background
 
     - "which means it should repeat" you might be missing some introduction to backtracking semantics and priority
+    - I like the regex size section, but I'm not sure we understand why it is defined here
+
 
   3. Literal Extraction
 

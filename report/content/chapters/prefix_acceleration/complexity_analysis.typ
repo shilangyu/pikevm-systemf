@@ -23,12 +23,12 @@ Intuitively, the streaming-linear property ensures that when finding occurrences
 The progressing search property ensures that each #ssearch call makes progress in the haystack and thus #ssearch does not explore the same part of the haystack more than once. Consider the following example trace of a progressing search algorithm $T$. We #underline[underline] the haystack portion on which #ssearch can no longer be called on due to the progression property.
 
 $
-                                & : T "is initialized with the haystack" #hay[hello world] \
-              #hay[hello world] & : T "calls" #ssearch "at position 0 with substring" #hay[lo] -> 3 \
-  #hay[#underline[hell]o world] & : T "does some work which advances the haystack position by 1" \
-  #hay[#underline[hell]o world] & : T "calls" #ssearch "at position 5 with substring" #hay[r] -> 2 \
-  #hay[#underline[hello wo]rld] & : T "calls" #ssearch "at position 8 with substring" #hay[rld] -> 0 \
-  #hay[#underline[hello wor]ld] & : T "terminates"
+                             & : T "is initialized with the haystack" #hay[hello world] \
+           #hay[hello world] & : T "calls" #ssearch "at position 0 with substring" #hay[lo] -> 3 \
+  #hay(seen: 4)[hello world] & : T "does some work which advances the haystack position by 1" \
+  #hay(seen: 4)[hello world] & : T "calls" #ssearch "at position 5 with substring" #hay[o] -> 2 \
+  #hay(seen: 8)[hello world] & : T "calls" #ssearch "at position 8 with substring" #hay[rld] -> 0 \
+  #hay(seen: 9)[hello world] & : T "terminates"
 $
 
 #TODO[Draw under the haystack the position indices]
