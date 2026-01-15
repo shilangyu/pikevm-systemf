@@ -30,36 +30,36 @@ We first want to state the correctness lemma of ```rocq extract_literal_char```.
   Where the last reduction follows from the base constructor of @lst:starts-with.
   We now consider the remaining four cases.
 
-  1. *CdEmpty*. ```rocq extract_literal_char CdEmpty = Impossible```, and so similarly as above we have
-
-  $
-    & ~> #```rocq starts_with (prefix Impossible) (c :: s)``` \
-    & ~> #```rocq starts_with "" (c :: s)``` \
-    & ~> #```rocq True``` \
-  $
-
-  2. *CdSingle*. ```rocq extract_literal_char (CdSingle c') = Exact [c']```. But since ```rocq char_match rer c (CdSingle c')``` holds and the match is case-sensitive, we have ```rocq c = c'```. Now by case analysis of `rest`,
-    1. ```rocq rest = Impossible```, which once again leads to ```rocq starts_with "" (c :: s)```
-    2. ```rocq rest = Prefix p```,  leads to
+  + *CdEmpty*. ```rocq extract_literal_char CdEmpty = Impossible```, and so similarly as above we have
 
     $
-      & #```rocq starts_with (prefix (chain_literals (Exact [c]) (Prefix p))) (c :: s)``` \
-      & quad ~> #```rocq starts_with (prefix (Prefix (c :: p))) (c :: s)``` \
-      & quad ~> #```rocq starts_with (c :: p) (c :: s)``` \
+      & ~> #```rocq starts_with (prefix Impossible) (c :: s)``` \
+      & ~> #```rocq starts_with "" (c :: s)``` \
+      & ~> #```rocq True``` \
     $
-    which holds true by the inductive constructor of @lst:starts-with and by the hypothesis ```rocq starts_with p s```.
 
-    3. ```rocq rest = Exact p```, leads to
-    $
-      & #```rocq starts_with (prefix (chain_literals (Exact [c]) (Exact p))) (c :: s)``` \
-      & quad ~> #```rocq starts_with (prefix (Exact (c :: p))) (c :: s)``` \
-      & quad ~> #```rocq starts_with (c :: p) (c :: s)``` \
-    $
-    which holds true by the same reasoning as above.
+  + *CdSingle*. ```rocq extract_literal_char (CdSingle c') = Exact [c']```. But since ```rocq char_match rer c (CdSingle c')``` holds and the match is case-sensitive, we have ```rocq c = c'```. Now by case analysis of `rest`,
+    + ```rocq rest = Impossible```, which once again leads to ```rocq starts_with "" (c :: s)```
+    + ```rocq rest = Prefix p```,  leads to
 
-  3. *CdRange*. ```rocq extract_literal_char (CdRange c1 c2) = Exact [c1]```, which implies ```rocq c1 = c2```. By ```rocq char_match rer c (CdRange c1 c1)``` and case sensitivity we get that ```rocq c1 = c```. We conclude similarly as in the *CdSingle* case.
+      $
+        & #```rocq starts_with (prefix (chain_literals (Exact [c]) (Prefix p))) (c :: s)``` \
+        & quad ~> #```rocq starts_with (prefix (Prefix (c :: p))) (c :: s)``` \
+        & quad ~> #```rocq starts_with (c :: p) (c :: s)``` \
+      $
+      which holds true by the inductive constructor of @lst:starts-with and by the hypothesis ```rocq starts_with p s```.
 
-  4. *CdUnion*. ```rocq extract_literal_char (CdUnion cd1 cd2) = merge_literals (extract_literal_char cd1) (extract_literal_char cd2)```. By transitivity of ```rocq starts_with``` through ```rocq prefix (chain_literals (extract_literal_char cd1) rest)``` or ```rocq prefix (chain_literals (extract_literal_char cd2) rest)``` (depending on which branch of the union matched `c`), and by the induction hypotheses on `cd1` and `cd2`, we conclude. #TODO[Maybe also add starts_with_chain_merge_literals lemma into the report?]
+    + ```rocq rest = Exact p```, leads to
+      $
+        & #```rocq starts_with (prefix (chain_literals (Exact [c]) (Exact p))) (c :: s)``` \
+        & quad ~> #```rocq starts_with (prefix (Exact (c :: p))) (c :: s)``` \
+        & quad ~> #```rocq starts_with (c :: p) (c :: s)``` \
+      $
+      which holds true by the same reasoning as above.
+
+  + *CdRange*. ```rocq extract_literal_char (CdRange c1 c2) = Exact [c1]```, which implies ```rocq c1 = c2```. By ```rocq char_match rer c (CdRange c1 c1)``` and case sensitivity we get that ```rocq c1 = c```. We conclude similarly as in the *CdSingle* case.
+
+  + *CdUnion*. ```rocq extract_literal_char (CdUnion cd1 cd2) = merge_literals (extract_literal_char cd1) (extract_literal_char cd2)```. By transitivity of ```rocq starts_with``` through ```rocq prefix (chain_literals (extract_literal_char cd1) rest)``` or ```rocq prefix (chain_literals (extract_literal_char cd2) rest)``` (depending on which branch of the union matched `c`), and by the induction hypotheses on `cd1` and `cd2`, we conclude. #TODO[Maybe also add starts_with_chain_merge_literals lemma into the report?]
 ]) <thm:correctness-extract-literal-char>
 
 With that lemma we can now state and prove the general theorem about the correctness of the prefix of extracted literals for regexes. Given a tree `tree` of actions `acts` over the input `inp`, if `tree` contains a match then `inp` starts with the prefix of the literal extracted from `acts`.
@@ -67,9 +67,9 @@ With that lemma we can now state and prove the general theorem about the correct
 #linden-theorem("Engine/Prefix.v", "extract_literal_prefix_general", proof: [
   We induct on the ```rocq is_tree``` hypothesis. We can immediately assume regex matching is case-sensitive, otherwise the extracted prefix is the empty string and the theorem holds trivially. Similarly, for every case where ```rocq extract_actions_literal acts``` is ```rocq Unknown``` or ```rocq Impossible```, the theorem holds. Additionally all rules which lead to a mismatch (like ```rocq tree_char_fail```) are immediately a contradiction with the match hypothesis. We now focus on the remaining cases which do not follow immediately from the induction hypotheses.
 
-  1. *`tree_char`.* So we have that `char_match c cd`. We conclude by @thm:correctness-extract-literal-char and the induction hypothesis.
-  2. *`tree_disj`.* By transitivity of ```rocq starts_with``` through ```rocq prefix (chain_literals (extract_literal r1) (extract_actions_literal cont))``` or ```rocq prefix (chain_literals (extract_literal r2) (extract_actions_literal cont))``` (depending on which branch of the tree contains the result), and by the induction hypotheses, we conclude. #TODO[Maybe also add starts_with_chain_merge_literals lemma into the report?]
-  3. *`tree_quant_forced`.* When $m i n = 0$ in the quantifier, the result follows from the induction hypothesis. Otherwise we with the help of @thm:starts-with-app-left this also follows from the induction hypothesis.
+  + *`tree_char`.* So we have that `char_match c cd`. We conclude by @thm:correctness-extract-literal-char and the induction hypothesis.
+  + *`tree_disj`.* By transitivity of ```rocq starts_with``` through ```rocq prefix (chain_literals (extract_literal r1) (extract_actions_literal cont))``` or ```rocq prefix (chain_literals (extract_literal r2) (extract_actions_literal cont))``` (depending on which branch of the tree contains the result), and by the induction hypotheses, we conclude. #TODO[Maybe also add starts_with_chain_merge_literals lemma into the report?]
+  + *`tree_quant_forced`.* When $m i n = 0$ in the quantifier, the result follows from the induction hypothesis. Otherwise we with the help of @thm:starts-with-app-left this also follows from the induction hypothesis.
 ]) <thm:correctness-extract-literal-prefix-general>
 
 #linden-theorem("Engine/Prefix.v", "starts_with_app_left", proof: [By induction over `s1`.]) <thm:starts-with-app-left>

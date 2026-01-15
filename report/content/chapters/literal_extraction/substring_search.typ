@@ -15,9 +15,9 @@ Then, we can describe substring search procedures. For this we define a typeclas
 
 #linden-listing("Engine/Prefix.v", "StrSearch")[Substring search typeclass.] <lst:substring-search-class>
 
-1. ```rocq starts_with_ss``` asserts that if the search returns some position, then indeed at that position the haystack starts with the substring,
-2. ```rocq no_earlier``` asserts that if the search returns some position, then there is no earlier position where the haystack starts with the substring,
-3. ```rocq not_found``` asserts that if the search returns ```rocq None```, then there is no position in the haystack that starts with the substring.
++ ```rocq starts_with_ss``` asserts that if the search returns some position, then indeed at that position the haystack starts with the substring,
++ ```rocq no_earlier``` asserts that if the search returns some position, then there is no earlier position where the haystack starts with the substring,
++ ```rocq not_found``` asserts that if the search returns ```rocq None```, then there is no position in the haystack that starts with the substring.
 
 To show that the requirements of this typeclass can be fulfilled, we proceed by showing that we can exhibit an instance of it by implementing a naive brute-force substring search algorithm. Its somewhat ugly definition given in @lst:naive-substring-search stems from it being primarily written to facilitate the ease of proofs.
 
