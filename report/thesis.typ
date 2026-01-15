@@ -56,8 +56,6 @@
   3. Literal Extraction
 
     - I feel like the "neighborhood" discussion before the "must start" discussion might be too general. Why are you not directly starting from the "must start" discussion?
-    - I think it would be nice to explain that what you're doing in 3.1 is a static analysis of a regex. I think it could clarify things below. You could say what it means for your analysis to be correct, and what it means to be precise.
-    - "he extracted literals correctly describe the matches of a regex" I'm not sure the phrasing is right. Or maybe "describe" is not precise enough. Maybe if you had explained how this is a static analysis, maybe it would make this easier to describe
 ]
 
 #include "/content/introduction.typ"
