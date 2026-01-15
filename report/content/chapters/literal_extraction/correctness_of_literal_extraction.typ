@@ -62,7 +62,7 @@ We first want to state the correctness lemma of ```rocq extract_literal_char```.
   + *CdUnion*. ```rocq extract_literal_char (CdUnion cd1 cd2) = merge_literals (extract_literal_char cd1) (extract_literal_char cd2)```. By transitivity of ```rocq starts_with``` through ```rocq prefix (chain_literals (extract_literal_char cd1) rest)``` or ```rocq prefix (chain_literals (extract_literal_char cd2) rest)``` (depending on which branch of the union matched `c`), and by the induction hypotheses on `cd1` and `cd2`, we conclude. #TODO[Maybe also add starts_with_chain_merge_literals lemma into the report?]
 ]) <thm:correctness-extract-literal-char>
 
-With that lemma we can now state and prove the general theorem about the correctness of the prefix of extracted literals for regexes. Given a tree `tree` of actions `acts` over the input `inp`, if `tree` contains a match then `inp` starts with the prefix of the literal extracted from `acts`.
+With that lemma we can now state and prove the general lemma about the correctness of the prefix of extracted literals for regexes. Given a tree `tree` of actions `acts` over the input `inp`, if `tree` contains a match then `inp` starts with the prefix of the literal extracted from `acts`.
 
 #linden-theorem("Engine/Prefix.v", "extract_literal_prefix_general", proof: [
   We induct on the ```rocq is_tree``` hypothesis. We can immediately assume regex matching is case-sensitive, otherwise the extracted prefix is the empty string and the theorem holds trivially. Similarly, for every case where ```rocq extract_actions_literal acts``` is ```rocq Unknown``` or ```rocq Impossible```, the theorem holds. Additionally all rules which lead to a mismatch (like ```rocq tree_char_fail```) are immediately a contradiction with the match hypothesis. We now focus on the remaining cases which do not follow immediately from the induction hypotheses.
@@ -73,6 +73,16 @@ With that lemma we can now state and prove the general theorem about the correct
 ]) <thm:correctness-extract-literal-prefix-general>
 
 #linden-theorem("Engine/Prefix.v", "starts_with_app_left", proof: [By induction over `s1`.]) <thm:starts-with-app-left>
+
+Given the generalized lemma we can now specialize it to the case where the list of actions is exactly just the regex `r` itself. This gives us @thm:correctness-extract-literal-prefix.
+
+#linden-theorem("Engine/Prefix.v", "extract_literal_prefix", proof: [
+  This holds directly from @thm:correctness-extract-literal-prefix-general with `acts = [Areg r]`.
+]) <thm:correctness-extract-literal-prefix>
+
+In practice, however, this theorem will be of little direct use. We wish to instead have a theorem which would talk about the matches of a tree given some information about whether the input starts with the prefix of the literal. What we precisely want is the contrapositive of @thm:correctness-extract-literal-prefix which is stated in @thm:correctness-extract-literal-prefix-contra.
+
+#linden-theorem("Engine/Prefix.v", "extract_literal_prefix_contra") <thm:correctness-extract-literal-prefix-contra>
 
 === Correctness of ```rocq Impossible``` literals
 
