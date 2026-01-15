@@ -86,4 +86,11 @@
     long-plural: "preorders",
     description: [A binary relation that is both reflexive and transitive.],
   ),
+  lazy-prefix: (
+    short: "lazy prefix",
+    short-plural: "lazy prefixes",
+    long: "lazy prefix",
+    long-plural: "lazy prefixes",
+    description: [A regex construct that matches any sequence of characters in a non-greedy manner. It is of the form ```re /[^]*?/```. It is prepended to a regex `r` to find a match for `r` anywhere in the haystack.],
+  ),
 )
