@@ -11,6 +11,11 @@
 // don't allow regexes to be broken across pages/lines
 #show raw.where(lang: "re"): box
 
+#show raw.where(lang: "re"): it => {
+  assert-no-similar-letters(it.text)
+  it
+}
+
 #show: thesis.with(
   title: title-english,
   title-french: title-french,

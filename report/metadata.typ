@@ -42,7 +42,7 @@
     short-plural: "captures",
     long: "capturing group",
     long-plural: "capturing groups",
-    description: [A feature in modern @regex:plural that allows parts of the matched text to be captured by a subpatterns and extracted later. They are annotated using parentheses. For instance, given ```re /(a(bc))d/```, there are two capture groups: the outer group captures ```abc```, and the inner group captures ```bc```. When this regex matches the string #hay[abcd], the first capture group will contain #hay[abc] and the second will contain #hay[bc].],
+    description: [A feature in modern @regex:plural that allows parts of the matched text to be captured by a subpatterns and extracted later. They are annotated using parentheses. For instance, given ```re /(a(bc))e/```, there are two capture groups: the outer group captures ```abc```, and the inner group captures ```bc```. When this regex matches the string #hay[abce], the first capture group will contain #hay[abc] and the second will contain #hay[bc].],
   ),
   engine: (
     short: "engine",

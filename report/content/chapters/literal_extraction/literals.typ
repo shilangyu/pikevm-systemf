@@ -2,7 +2,7 @@
 
 == Literals <sec:literals>
 
-The literal extraction phase is a form of static analysis of the syntactic structure of the regex. As such, various implementations of the analysis could produce varying degrees of preciseness in the result. For instance, we said that for the example of ```re /abc\d+/``` we can extracted a prefix of #hay[abc]. But a less precise yet still correct analysis could only extract the prefix #hay[a]. In this work we implement an analysis resembling abstract interpretation that tries to extract as much information as possible. When giving examples of what an extracted literal of some regex could be, we always mean the most precise literal that our analysis can extract.
+The literal extraction phase is a form of static analysis of the syntactic structure of the regex. As such, various implementations of the analysis could produce varying degrees of preciseness in the result. For instance, we said that for the example of ```re /abc\w+/``` we can extracted a prefix of #hay[abc]. But a less precise yet still correct analysis could only extract the prefix #hay[a]. In this work we implement an analysis resembling abstract interpretation that tries to extract as much information as possible. When giving examples of what an extracted literal of some regex could be, we always mean the most precise literal that our analysis can extract.
 
 #linden-listing("Engine/Prefix.v", (
   "literal",
@@ -13,10 +13,10 @@ The literal extraction phase is a form of static analysis of the syntactic struc
 A literal as defined in @lst:literal is what we extract from a regex $r$. It is defined by its three constructors:
 
 + ```rocq Exact s``` -- any match of $r$ is exactly the string $s$. For instance, the literal of ```re /p{3}(a|a)c/``` is ```rocq Exact "pppac"```,
-+ ```rocq Prefix s``` -- any match of $r$ starts with the string $s$. For instance, the literal of ```re /abc\d+/``` is ```rocq Prefix "abc"```,
++ ```rocq Prefix s``` -- any match of $r$ starts with the string $s$. For instance, the literal of ```re /abc\w+/``` is ```rocq Prefix "abc"```,
 + ```rocq Impossible``` -- the regex $r$ can never match. For instance, the literal of ```re /[]/``` is ```rocq Impossible```.
 
-Additionally we define two aliases, ```rocq Nothing``` (standing for ```rocq Exact ""```) which means $r$ matches exactly the empty string like the empty regex ```re //```, and ```rocq Unknown``` (standing for ```rocq Prefix ""```) which means we cannot tell anything useful about the matches of $r$ like for the regex ```re /.*abc\d+/```.
+Additionally we define two aliases, ```rocq Nothing``` (standing for ```rocq Exact ""```) which means $r$ matches exactly the empty string like the empty regex ```re //```, and ```rocq Unknown``` (standing for ```rocq Prefix ""```) which means we cannot tell anything useful about the matches of $r$ like for the regex ```re /.*abc\w+/```.
 
 #linden-listing("Engine/Prefix.v", "prefix")[Literal weakening defintion into just the prefix information.] <lst:prefix>
 
