@@ -40,10 +40,10 @@
 ///
 /// - s (any): The string content of the haystack. If possible to turn into a string, its newlines will be replaced by the "⏎" symbol for better visualization.
 /// - seen (int): Number of characters already seen (to be underlined). Works only if `s` can be turned into a string.
-/// - position (bool): When true, seen is treated as a single position that should be marked. Works only if `s` can be turned into a string.
-/// - match (regex|str): An optional substring to highlight as a match. Works only if `s` can be turned into a string. Mixing with `seen` is not implemented.
+/// - position (int|none): When an int, marks the position in the haystack. Works only if `s` can be turned into a string.
+/// - match (regex|str): An optional substring to highlight as a match. Works only if `s` can be turned into a string. Mixing with `seen` or `position` is not implemented.
 /// -> text
-#let hay(s, seen: 0, position: false, match: none) = {
+#let hay(s, seen: 0, position: none, match: none) = {
   let marker = context box(width: 0pt, place(
     bottom + center,
     dy: 0.6em,
@@ -67,13 +67,23 @@
       visual.slice(0, match-range.start)
       highlight(fill: rgb("F6C7FC"), visual.slice(match-range.start, match-range.end))
       visual.slice(match-range.end)
-    } else if position {
-      visual.slice(0, seen)
-      marker
-      visual.slice(seen)
     } else {
-      underline(visual.slice(0, seen))
-      visual.slice(seen)
+      if position != none {
+        if position <= seen {
+          underline(visual.slice(0, position))
+          marker
+          underline(visual.slice(position, seen))
+          visual.slice(seen)
+        } else {
+          underline(visual.slice(0, seen))
+          visual.slice(seen, position)
+          marker
+          visual.slice(position)
+        }
+      } else {
+        underline(visual.slice(0, seen))
+        visual.slice(seen)
+      }
     }
   }
 

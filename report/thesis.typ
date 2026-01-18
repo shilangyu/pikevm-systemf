@@ -41,6 +41,8 @@
 
 #NOTE[Appendix reference does not use the "Appendix" supplement]
 
+#NOTE[Rename usages of `rust-regex` to just `regex` crate or Rust's `regex` engine or something]
+
 #NOTE[
   - Try to integrate tree-sitter for syntax highlighting (https://github.com/RubixDev/syntastica-typst and https://zed.dev/blog/language-extensions-part-1)
   - Rocq syntax highlighting
@@ -48,6 +50,8 @@
     - Bullet points do not get auto completed (this should be done with the https://github.com/rust-lang/rust-analyzer/blob/master/docs/dev/lsp-extensions.md#on-enter event)
     - No autoimport
 ]
+
+#NOTE[Merge RegElk into main]
 
 #NOTE[
   From Aurèle's review:
@@ -63,6 +67,19 @@
   3. Literal Extraction
 
     - I feel like the "neighborhood" discussion before the "must start" discussion might be too general. Why are you not directly starting from the "must start" discussion?
+    - "search procedures. For this " capitalization
+    - when talking about backreference literals: "this bound is important to preserve the linear". This is a bit surprising, you say that you don't want to be too precise for backreferences. And the reason is that being too precise would invalidate linear matching. But linear matching is not available for backreferences anyway. There should be a way to rephrase this. (Technically, the literal size proofs could be done assuming we don't have backreferences. Let's not do that right now of course, but let's rephrase these sentences.)
+    - You could skip the three lemmas like "Lemma (brute_force_str_search_starts_with)" because we've already seen the typeclass in listing 9.
+    - "We now prove that the extracted literals gives us some useful information about the matches of a regex." I disagree with useful. An analysis returning (Prefix empty) would be correct according to your proofs, but not useful. I would simply say that you prove that your literal extraction analysis returns correct results.
+    - Similarly, "The properties which we care about are those which will allow us to accelerate regex matching" could be rephrased. Maybe a simple "A correct analaysis should exhibit the following properties, that we will use to prove the correctness of prefix acceleration" could work.
+    - "if we do not generalize [...] we will get stuck" -> I suggest simplifying to "we need to generalize..."
+
+  4. Prefix acceleration of the PikeVM
+
+    - "Approaching the specification of how matching works from the angle anchored matching gives rise to cleaner semantics hence why these serve as the basis of formalization" I think this sentence could be confusing. At that point, a reader does not know that you can encode unanchored using anchored so the reader might not understand why these "serve as the basis", it feels like we forgot to address one issue. I would start by saying that we can encode unanchored with anchored, then say that this explains why the basis is anchored semantics.
+    - " in isolation, prefix acceleration is also linear" what does that mean exactly? You mean more than just a substring search? Also linear for what?
+    - "We start by presenting ..." I'm surprised that this paragraph is not teasing the fact that one of the contributions is a new way to do prefix acceleration in a PikeVM, something that is not the usual way to perform the optimization
+
 ]
 
 #include "/content/introduction.typ"

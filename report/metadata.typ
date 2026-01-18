@@ -35,7 +35,7 @@
     short-plural: "haystacks",
     long: "haystack",
     long-plural: "haystacks",
-    description: [In the context of regex *matching*, the haystack is the input text in which we search for occurrences of patterns defined by regular expressions. When we say that we want to match the regex ```re /a*b{3}/``` against #hay[abc], the string #hay[abc] is the haystack. Newlines in the haystack are represented with the #hay("\n") character. Already seen characters in the haystack are underlined #hay(seen: 3)[qwerty]. Positions in the haystack are marked with an arrow #hay(seen: 4, position: true)[qwerty]. Match ranges in the haystack are highlighted #hay(match: "ert")[qwerty].],
+    description: [In the context of regex *matching*, the haystack is the input text in which we search for occurrences of patterns defined by regular expressions. When we say that we want to match the regex ```re /a*b{3}/``` against #hay[abc], the string #hay[abc] is the haystack. Newlines in the haystack are represented with the #hay("\n") character. Already seen characters in the haystack are underlined #hay(seen: 3)[qwerty]. Positions in the haystack are marked with an arrow #hay(position: 4)[qwerty]. Match ranges in the haystack are highlighted #hay(match: "ert")[qwerty].],
   ),
   captures: (
     short: "capture",
@@ -92,5 +92,12 @@
     long: "lazy prefix",
     long-plural: "lazy prefixes",
     description: [A regex construct that matches any sequence of characters in a non-greedy manner. It is of the form ```re /[^]*?/```. It is prepended to a regex `r` to find a match for `r` anywhere in the haystack.],
+  ),
+  program-counter: (
+    short: "PC",
+    short-plural: "PCs",
+    long: "program counter",
+    long-plural: "program counters",
+    description: [An integer value that indicates the current position of execution within a larger sequence of instructions. Storing it allows resuming execution from that point later.],
   ),
 )

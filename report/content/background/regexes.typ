@@ -99,7 +99,7 @@ Discussion of backreferences is omitted as backreference matching is NP-hard @ba
 
 === Regex size <sec:regex-size>
 
-We define the size of a regex by @lst:regex-size. From now on, whenever talking about the _"regex size"_, this is the precise definition we are referring to. As seen, the regex size is equal to the size of the unfolded regex, i.e. one where quantifier repetitions of any $r_1$ are unfolded. This does mean that the regex size can be exponentially larger than the size of the textual representation. This can be seen by the example of nested quantification ```regex /((a{5}){5}){5}/```. By just wrapping any regex $r$ with ```regex /(r){n}/``` for some number $n$, we increased its textual size by just $4 + log_10 n$ while the regex size increased by a factor of $n$.
+We define the size of a regex by @lst:regex-size. From now on, whenever talking about the _"regex size"_ or $|r|$, this is the precise definition we are referring to. As seen, the regex size is equal to the size of the unfolded regex, i.e. one in which quantifier repetitions are unfolded. This does mean that the regex size can be exponentially larger than the size of the textual representation. This can be seen in the example of nested quantification ```regex /((a{5}){5}){5}/```. By just wrapping any regex $r$ with ```regex /(r){n}/``` for some number $n$, we increased its textual size by just $4 + log_10 n$ while the regex size increased by a factor of $n$.
 
 #linden-listing("Semantics/Regex.v", "regex_size")[Regex size definition.] <lst:regex-size>
 

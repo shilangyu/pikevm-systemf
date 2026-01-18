@@ -226,3 +226,11 @@ regex-in-the-wild2:
     parent:
       type: proceedings
       title: ESEC/FSE 2019
+
+pikevm:
+  type: Web
+  title: "Regular Expression Matching: the Virtual Machine Approach"
+  date: 2009-12
+  author:
+    - Russ Cox
+  url: https://swtch.com/~rsc/regexp/regexp2.html
