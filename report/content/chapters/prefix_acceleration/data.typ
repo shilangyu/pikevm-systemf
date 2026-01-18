@@ -4,6 +4,7 @@
 // Running examples for this chapter
 #let ex-s = "ababcccccabeww"
 #let ex-r-src = "a(?:b|be)w+"
+#let ex-r-prefix = "ab"
 #let ex-r = raw(lang: "re", "/" + ex-r-src + "/")
 
 #let s = hay.with(ex-s)
@@ -21,7 +22,7 @@
 
 #let ex-r-nfa = diagram(
   node-stroke: 1.5pt,
-  spacing: 3cm,
+  spacing: 2.4cm,
   label-size: 1em,
 
   node((0, 0), [$alpha$], name: <alpha>),
@@ -66,14 +67,20 @@
   edge(<delta>, <delta>, "-|>", stroke: 1pt, bend: -130deg, label: hay[w]),
 )
 
-#let trace-advance(pos, counter: none) = (
+#let trace-advance(pos, counter: false) = (
   table.cell(colspan: 2, align: horizon)[#line(length: 100%, stroke: (
     dash: if pos == 0 { "solid" } else { "dashed" },
     thickness: 1.5pt,
   ))],
   s(seen: pos, position: pos)
-    + if counter != none {
-      $,quad "counter" = #counter$
+    + if counter {
+      let p = ex-s.slice(pos + 1).position(ex-r-prefix)
+      let c = if p == none {
+        $infinity$
+      } else {
+        p + 1
+      }
+      $quad "counter" = #c$
     } else {
       ""
     },

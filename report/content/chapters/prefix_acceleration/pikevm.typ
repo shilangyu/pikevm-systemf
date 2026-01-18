@@ -32,7 +32,7 @@ We can now summarize the execution of the PikeVM. It repeatedly performs work on
   table(
     columns: (7em, 7em, auto),
     stroke: none,
-    inset: 10pt,
+    inset: 7pt,
     align: left,
 
     table.vline(x: 1, stroke: 1.5pt),
@@ -70,7 +70,7 @@ We can now summarize the execution of the PikeVM. It repeatedly performs work on
     [$[thin]$],
     [$[thin]$],
     [The same fate awaits the $lambda$ thread which expects to see #hay[e]. We are out of active and blocked threads, we have found no match!],
-    table.cell(colspan: 2, align: center)[*No match!*],
+    table.cell(colspan: 2, align: center)[*No match!*], [],
   )
 }
 
@@ -82,7 +82,7 @@ We can now summarize the execution of the PikeVM. It repeatedly performs work on
       ex-r-nfa, trace,
     ),
     supplement: "Figure",
-    caption: TODO[Left: the NFA of the regex #ex-r. Right: execution trace of the PikeVM on #s().][Fix ugly spacing in horizontal lines],
+    caption: [Left: the NFA of the regex #ex-r. Right: execution trace of the PikeVM on #s().],
   ) <fig:pikevm-execution>
 ]
 
