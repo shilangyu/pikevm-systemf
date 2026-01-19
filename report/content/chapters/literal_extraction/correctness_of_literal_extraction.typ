@@ -41,7 +41,23 @@ In practice, however, this theorem will be of little direct use. We wish to inst
 
 === Correctness of ```rocq Impossible``` literals
 
-#TODO[Correctness of ```rocq Impossible``` literals]
+Similarly we must first state the correctness lemma of ```rocq extract_literal_char``` for when it returns ```rocq Impossible```. Given a character descriptor `cd` for which we extract the literal ```rocq Impossible```, no character `c` can be matched with `cd`. This is formalized by @thm:correctness-extract-literal-char-impossible.
+
+#linden-theorem("Engine/Prefix.v", "extract_literal_char_impossible_no_match", proof: [
+  By induction on `cd`.
+]) <thm:correctness-extract-literal-char-impossible>
+
+With that lemma we prove the general lemma about the ```rocq Impossible```. Given a tree `tree` of actions `acts` over the input `inp`, if the literal extracted from `acts` is ```rocq Impossible```, then no match can exist in `tree`.
+
+#linden-theorem("Engine/Prefix.v", "extract_literal_impossible_general", proof: [
+  We induction on the ```rocq is_tree``` hypothesis and use @thm:correctness-extract-literal-char-impossible.
+]) <thm:correctness-extract-literal-impossible-general>
+
+And finally, we specialize it to the case where the list of actions is exactly just the regex `r` itself. This gives us @thm:correctness-extract-literal-impossible.
+
+#linden-theorem("Engine/Prefix.v", "extract_literal_impossible", proof: [
+  This holds directly from @thm:correctness-extract-literal-impossible-general with `acts = [Areg r]`.
+]) <thm:correctness-extract-literal-impossible>
 
 === Correctness of ```rocq Exact``` literals
 
