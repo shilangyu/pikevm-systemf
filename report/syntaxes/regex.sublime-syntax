@@ -7,8 +7,8 @@ file_extensions: [re, regex]
 
 contexts:
   main:
-    # Look for the opening slash of the JavaScript-style regex literal
-    - match: "/"
+    # (optionally) Look for the opening slash of the JavaScript-style regex literal
+    - match: "(?:/)?"
       scope: punctuation.definition.string.begin.regexp
       push: slash_regex
 
