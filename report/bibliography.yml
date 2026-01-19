@@ -106,6 +106,13 @@ rust-regex:
     - Andrew Gallant
   date: 2016-05-19
   url: https://github.com/rust-lang/regex
+rust-regex-blog:
+  type: Web
+  title: Regex engine internals as a library
+  author:
+    - Andrew Gallant
+  date: 2023-07-5
+  url: https://burntsushi.net/regex-internals
 rebar:
   type: Web
   title: A biased barometer for gauging the relative speed of some regex engines on a curated set of tasks.

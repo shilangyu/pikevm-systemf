@@ -100,4 +100,11 @@
     long-plural: "program counters",
     description: [An integer value that indicates the current position of execution within a larger sequence of instructions. Storing it allows resuming execution from that point later.],
   ),
+  memo-bt: (
+    short: "MemoBT",
+    short-plural: "MemoBTs",
+    long: "memoized backtracker",
+    long-plural: "memoized backtrackers",
+    description: [A regex @engine that combines backtracking with memoization to avoid redundant computations. It explores possible matches like a backtracking engine but stores intermediate results to ensure that each unique state is only computed once. It has a $O(|r| dot |s|)$ runtime and space complexity.],
+  ),
 )

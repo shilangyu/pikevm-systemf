@@ -2,4 +2,4 @@
 
 #include "literal_extraction/literal_extraction.typ"
 #include "prefix_acceleration/prefix_acceleration.typ"
-#include "meta_engine.typ"
+#include "meta_engine/meta_engine.typ"
