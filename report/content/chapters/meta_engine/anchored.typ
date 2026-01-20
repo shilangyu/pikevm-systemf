@@ -15,13 +15,10 @@ For a regex to be anchored, it does not necessarily need to start with the ```re
 
 We now define the anchored optimization in @lst:anchored-search. Given a regex, a haystack, and an anchored engine, if possible we return the result of *unanchored* matching. The return type is a doubly nested option for the same reason as in @sec:exact-impossible-literals. Other than checking if the regex is anchored, we additionally check if the passed haystack is set to the beginning position. If it is, we return the result obtained from running the anchored engine. If it is not at the beginning position, we immediately know matching would fail and thus return ```rocq Some None```.
 
-#[
-  #show raw.where(block: true): set text(size: 0.8em)
-  #linden-listing(
-    "Engine/Meta/MetaAnchored.v",
-    "try_anchored_search",
-  )[Anchored search optimization definition.] <lst:anchored-search>
-]
+#linden-listing(
+  "Engine/Meta/MetaAnchored.v",
+  "try_anchored_search",
+)[Anchored search optimization definition.] <lst:anchored-search>
 
 ==== Correctness
 As per usual, we first need auxiliary definitions which generalize anchor detection to tree actions.

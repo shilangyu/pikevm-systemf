@@ -41,7 +41,24 @@
     }
   }
   show ref: document-link-style
+  // Resize text in code blocks to avoid line breaks
+  show raw.where(block: true): it => layout(size => {
+    context {
+      let current-size = text.size
+      let width = measure(it).width
+      let factor = if width > size.width {
+        size.width / width * 100%
+      } else {
+        100%
+      }
+      let new-size = factor * current-size
+      // Let's not go below some minimum size for readability
+      let clamped-size = calc.max(new-size.to-absolute(), 7pt)
 
+      set text(size: clamped-size)
+      it
+    }
+  })
 
   title-page(
     title: title,

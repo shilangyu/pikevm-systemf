@@ -12,13 +12,10 @@ In @sec:prefix-acceleration we have seen how by using the prefix of an extracted
 
 To take advantage of the ```rocq Exact``` and ```rocq Impossible``` literals, we define the function ```rocq try_lit_search``` as seen in @lst:try-lit-search.
 
-#[
-  #show raw.where(block: true): set text(size: 0.8em)
-  #linden-listing(
-    "Engine/Meta/MetaLiterals.v",
-    "try_lit_search",
-  )[Definition of the function which attempts to use literals to find definitive matches.] <lst:try-lit-search>
-]
+#linden-listing(
+  "Engine/Meta/MetaLiterals.v",
+  "try_lit_search",
+)[Definition of the function which attempts to use literals to find definitive matches.] <lst:try-lit-search>
 
 Other than taking as arguments the regex and a haystack, it additionally expects to have an instance of a substring search algorithm defined in @sec:substring-search. Notably, no engine is passed as an argument as here we focus on optimizations not requiring them. Its return type is a doubly-nested optional result of matching. The outer option indicates whether this function is able to find the match at all. The inner option indicates whether a match exists. Thus while ```rocq None``` means that the ```rocq try_lit_search``` function could not determine what is the value of the match, ```rocq Some None``` means that the match was determined to not exist. This function starts by extracting the literal of the given regex. If that literal is a ```rocq Prefix```, without an engine we cannot determine the match so we return ```rocq None```. In the case of ```rocq Impossible```, we can immediately return that no match exists, ```rocq Some None```. But if the literal is an ```rocq Exact s```, more cases must be considered.
 
