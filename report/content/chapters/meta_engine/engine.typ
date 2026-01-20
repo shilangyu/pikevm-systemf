@@ -12,7 +12,7 @@ The typeclass describing an anchored regex engine given in @lst:anchored-engine-
 )[Typeclass describing an anchored engine] <lst:anchored-engine-class>
 
 
-To describe unanchored engines, we first define the @lazy-prefix:intro as simply being the sequencing of ```re /[^]*?/``` with a regex `r`. Then, the typeclass definition of an unanchored engine seen in @lst:unanchored-engine-class is very similar to that of an anchored engine. The sole difference is that for the correctness axiom, we require that the engine when given a regex `r` and a haystack `s` returns the same result as the one defined by the semantics of a backtracking tree for ```re /[^]*?r/```! All typeclass member names are prefixed with `un_`.
+To describe unanchored engines, we first define the @lazy-prefix:intro as simply being the sequencing of ```re /[^]*?/``` with a regex `r`. Then, the typeclass definition of an unanchored engine seen in @lst:unanchored-engine-class is very similar to that of an anchored engine. The sole difference is that for the correctness axiom, we require that the engine, when given a regex `r` and a haystack `s`, returns the same result as the one defined by the semantics of a backtracking tree for ```re /[^]*?r/```! All typeclass member names are prefixed with `un_`.
 
 #linden-listing(
   "Engine/Meta/EngineSpec.v",
