@@ -8,12 +8,12 @@ In @sec:prefix-acceleration we have seen how by using the prefix of an extracted
 
 #TODO[I just realized that the theorem proven in Linden about doing prefix acceleration once proves something that is not really usable and not what I described here. Fix either the theorem or the description here.]
 
-=== ```rocq Exact``` and ```rocq Impossible``` literals
+=== ```rocq Exact``` and ```rocq Impossible``` literals <sec:exact-impossible-literals>
 
 To take advantage of the ```rocq Exact``` and ```rocq Impossible``` literals, we define the function ```rocq try_lit_search``` as seen in @lst:try-lit-search.
 
 #[
-  #show raw: set text(size: 0.8em)
+  #show raw.where(block: true): set text(size: 0.8em)
   #linden-listing(
     "Engine/Meta/MetaLiterals.v",
     "try_lit_search",
