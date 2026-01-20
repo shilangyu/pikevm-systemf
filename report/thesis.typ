@@ -37,19 +37,12 @@
 
 #NOTE[
   - When referencing a heading, use the heading number and put the heading titles in the margin
+  - When referencing an glossary intro, add definition to the margin
 ]
+
+#TODO[Make glossary less ugly]
 
 #NOTE[Appendix reference does not use the "Appendix" supplement]
-
-#NOTE[Rename usages of `rust-regex` to just `regex` crate or Rust's `regex` engine or something]
-
-#NOTE[
-  - Try to integrate tree-sitter for syntax highlighting (https://github.com/RubixDev/syntastica-typst and https://zed.dev/blog/language-extensions-part-1)
-  - Rocq syntax highlighting
-  - Investigate how official is the Typst LSP. Issues with it:
-    - Bullet points do not get auto completed (this should be done with the https://github.com/rust-lang/rust-analyzer/blob/master/docs/dev/lsp-extensions.md#on-enter event)
-    - No autoimport
-]
 
 #NOTE[Merge RegElk into main]
 
@@ -79,7 +72,6 @@
     - "Approaching the specification of how matching works from the angle anchored matching gives rise to cleaner semantics hence why these serve as the basis of formalization" I think this sentence could be confusing. At that point, a reader does not know that you can encode unanchored using anchored so the reader might not understand why these "serve as the basis", it feels like we forgot to address one issue. I would start by saying that we can encode unanchored with anchored, then say that this explains why the basis is anchored semantics.
     - " in isolation, prefix acceleration is also linear" what does that mean exactly? You mean more than just a substring search? Also linear for what?
     - "We start by presenting ..." I'm surprised that this paragraph is not teasing the fact that one of the contributions is a new way to do prefix acceleration in a PikeVM, something that is not the usual way to perform the optimization
-
 ]
 
 #include "/content/introduction.typ"

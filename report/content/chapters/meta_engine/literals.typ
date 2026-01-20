@@ -55,7 +55,6 @@ The second lemma we need before tackling ```rocq try_lit_search``` concerns itse
 #linden-theorem("Engine/Prefix.v", "str_search_none_nores_unanchored", proof: [
   Induction on the position in the haystack. We apply @thm:correctness-extract-literal-prefix-contra together with the ```rocq not_found``` axiom of substring searches#note[Defined in @sec:substring-search] to show at each position that a match cannot exist.
 ]) <thm:no-substring-no-match>
-#TODO[Maybe I should trim the `{strs:StrSearch}` from statements]
 
 Having these, we formulate the correctness theorem of ```rocq try_lit_search``` in @thm:try-lit-search-correctness. If ```rocq try_lit_search``` returns ```rocq Some```, then the contained result corresponds exactly to the result defined by the backtracking tree semantics of the regex with a lazy prefix. We are not interested in the case where ```rocq try_lit_search``` returns ```rocq None``` as that indicates that no optimization was possible.
 

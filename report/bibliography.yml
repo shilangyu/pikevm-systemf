@@ -133,6 +133,16 @@ re2:
   date: 2006
   url: https://github.com/google/re2
 
+v8-linear:
+  type: Web
+  title: V8's Experimental Linear Regular Expression Engine
+  url: https://chromium.googlesource.com/v8/v8/+/main/src/regexp/experimental
+
+golang-regexp:
+  type: Web
+  title: Golang's regexp package
+  url: https://pkg.go.dev/regexp
+
 backref-nphard:
   type: Web
   title: Reduction of 3-CNF-SAT to Perl Regular Expression Matching

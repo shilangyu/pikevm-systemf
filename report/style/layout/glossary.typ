@@ -1,4 +1,3 @@
-// TODO: when doing @term:intro, put the definition in the margin
 #let capitalize(word) = {
   if word.len() == 0 {
     ""

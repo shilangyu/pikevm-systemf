@@ -32,5 +32,4 @@ From here we can prove the three axioms. We do it by proving a more generalized 
 #linden-theorem("Engine/Prefix.v", "brute_force_str_search_no_earlier")
 #linden-theorem("Engine/Prefix.v", "brute_force_str_search_not_found")
 
-#TODO[The lemmas used by prefix acceleration (str_search_boudn, str_search_succ_cons, str_search_succ_next, str_search_none_next). State if referenced later.]
 #TODO[input_search proofs if needed]

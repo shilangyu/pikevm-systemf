@@ -4,7 +4,7 @@
 
 Individual regex engines have their strengths and weaknesses. Some operate better when specific regex features are used, others excel whenever the haystack is small. Some suffer from having a troublesome space complexity, others don't support all of the desired regex features. To get the best of all worlds, modern regex libraries implement so-called _meta engines_ which combine multiple individual engines and select the best one for a given regex and haystack. The goal of the Meta engine is to take high-level decisions such as selecting the best engine for the job guided by heuristics and perform engine-independent optimizations. At times, we may even want to skip running any engine at all or combine multiple in the same matching process.
 
-As mentioned in @sec:pikevm, PikeVM remains the most feature-complete engine with a linear runtime complexity and a reasonable space complexity. Its importance is undeniable. But as noted by the author of the Rust `regex` @crate:intro @rust-regex,
+As mentioned in @sec:pikevm, PikeVM remains the most feature-complete engine with a linear runtime complexity and a reasonable space complexity. Its importance is undeniable. But as noted by the author of the Rust's `regex` @crate:intro @rust-regex,
 
 #show quote: emph
 

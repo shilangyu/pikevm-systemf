@@ -155,7 +155,7 @@
 
   theorem(
     name,
-    [#note(source-permalink(stmt), numbering: none)#raw(stmt.code-body, lang: "rocq")],
+    [#note(source-permalink(stmt), numbering: none) #raw(stmt.code-body, lang: "rocq")],
     proof: proof,
     supplement: stmt.kind,
   )

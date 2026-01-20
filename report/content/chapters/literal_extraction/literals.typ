@@ -22,18 +22,12 @@ Additionally we define two aliases, ```rocq Nothing``` (standing for ```rocq Exa
 
 We will often want to weaken a literal into just the information of what prefix it represents. The definition is given in @lst:prefix.
 
-#columns(2)[
-  #linden-listing("Engine/Prefix.v", "chain_literals")[Literal chaining definition.] <lst:chain-literals>
+#linden-listing("Engine/Prefix.v", "chain_literals")[Literal chaining definition.] <lst:chain-literals>
 
-  #colbreak()
-
-  #linden-listing("Engine/Prefix.v", (
-    "common_prefix",
-    "merge_literals",
-  ))[Literal merging definition.] <lst:merge-literals>
-]
-
-#TODO[Bad layout of the above. Should be one listing]
+#linden-listing("Engine/Prefix.v", (
+  "common_prefix",
+  "merge_literals",
+))[Literal merging definition.] <lst:merge-literals>
 
 We must additionally define two important operators on literals. The first one is _chaining_ defined in @lst:chain-literals. It computes the literal resulting from joining two immediately consecutive literals, most commonly from a sequence. If any of the inputs is ```rocq Impossible```, the result is also ```rocq Impossible```. The intuition is that if one of the literals says that no match can exist, then adding anything to the left or right of that does not change this fact. Naturally, chaining is not commutative, it is akin to string concatenation. If the left operand is ```rocq Prefix```, then the right operand cannot be used because there might be some unknown characters in between. The second operator is _merging_ defined in @lst:merge-literals. It computes the result of joining two overlapping literals, most commonly from a disjunction. If the literals are the same, the result is that literal. Otherwise we must degrade into a ```rocq Prefix``` with the string that is the longest common prefix of both. We can see that in both operators ```rocq Exact``` literals are quite brittle. To get an ```rocq Exact``` literal out of the operators, both operands must be ```rocq Exact```. This is expected, as ```rocq Exact``` literals encode a very strong property about matches.
 
@@ -67,7 +61,7 @@ Depending on $Delta$, we must distinguish between the cases of quantifiers. If $
   "extract_literal",
 ))[Literal extraction from a character descriptor and from an entire regex.] <lst:extract-literal>
 
-The entire extraction must be guarded on the `ignoreCase` flag (see #TODO[@sec:flags][Change how level 4 headings are referenced?]). If this flag is set, we cannot extract any #underline[certain] literals from the regex, rendering this optimization useless. This weakness can be addressed by extracting multiple literals per regex rather than just one. More on this improvement can be found in @sec:future-work.
+The entire extraction must be guarded on the `ignoreCase` flag (see @sec:flags). If this flag is set, we cannot extract any #underline[certain] literals from the regex, rendering this optimization useless. This weakness can be addressed by extracting multiple literals per regex rather than just one. More on this improvement can be found in @sec:future-work.
 
 One could extract literals from backreferences by expanding them into the literal extracted from the referenced capture. Then, the literal of ```re /(abc)\1/``` would be ```rocq Exact "abcabc"```. We do not want to do this, however, as this would mean that the extracted literals would not be bounded by the size of the regex anymore (see @sec:regex-size). This bound is important to preserve the linear complexity of regex matching when performing prefix acceleration. With the help of a few lemmas,
 

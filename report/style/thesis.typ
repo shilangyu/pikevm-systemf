@@ -116,13 +116,23 @@
   }
   set heading(numbering: "1.1")
   // Reference first-level headings as "chapters"
+  // Reference fourth-level headings with their name
   show ref: it => {
     let el = it.element
-    if el != none and el.func() == heading and el.level == 1 {
-      link(
-        el.location(),
-        [Chapter #numbering(el.numbering, ..counter(heading).at(el.location()))],
-      )
+    if el != none and el.func() == heading {
+      if el.level == 1 {
+        link(
+          el.location(),
+          [Chapter #numbering(el.numbering, ..counter(heading).at(el.location()))],
+        )
+      } else if el.level == 4 {
+        link(
+          el.location(),
+          [Section #numbering(el.numbering, ..counter(heading).at(el.location()).slice(0, 2)) #{ el.body }],
+        )
+      } else {
+        it
+      }
     } else {
       it
     }

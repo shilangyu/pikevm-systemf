@@ -13,6 +13,3 @@ In practice real-world implementations utilize multiple @engine:intro:plural to 
 #TODO[Add paragraph which outlines the sections and their achievements]
 #TODO[Add paragraph which outlines the appendices]
 #TODO[Mention that these are the first formal proofs of these things]
-#TODO[add needle to glossary]
-
-#TODO[Introduction]

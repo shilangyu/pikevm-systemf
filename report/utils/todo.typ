@@ -7,8 +7,12 @@
 #let todo-color = orange
 
 #let note = marginalia.note.with(
-  numbering: marginalia.note-numbering.with(
-    style: text.with(weight: 900, font: fonts.sans, size: 5pt, style: "normal", fill: rgb(54%, 72%, 95%)),
+  numbering: (..i) => text(
+    weight: 900,
+    font: fonts.sans,
+    size: 6pt,
+    fill: rgb(54%, 72%, 95%),
+    numbering("1", ..i),
   ),
 )
 

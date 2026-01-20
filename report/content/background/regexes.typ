@@ -93,9 +93,8 @@ A zero-width assertion that $r$ matches or not at the current position. A lookah
 
 Discussion of backreferences is omitted as backreference matching is NP-hard @backref-nphard and here we focus on engines that run in worst-case linear time.
 
-#TODO[
-  Throughout the report we will tend to use the ECMAScript syntax for regexes for brevity and familiarity, ie. ```re /^this+|syntax*(?=!!!)/```. The theorems will, however, be stated in terms of the Linden abstract regex syntax.
-][Make it a nice "Hint" box]
+Throughout the report we will tend to use the ECMAScript syntax for regexes for brevity and familiarity, ie. ```re /^this+|syntax*(?=!!!)/```. The theorems will, however, be stated in terms of the Linden abstract regex syntax.
+
 
 === Regex size <sec:regex-size>
 
@@ -116,8 +115,8 @@ Matching of a regex can be configured by a handful of boolean flags. These modif
 - *Multiline*, `m` -- when true, the anchors ```re ^``` and ```re $``` additionally match respectively the start and the end of a line. That means the regex ```re /^abc$/m``` matches the string #hay("xyz\nabc\nmno"), while ```re /^abc$/``` does not.
 - *DotAll*, `s` -- when true, the dot character descriptor matches line terminators as well. That means the regex ```re /a.c/s``` matches the string #hay("a\nc"), while ```re /a.c/``` does not.
 
-In Linden, those flags are stored in the #TODO[```rocq RegExpRecord```][Allow syntax highlighting of a type even though here it is just standalone and not possible to tell what this token is. Maybe with tree-sitter queries] record type. An instance of this type will be implicitly available as the variable ```rocq rer```.
+In Linden, those flags are stored in the ```rocq RegExpRecord``` record type. An instance of this type will be implicitly available as the variable ```rocq rer```.
 
 
-#TODO[Describe semantics and that we can about matching anywhere in the haystack (unanchored)]
+#TODO[Describe semantics]
 #TODO[Describe the leaf type, group map]
