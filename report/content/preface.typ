@@ -14,4 +14,5 @@
   - Rocq code references and extraction. Ref of the Linden commit
     - Theorems and statements are exactly like in the source code. This might be uncomfortable, but it removes the need for "double formalization" which means we restate things in math notation. Double formalization can lead to discrepancies. Additionally, they lead to the user having to learn two formalizations instead of one.
   - RegElk ref commit
+  - QR codes of the repos and ref
 ]

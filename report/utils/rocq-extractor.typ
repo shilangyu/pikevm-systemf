@@ -5,9 +5,10 @@
 /// Removes common leading indentation from all lines in a given string.
 /// Additionally it trims redundant whitespace.
 ///
-/// - str (str): string to dedent
+/// - s (str): string to dedent
 /// -> str
-#let dedent(str) = {
+#let dedent(s) = {
+  let str = s.replace("\t", "  ")
   let lines = str.split("\n")
 
   // remove leading empty lines

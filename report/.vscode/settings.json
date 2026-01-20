@@ -3,7 +3,7 @@
   "tinymist.formatterPrintWidth": 120,
   "tinymist.typstExtraArgs": [
     "--input",
-    "LINDEN_REF=fc61a4b6288e949dad53607f5dd8cdd5d6700d0e",
+    "LINDEN_REF=fdc86007801dd172f9b4de2c82bead279dd4e73f",
     "--input",
     "REGELK_REF=7ee9a006c23cc62b4c760b63d9a48585be6c3cb0",
     "--font-path",
