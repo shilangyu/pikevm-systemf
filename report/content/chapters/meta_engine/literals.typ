@@ -62,5 +62,5 @@ Having these, we formulate the correctness theorem of ```rocq try_lit_search``` 
 #linden-theorem("Engine/Meta/MetaLiterals.v", "try_lit_search_correct", proof: [
   If the extracted literal is ```rocq Impossible```, proof follows from @thm:correctness-extract-literal-impossible. If the extracted literal is ```rocq Exact``` and we have no assertions, we split into two cases depending on the result of the substring search.
   + The result is ```rocq None``` -- proof follows from @thm:no-substring-no-match.
-  + The result is ```rocq Some``` -- proof follows from @thm:empty-group-map and #TODO[Reference theorem about exact literals].
+  + The result is ```rocq Some``` -- proof follows from @thm:empty-group-map and a missing lemma about ```rocq Exact``` literals not completed on time in this work.
 ]) <thm:try-lit-search-correctness>

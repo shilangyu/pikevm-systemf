@@ -60,7 +60,7 @@ For that we analyze the large corpora of regexes collected in @regex-in-the-wild
     ..row("Impossible literals", "impossible_literal", level: 1, benefits: benefits.this-work),
     ..row("Exact literals", "exact_literal", level: 1, benefits: benefits.this-work),
     ..row("With no asserts", "exact_no_assert_literal", level: 2, benefits: benefits.partial),
-    ..row("And no captures", "exact_no_assert_and_no_groups_literal", level: 3, benefits: benefits.this-work),
+    ..row("And no captures", "exact_no_assert_and_no_groups_literal", level: 3, benefits: benefits.partial),
     ..row("Offseted literals", "offset_literal", benefits: benefits.partial),
     ..row([```re ^``` anchored], "anchored", benefits: benefits.this-work),
     ..row([```re $``` anchored], "reverse_anchored", benefits: benefits.partial),
