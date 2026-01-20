@@ -50,20 +50,20 @@
 /// -> array
 #let list-statements(file) = {
   let contents = read("/Linden/" + file)
-  let header = regex({
+  let stmt = regex({
     // include all whitespace before the statement, will be needed for correct dedent
     "(?:[\s--\n]*)"
-    // header
-    "(Definition|Theorem|Variant|Lemma|Corollary|Fixpoint|Function|Inductive|Notation|Class|Instance)"
+    // kind
+    "(Definition|Theorem|Variant|Lemma|Corollary|Fixpoint|Function|Inductive|Notation|Class|Instance|Record)"
     "\s+"
     // name
     "([\w\d_']+)"
-    // body
-    "((?:[^.]|\.\w)+)\."
+    // body: everything until the next `.` except if it is used to access members
+    "((?:[^.]|\.[\w\(])+)\."
   })
 
   contents
-    .matches(header)
+    .matches(stmt)
     .map(s => (
       file: file,
       kind: s.captures.at(0),
