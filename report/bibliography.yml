@@ -251,3 +251,11 @@ pikevm:
   author:
     - Russ Cox
   url: https://swtch.com/~rsc/regexp/regexp2.html
+
+ecmascript:
+  type: book
+  title: Standard ECMA-262 - ECMAScript Language Specification
+  author: ECMA International
+  date: 2023-06
+  edition: "14"
+  url: https://262.ecma-international.org/14.0/index.html
