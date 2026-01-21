@@ -135,11 +135,20 @@
       #for stmt in stmts {
         stack(
           dir: ltr,
-          note(
-            source-permalink(stmt),
-            dy: 0.4em,
-            keep-order: true,
-          ),
+          if names-normalized.len() > 1 {
+            note(
+              source-permalink(stmt),
+              dy: 0.4em,
+              keep-order: true,
+            )
+          } else {
+            note(
+              source-permalink(stmt),
+              dy: 0.4em,
+              keep-order: true,
+              numbering: none,
+            )
+          },
           raw(stmt.code, lang: "rocq", block: true),
         )
       }
