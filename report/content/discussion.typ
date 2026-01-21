@@ -1,4 +1,5 @@
 #import "/prelude.typ": *
+#import "/content/evaluation.typ": *
 
 = Discussion
 
@@ -10,11 +11,22 @@
 
 == Future work <sec:future-work>
 
-#TODO[Future work:
-  - Exact literals
-  - Offseted literals
-  - Back optimizations
-]
+The most important item which unfortunately constitutes as future work, is finishing the theorem about ```rocq Exact``` literals. It is the only theorem that has been assumed to be true in the entire Rocq formalization of this work. We believe completing this proof should not require a large amount of effort, but of course requires time nonetheless. We state the assumed theorem in @lst:exact-literal-conjecture. Given a regex with no asserts and a haystack, the matching position of the regex on this haystack is determined by a substring search. Here, we do not say anything about the values of the group map.
+
+#linden-theorem("Engine/Prefix.v", "no_asserts_exact_literal") <lst:exact-literal-conjecture>
+
+Other kinds of optimizations can be built directly on top of the formalizations presented in this work. We discuss three such extensions which can benefit the most from the work already completed.
+
+==== Offseted literals
+The optimization targets regexes in which we can extract literals that are preceded by some fixed amount of unknown characters. For example, consider ```re /(.\w|\D{2})abc+/```. Normally literal extraction for that regex would return ```rocq Prefix ""```, giving us no useful information. However, we can notice that the constant string #hay[abc] which must be always present in a match is preceded by exactly two unknown characters. One could use this information to perform prefix acceleration by searching for the string #hay[abc] and returning its position minus two. This work lays most of the work needed to formalize offseted literals. Careful consideration of the incurred runtime complexity is needed. This optimization was not chosen for this work due to it affecting a rather small portion of regexes (#percent-fmt(data.at("offset_literal") / parsed)) as analyzed in @sec:frequency.
+
+==== Back optimizations
+A dual to the optimizations formalized in this work are optimizations that analyze the back of the regex rather than the front. In @fig:frequencies, _front-only_ pattern refers to regexes from which a literal can be extracted from the front (which is what our literal extraction phase targets) but none from the back. On the other hand _back-only_ refers to regexes where a literal can be extracted from the back but none from the back. A _back_ literal can be similarly exploited like _front_ literals. Consider the regex ```re /[A-Z][a-z]+ likes cats/``` whose literal could be ```rocq Suffix " likes cats"```. A _suffix_ acceleration strategy could be employed which performs searches with the *reverse* of the regex on the *reverse* of the haystack. In a similar fashion, end-of-input anchors ```re $``` could be also optimized. To complete this dual class of optimizations, a formalization of regex reversal is needed which leads to non-trivial semantics challenges, notably with captures. @linearjsregex tackles some of these challenges by, among other things, performing capture reconstruction.
+
+==== Multiple-literal extraction
+In this work we have extracted a single literal for a given regex. In practice, it can be beneficial to extract multiple. Consider the regex ```re /alpaca|llama/```. Our literal extraction would return ```rocq Prefix ""```, leading to no useful optimizations. Instead, one could extract a list of literals, ```rocq [Exact "alpaca", Exact "llama"]```. Using established algorithms such as Aho-Corasick @aho-corasick, one could use a substring search algorithm that searches for multiple literals at once. This class of algorithms also performs significantly better than full regex engines. Extracting multiple literals also allow us to support case-insensitive searches. However, this change requires very careful consideration. A large amount of heuristics must go into the process to establish the balance between the amount of extracted literals and the length of the strings in the extracted literals. Should we be really extracting 52 literals for ```re /[a-z]/i```? Rust's `regex` @crate does multiple-literal extraction and is full heuristics guiding the process.
+
+Finally, the last class of future work is related to implementing and verifying more regex engines. These could be directly integrated into the Meta engine. As seen in @fig:frequencies, #percent-fmt(data.at("no_captures") / parsed) of regexes do not use captures. For such regexes, we can use a specialized engine which forgoes supporting captures in order to gain significant performance improvements. We believe that such an engine would lead to the greatest benefit for practical regex matching.
 
 == Conclusion
 

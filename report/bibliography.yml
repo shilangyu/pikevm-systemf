@@ -259,3 +259,25 @@ ecmascript:
   date: 2023-06
   edition: "14"
   url: https://262.ecma-international.org/14.0/index.html
+
+aho-corasick:
+  type: article
+  title: "Efficient string matching: an aid to bibliographic search"
+  author:
+    - Aho, Alfred V.
+    - Corasick, Margaret J.
+  date: 1975-06
+  page-range: 333-340
+  url: https://doi.org/10.1145/360825.360855
+  serial-number:
+    doi: 10.1145/360825.360855
+    issn: 0001-0782
+  abstract: This paper describes a simple, efficient algorithm to locate all occurrences of any of a finite number of keywords in a string of text. The algorithm consists of constructing a finite state pattern matching machine from the keywords and then using the pattern matching machine to process the text string in a single pass. Construction of the pattern matching machine takes time proportional to the sum of the lengths of the keywords. The number of state transitions made by the pattern matching machine in processing the text string is independent of the number of keywords. The algorithm has been used to improve the speed of a library bibliographic search program by a factor of 5 to 10.
+  parent:
+    type: periodical
+    title: Commun. ACM
+    publisher:
+      name: Association for Computing Machinery
+      location: New York, NY, USA
+    issue: 6
+    volume: 18

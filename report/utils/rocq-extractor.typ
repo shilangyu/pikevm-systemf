@@ -54,7 +54,7 @@
     // include all whitespace before the statement, will be needed for correct dedent
     "(?:[\s--\n]*)"
     // kind
-    "(Definition|Theorem|Variant|Lemma|Corollary|Fixpoint|Function|Inductive|Notation|Class|Instance|Record)"
+    "(Definition|Theorem|Variant|Lemma|Corollary|Fixpoint|Function|Inductive|Notation|Class|Instance|Record|Conjecture)"
     "\s+"
     // name
     "([\w\d_']+)"
