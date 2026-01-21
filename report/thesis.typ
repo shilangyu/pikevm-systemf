@@ -40,8 +40,6 @@
   - When referencing an glossary intro, add definition to the margin
 ]
 
-#TODO[Make glossary less ugly]
-
 #NOTE[Appendix reference does not use the "Appendix" supplement]
 
 #NOTE[Merge RegElk into main]

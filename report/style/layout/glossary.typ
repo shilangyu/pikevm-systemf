@@ -39,15 +39,8 @@
 #let glossary-table(entries) = [
   #heading(numbering: none)[Glossary]
 
-  #table(
-    columns: (auto, 1fr, 2fr),
-    [*Term*], [*Full name*], [*Description*],
-    ..for (key, value) in entries.pairs().sorted(key: ((_, v)) => lower(v.short)) {
-      (
-        [#table.cell[#capitalize(value.short)] #label(key)],
-        capitalize(value.long),
-        value.description,
-      )
-    },
-  )
+  #for (key, value) in entries.pairs().sorted(key: ((_, v)) => lower(v.short)) [
+    #let long = if value.long == value.short { "" } else { " (" + capitalize(value.long) + ")" }
+    / #capitalize(value.short) #long #label(key): #{ value.description }
+  ]
 ]
