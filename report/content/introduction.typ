@@ -11,5 +11,4 @@ The goal of this work is to formally verify *real-world regex optimizations*. Si
 In practice real-world implementations utilize multiple @engine:intro:plural to specialize searches for given regexes and haystacks. The choice of an engine is guided by heuristics. These heuristics use information such as which regex features were used and the length of the haystack. To protect ourselves from @redos:intro:cap attacks, we focus on engines that have worst-case linear execution with respect to the regex and haystack size. _Linden_ formalizes two such engines, the PikeVM @linden and the memoized backtracker. In this work we define and prove correctness of a *Meta engine* which deploys heuristics and optimizations using those base linear engines to considerably speed up matching.
 
 #TODO[Add paragraph which outlines the sections and their achievements]
-#TODO[Add paragraph which outlines the appendices]
 #TODO[Mention that these are the first formal proofs of these things]

@@ -1,7 +1,6 @@
 #import "/style/layout/title-page.typ": *
 #import "/style/syntax.typ": *
 #import "/style/layout/preface.typ": preface as preface-layout
-#import "/style/layout/appendix.typ": appendix as appendix-layout
 #import "/style/layout/abstract.typ": abstract as abstract-layout
 #import "/style/layout/glossary.typ": *
 #import "/style/fonts.typ": *
@@ -26,7 +25,6 @@
   abstract-french: "",
   preface: "",
   glossary: dictionary,
-  appendix: "",
   body,
 ) = {
   show: setup-theorems
@@ -188,8 +186,4 @@
   bibliography("/bibliography.yml")
 
   glossary-table(glossary)
-
-  // Appendix.
-  pagebreak(weak: true)
-  appendix-layout(appendix)
 }

@@ -32,15 +32,12 @@
   abstract-french: include "/content/abstract_french.typ",
   preface: include "/content/preface.typ",
   glossary: glossary,
-  appendix: include "/content/appendixes/appendixes.typ",
 )
 
 #NOTE[
   - When referencing a heading, use the heading number and put the heading titles in the margin
   - When referencing an glossary intro, add definition to the margin
 ]
-
-#NOTE[Appendix reference does not use the "Appendix" supplement]
 
 #NOTE[Merge RegElk into main]
 
