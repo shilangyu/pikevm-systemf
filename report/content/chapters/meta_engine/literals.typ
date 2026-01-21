@@ -2,11 +2,30 @@
 
 == Literal optimizations <sec:literal-optimizations>
 
-In @sec:prefix-acceleration we have seen how by using the prefix of an extracted literal of a regex we can accelerate matching by skipping parts of the haystack. We did so by deeply integrating this prefix acceleration optimization into the PikeVM engine. However, we have also discussed that under the black-box assumption, which our engine typeclasses describe, a limited but nonetheless useful variant of prefix acceleration can be performed. Additionally, in @sec:literals we have created the theory of both ```rocq Impossible``` and ```rocq Exact``` literals, but have yet to leverage them for optimizations. In this section we correct this by formalizing an optimization performing this limited form of prefix acceleration as well as optimizations utilizing those two literal kinds.
+In @sec:prefix-acceleration we have seen how by using the prefix of an extracted literal of a regex we can accelerate matching by skipping parts of the haystack. We did so by deeply integrating this prefix acceleration optimization into the PikeVM engine. However, we have also discussed that under the assumption that we treat engines as @black-box:plural, which is what our engine typeclasses effectively are, a limited but nonetheless useful variant of prefix acceleration can be performed. Additionally, in @sec:literals we have created the theory of both ```rocq Impossible``` and ```rocq Exact``` literals, but have yet to leverage them for optimizations. In this section we correct this by formalizing an optimization performing this limited form of prefix acceleration as well as optimizations utilizing those two literal kinds.
 
 === One-time prefix acceleration
 
-#TODO[I just realized that the theorem proven in Linden about doing prefix acceleration once proves something that is not really usable and not what I described here. Fix either the theorem or the description here.]
+When wanting to respect the linear runtime complexity of matching, treating an engine as a black-box makes utilizing prefix acceleration difficult. Until now, the best algorithm we know is one where we perform prefix acceleration once at the start, and from that found position run an unanchored engine. This limited optimization is regardless rather useful. For one, it allows us to give prefix acceleration to engines for which we do not know how to deeply integrate it in a way that is more beneficial than this limited variant. Additionally, if this single prefix acceleration fails to find an occurrence of the prefix, we can avoid running the full regex engine entirely and just return that no match exists. We will therefore use this optimization whenever we wish to run an unanchored engine.
+
+We therefore define this simple ```rocq search_acc_once``` function in @lst:search-acc-once. It extracts the literal, run a substring search for the prefix of that literal, and if found runs an unanchored engine from that position onward. If no occurrence is found, it immediately returns with no match.
+
+#linden-listing(
+  "Engine/Meta/MetaLiterals.v",
+  "search_acc_once",
+)[Definition of a function performing prefix acceleration once.] <lst:search-acc-once>
+
+To tackle its correctness we first need an intermediate lemma. It concerns itself with what we know about the matching results when the substring search reports no found occurrences. Namely, if no occurrence of the prefix of the literal of a regex is found in the haystack, then no match can exist even when performing unanchored matching. This is formalized in @thm:no-substring-no-match.
+
+#linden-theorem("Engine/Prefix.v", "str_search_none_nores_unanchored", proof: [
+  Induction on the position in the haystack. We apply @thm:correctness-extract-literal-prefix-contra together with the ```rocq not_found``` axiom of substring searches#note[Defined in @sec:substring-search] to show at each position that a match cannot exist.
+]) <thm:no-substring-no-match>
+
+With that, the correctness of ```rocq search_acc_once``` is expressed as returning the same result as the one described by the backtracking tree semantics of a regex with a lazy prefix. This is formalized in @thm:search-acc-once-correctness.
+
+#linden-theorem("Engine/Meta/MetaLiterals.v", "search_acc_once_correct", proof: [
+  If the substring search returns ```rocq None```, proof follows from @thm:no-substring-no-match. Otherwise, by induction over the haystack positions before the found occurrence we conclude using the ```rocq no_earlier``` axiom of substring searches#note[Defined in @sec:substring-search] and @thm:correctness-extract-literal-prefix-contra.
+]) <thm:search-acc-once-correctness>
 
 === ```rocq Exact``` and ```rocq Impossible``` literals <sec:exact-impossible-literals>
 
@@ -37,7 +56,7 @@ Finally, if no captures are present we can return a match consisting of the hays
 
 
 ==== Correctness
-Before we state the correctness theorem of ```rocq try_lit_search```, we must prove two intermediate lemmas. First is about the value of group maps under the assumption that no captures are present in the regex. For the same reason as in @sec:literal-extraction-correctness, we need to generalize the result over the list of tree actions. As such, we define ```rocq has_groups_action``` which for the regex action it delegates to ```rocq has_groups``` and for the ```rocq Aclose``` action returns true since it corresponds to a capture being closed. For the last action we return false. We intuitively extend this definition to a list of actions. Both definitions are given in @lst:has-captures-actions.
+Before we state the correctness theorem of ```rocq try_lit_search```, we must prove an intermediate lemma. It states that the value of group maps under the assumption that no captures are present in the regex. For the same reason as in @sec:literal-extraction-correctness, we need to generalize the result over the list of tree actions. As such, we define ```rocq has_groups_action``` which for the regex action it delegates to ```rocq has_groups``` and for the ```rocq Aclose``` action returns true since it corresponds to a capture being closed. For the last action we return false. We intuitively extend this definition to a list of actions. Both definitions are given in @lst:has-captures-actions.
 
 #linden-listing(
   "Engine/Meta/MetaLiterals.v",
@@ -50,13 +69,7 @@ With that we state the lemma of empty group maps in @thm:empty-group-map. It sta
   Follows from induction over ```rocq is_tree```.
 ]) <thm:empty-group-map>
 
-The second lemma we need before tackling ```rocq try_lit_search``` concerns itself with what we know about the matching results when the substring search reports no found occurrences. Namely, if no occurrence of the prefix of the literal of a regex is found in the haystack, then no match can exist even when performing unanchored matching. This is formalized in @thm:no-substring-no-match.
-
-#linden-theorem("Engine/Prefix.v", "str_search_none_nores_unanchored", proof: [
-  Induction on the position in the haystack. We apply @thm:correctness-extract-literal-prefix-contra together with the ```rocq not_found``` axiom of substring searches#note[Defined in @sec:substring-search] to show at each position that a match cannot exist.
-]) <thm:no-substring-no-match>
-
-Having these, we formulate the correctness theorem of ```rocq try_lit_search``` in @thm:try-lit-search-correctness. If ```rocq try_lit_search``` returns ```rocq Some```, then the contained result corresponds exactly to the result defined by the backtracking tree semantics of the regex with a lazy prefix. We are not interested in the case where ```rocq try_lit_search``` returns ```rocq None``` as that indicates that no optimization was possible.
+Having this, we formulate the correctness theorem of ```rocq try_lit_search``` in @thm:try-lit-search-correctness. If ```rocq try_lit_search``` returns ```rocq Some```, then the contained result corresponds exactly to the result defined by the backtracking tree semantics of the regex with a lazy prefix. We are not interested in the case where ```rocq try_lit_search``` returns ```rocq None``` as that indicates that no optimization was possible.
 
 #linden-theorem("Engine/Meta/MetaLiterals.v", "try_lit_search_correct", proof: [
   If the extracted literal is ```rocq Impossible```, proof follows from @thm:correctness-extract-literal-impossible. If the extracted literal is ```rocq Exact``` and we have no assertions, we split into two cases depending on the result of the substring search.

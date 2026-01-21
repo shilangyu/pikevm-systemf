@@ -107,4 +107,11 @@
     long-plural: "memoized backtrackers",
     description: [A regex @engine that combines backtracking with memoization to avoid redundant computations. It explores possible matches like a backtracking engine but stores intermediate results to ensure that each unique state is only computed once. It has a $O(|r| dot |s|)$ runtime and space complexity.],
   ),
+  black-box: (
+    short: "black-box",
+    short-plural: "black-boxes",
+    long: "black-box",
+    long-plural: "black-boxes",
+    description: [A model where the internal workings are not known by the user. The only interaction with it are possible through its public interface.],
+  ),
 )
