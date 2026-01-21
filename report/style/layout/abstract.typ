@@ -1,12 +1,9 @@
 #import "/style/fonts.typ": *
 
-#let abstract(body, lang: "en") = {
-  let title = (en: "Abstract", fr: "Résumé")
-
+#let abstract(body) = {
   set text(
     font: fonts.body,
     size: 12pt,
-    lang: lang,
   )
 
   set par(
@@ -15,7 +12,7 @@
   )
 
   v(1fr)
-  align(center, text(font: fonts.body, 1em, weight: "semibold", title.at(lang)))
+  align(center, text(font: fonts.body, 1em, weight: "semibold", "Abstract"))
 
   body
 

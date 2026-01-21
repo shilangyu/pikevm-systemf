@@ -2,7 +2,6 @@
 
 #let title-page(
   title: "",
-  title-french: "",
   degree: "",
   program: "",
   specialization: "",
@@ -78,7 +77,6 @@
 
 
   align(center, text(font: fonts.sans, 2em, weight: 700, title))
-  align(center, text(font: fonts.sans, 2em, weight: 500, title-french))
 
   let entries = ()
   entries.push(("Author", author))

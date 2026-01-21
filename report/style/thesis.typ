@@ -11,7 +11,6 @@
 
 #let thesis(
   title: "",
-  title-french: "",
   degree: "",
   program: "",
   specialization: "",
@@ -22,7 +21,6 @@
   start-date: datetime,
   submission-date: datetime,
   abstract: "",
-  abstract-french: "",
   preface: "",
   glossary: dictionary,
   body,
@@ -60,7 +58,6 @@
 
   title-page(
     title: title,
-    title-french: title-french,
     degree: degree,
     program: program,
     specialization: specialization,
@@ -74,8 +71,7 @@
 
   pagebreak()
 
-  abstract-layout(lang: "en")[#abstract]
-  abstract-layout(lang: "fr")[#abstract-french]
+  abstract-layout(abstract)
 
   pagebreak()
 

@@ -2,7 +2,7 @@
 #import "/metadata.typ": *
 #import "prelude.typ": catppuccin.catppuccin
 
-#set document(title: title-english, author: author)
+#set document(title: title, author: author)
 
 #show: catppuccin.with(flavor)
 
@@ -17,8 +17,7 @@
 }
 
 #show: thesis.with(
-  title: title-english,
-  title-french: title-french,
+  title: title,
   degree: degree,
   program: program,
   specialization: specialization,
@@ -29,7 +28,6 @@
   start-date: start-date,
   submission-date: submission-date,
   abstract: include "/content/abstract.typ",
-  abstract-french: include "/content/abstract_french.typ",
   preface: include "/content/preface.typ",
   glossary: glossary,
 )
