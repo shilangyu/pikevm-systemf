@@ -65,7 +65,7 @@ For that we analyze the large corpora of regexes collected in @regex-in-the-wild
     ..row([```re ^``` anchored], "anchored", benefits: benefits.this-work),
     ..row([```re $``` anchored], "reverse_anchored", benefits: benefits.partial),
     ..row([```re ^``` and ```re $``` anchored], "double_anchored", benefits: benefits.this-work),
-    ..row(TODO[No captures][Remove or discuss the need for other engines that do not support captures], "no_captures"),
+    ..row("No captures", "no_captures"),
   ),
   supplement: "Figure",
   caption: {

@@ -1,4 +1,4 @@
-# PikeVM optimizations and regex features formalization
+# Verification of realistic regex matching
 
 This repository documents my master thesis at [EPFL](https://www.epfl.ch) in the [SYSTEMF lab](https://systemf.epfl.ch).
 

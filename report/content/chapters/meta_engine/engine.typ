@@ -27,5 +27,3 @@ As stated in @sec:prefix-acceleration, by running an anchored engine on a regex 
   "Engine/Meta/EngineSpec.v",
   ("lazy_prefix_supported", "UnanchorEngine"),
 )[Turning any anchored engine into an unanchored one.] <lst:unanchor-engine>
-
-#TODO[Formalize that `starts_with` is an anchored engine and `str_search` is an unanchored engine for a specific kind of regexes (exact literals)]

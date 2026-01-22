@@ -167,10 +167,7 @@
     indent: 2em,
   )
 
-
-  v(2.4fr)
   pagebreak()
-
 
   // Main body. Reset page numbering.
   set page(numbering: "1")

@@ -6,6 +6,10 @@
     "LINDEN_REF=8562f52529ecad85dc1c05dc741a69184280abab",
     "--input",
     "REGELK_REF=7ee9a006c23cc62b4c760b63d9a48585be6c3cb0",
+    "--input",
+    "RUSTREGEX_REF=d2c210eec94405630e3e7ebba6d6d1b19e5dc85f",
+    "--input",
+    "REBAR_REF=5d534e87ee8155656dd7e08e835255b176f4fc3f",
     "--font-path",
     "./fonts"
   ]

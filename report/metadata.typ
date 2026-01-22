@@ -1,6 +1,6 @@
 #import "/prelude.typ": *
 
-#let title = "Now you have zero problems: verification of realistic regex matching"
+#let title = "Verification of realistic regex matching"
 #let degree = "Master"
 #let program = "Computer Science"
 #let specialization = "Computer Science Theory"

@@ -37,7 +37,16 @@
   - When referencing an glossary intro, add definition to the margin
 ]
 
-#NOTE[Merge RegElk into main]
+#NOTE[
+  - explain one rule of the pikevm, refer to the original paper for info
+  - explain backtracking trees, show one rule dot star
+
+  - related work:
+    - several attempts of formalizing but they omit this and that
+    - a work of formalizing pikevm with some sort of prefix acc
+]
+
+#TODO[The title page does not look good]
 
 #NOTE[
   From Aurèle's review:
@@ -57,7 +66,7 @@
     - when talking about backreference literals: "this bound is important to preserve the linear". This is a bit surprising, you say that you don't want to be too precise for backreferences. And the reason is that being too precise would invalidate linear matching. But linear matching is not available for backreferences anyway. There should be a way to rephrase this. (Technically, the literal size proofs could be done assuming we don't have backreferences. Let's not do that right now of course, but let's rephrase these sentences.)
     - You could skip the three lemmas like "Lemma (brute_force_str_search_starts_with)" because we've already seen the typeclass in listing 9.
     - "We now prove that the extracted literals gives us some useful information about the matches of a regex." I disagree with useful. An analysis returning (Prefix empty) would be correct according to your proofs, but not useful. I would simply say that you prove that your literal extraction analysis returns correct results.
-    - Similarly, "The properties which we care about are those which will allow us to accelerate regex matching" could be rephrased. Maybe a simple "A correct analaysis should exhibit the following properties, that we will use to prove the correctness of prefix acceleration" could work.
+    - Similarly, "The properties which we care about are those which will allow us to accelerate regex matching" could be rephrased. Maybe a simple "A correct analysis should exhibit the following properties, that we will use to prove the correctness of prefix acceleration" could work.
     - "if we do not generalize [...] we will get stuck" -> I suggest simplifying to "we need to generalize..."
 
   4. Prefix acceleration of the PikeVM

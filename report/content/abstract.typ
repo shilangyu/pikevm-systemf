@@ -1,3 +1,3 @@
 #import "/prelude.typ": *
 
-#NOTE[Abstract]
+#TODO[#lorem(100)][Abstract]
