@@ -80,12 +80,12 @@
 
   let entries = ()
   entries.push(("Author", author))
-  entries.push(("Examiner", examiner))
   // Only show supervisors if there are any
   if supervisors.len() > 0 {
     let supervisor-field = "Supervisor" + if supervisors.len() > 1 [s]
     entries.push((supervisor-field, supervisors.join(", ")))
   }
+  entries.push(("Examiner", examiner))
   entries.push(("Start Date", start-date.display("[day].[month].[year]")))
   entries.push((
     "Submission Date",

@@ -50,6 +50,7 @@
 /// -> array
 #let list-statements(file) = {
   let contents = read("/Linden/" + file)
+  // TODO: this extracts incorrectly when there are comments in the statement containing a dot
   let stmt = regex({
     // include all whitespace before the statement, will be needed for correct dedent
     "(?:[\s--\n]*)"

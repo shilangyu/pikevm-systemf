@@ -7,7 +7,7 @@ I cannot take much credit for arriving to this point. I credit it to the people 
 
 #align(
   center,
-)[All of documentation for this thesis (including this report) is available at #text(14pt)[#block[https://github.com/shilangyu/pikevm-systemf]]]
+)[All of the documentation for this thesis (including this report) is available at #text(14pt)[#block[https://github.com/shilangyu/pikevm-systemf]]]
 
 
 #let qr(url) = {
