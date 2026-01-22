@@ -136,6 +136,8 @@ re2:
 v8-linear:
   type: Web
   title: V8's Experimental Linear Regular Expression Engine
+  author:
+    - V8
   url: https://chromium.googlesource.com/v8/v8/+/main/src/regexp/experimental
 
 golang-regexp:

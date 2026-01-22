@@ -21,7 +21,7 @@ We now define the anchored optimization in @lst:try-anchored-search. Given a reg
 )[Anchored search optimization definition.] <lst:try-anchored-search>
 
 ==== Correctness
-As per usual, we first need auxiliary definitions which generalize anchor detection to tree actions.
+As before, we first need auxiliary definitions which generalize anchor detection to tree actions.
 
 #linden-listing(
   "Engine/Meta/MetaAnchored.v",

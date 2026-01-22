@@ -47,33 +47,14 @@
 ]
 
 #TODO[The title page does not look good]
+#TODO[Make sure the outline fits on one page]
 
 #NOTE[
   From Aurèle's review:
 
-  Maybe one high-level criticism is that, while everything is nicely explained, we sometimes don't understand why we're reading about some things. The motivation behind some sections could be put forward.
+  3) "Linden provides a complete and practical mechanization of the ECMAScript 2023" maybe you could be a bit more precise, and introduce Warblre as well. Say that Linden is complete and practical, and that it has been proved equivalent to Warblre, a faithful mechanization of ECMAScript 2023. Also in that sentence, you should be clear that it is only the regex chapter of ECMAScript, not the whole thing.
 
-  2. Background
-
-    - "which means it should repeat" you might be missing some introduction to backtracking semantics and priority
-    - I like the regex size section, but I'm not sure we understand why it is defined here
-
-
-  3. Literal Extraction
-
-    - I feel like the "neighborhood" discussion before the "must start" discussion might be too general. Why are you not directly starting from the "must start" discussion?
-    - "search procedures. For this " capitalization
-    - when talking about backreference literals: "this bound is important to preserve the linear". This is a bit surprising, you say that you don't want to be too precise for backreferences. And the reason is that being too precise would invalidate linear matching. But linear matching is not available for backreferences anyway. There should be a way to rephrase this. (Technically, the literal size proofs could be done assuming we don't have backreferences. Let's not do that right now of course, but let's rephrase these sentences.)
-    - You could skip the three lemmas like "Lemma (brute_force_str_search_starts_with)" because we've already seen the typeclass in listing 9.
-    - "We now prove that the extracted literals gives us some useful information about the matches of a regex." I disagree with useful. An analysis returning (Prefix empty) would be correct according to your proofs, but not useful. I would simply say that you prove that your literal extraction analysis returns correct results.
-    - Similarly, "The properties which we care about are those which will allow us to accelerate regex matching" could be rephrased. Maybe a simple "A correct analysis should exhibit the following properties, that we will use to prove the correctness of prefix acceleration" could work.
-    - "if we do not generalize [...] we will get stuck" -> I suggest simplifying to "we need to generalize..."
-
-  4. Prefix acceleration of the PikeVM
-
-    - "Approaching the specification of how matching works from the angle anchored matching gives rise to cleaner semantics hence why these serve as the basis of formalization" I think this sentence could be confusing. At that point, a reader does not know that you can encode unanchored using anchored so the reader might not understand why these "serve as the basis", it feels like we forgot to address one issue. I would start by saying that we can encode unanchored with anchored, then say that this explains why the basis is anchored semantics.
-    - " in isolation, prefix acceleration is also linear" what does that mean exactly? You mean more than just a substring search? Also linear for what?
-    - "We start by presenting ..." I'm surprised that this paragraph is not teasing the fact that one of the contributions is a new way to do prefix acceleration in a PikeVM, something that is not the usual way to perform the optimization
+  Future work) you might be missing the optimization that Clément described, where in some cases we could start new PikeVM threads not in the initial state, but in some later state correpsonding to after having read the prefix. This avoids some redundant reads when the prefix is quite long. -> short description
 ]
 
 #include "/content/introduction.typ"

@@ -2,9 +2,9 @@
 
 == Correctness of literal extraction <sec:literal-extraction-correctness>
 
-We now prove that the extracted literals gives us some useful information about the matches of a regex. The properties which we care about are those which will allow us to accelerate regex matching. For that, we will consider three useful properties separately. For any literal whose prefix (@lst:prefix) is `s`, we want to show that any match of a regex $r$ must start with the string $s$. Through the contrapositive (if a match does not start with $s$, it is not a match of $r$) we will be able to do prefix acceleration by skipping haystack positions where $s$ does no occur. For ```rocq Impossible``` literals, we want to show that no match of $r$ whose literal is ```rocq Impossible``` can exist. This will allow us to immediately say that for such a regex and any haystack, there is no match. For ```rocq Exact s``` literals, we would like to show that any match of a regex $r$ whose literal is ```rocq Exact s``` is exactly the string $s$. This would allow us to skip running regex engines entirely and just use a much faster substring search. The proof of correctness of ```rocq Exact``` literals is not yet complete, but is close to being finished. The missing piece is described in @sec:future-work.
+We now prove that the extracted literals always returns the correct information describing the matches of a regex. A correct analysis should exhibit properties, that can be used to prove the correctness of prefix acceleration. For that, we will consider three useful properties separately. For any literal whose prefix (@lst:prefix) is `s`, we want to show that any match of a regex $r$ must start with the string $s$. Through the contrapositive (if a match does not start with $s$, it is not a match of $r$) we will be able to do prefix acceleration by skipping haystack positions where $s$ does no occur. For ```rocq Impossible``` literals, we want to show that no match of $r$ whose literal is ```rocq Impossible``` can exist. This will allow us to immediately say that for such a regex and any haystack, there is no match. For ```rocq Exact s``` literals, we would like to show that any match of a regex $r$ whose literal is ```rocq Exact s``` is exactly the string $s$. This would allow us to skip running regex engines entirely and just use a much faster substring search. The final proof of correctness of ```rocq Exact``` literals is not yet complete, but is close to being finished. The missing piece is described in @sec:future-work.
 
-We want the theorems to be stated in terms of the #TODO[```rocq is_tree``` inductive][Reference the definition in background section], preferably talking about a specific regex, ie. ```rocq is_tree [Areg r]```. Recall, however, that some of its rules such as the ```rocq tree_sequence``` rule talk about more than just the head of the tree actions. That means that in the proofs during induction over ```rocq is_tree``` if we do not generalize over the entire list of tree actions, we will get stuck on those rules. To avoid this, we generalize literal extraction over an action and a list of actions in @lst:extract-literal-actions and state the theorems in terms of these.
+We want the theorems to be stated in terms of the #TODO[```rocq is_tree``` inductive][Reference the definition in background section], preferably talking about a specific regex, ie. ```rocq is_tree [Areg r]```. Recall, however, that some of its rules such as the ```rocq tree_sequence``` rule talk about more than just the head of the tree actions. That means that in the proofs during induction over ```rocq is_tree``` we must generalize  over the entire list of tree actions, otherwise we will get stuck on those rules. To avoid this, we generalize literal extraction over an action and a list of actions in @lst:extract-literal-actions and state the theorems in terms of these.
 
 #linden-listing("Engine/Prefix.v", (
   "extract_action_literal",
@@ -26,7 +26,7 @@ We first want to state the correctness lemma of ```rocq extract_literal_char```.
 With that lemma we can now state and prove the general lemma about the correctness of the prefix of extracted literals for regexes. Given a tree `tree` of actions `acts` over the input `inp`, if `tree` contains a match then `inp` starts with the prefix of the literal extracted from `acts`.
 
 #linden-theorem("Engine/Prefix.v", "extract_literal_prefix_general", proof: [
-  We induction on the ```rocq is_tree``` hypothesis and use @thm:correctness-extract-literal-char.
+  We induct on the ```rocq is_tree``` hypothesis and use @thm:correctness-extract-literal-char.
 ]) <thm:correctness-extract-literal-prefix-general>
 
 Given the generalized lemma we can now specialize it to the case where the list of actions is exactly just the regex `r` itself. This gives us @thm:correctness-extract-literal-prefix.
@@ -50,7 +50,7 @@ Similarly we must first state the correctness lemma of ```rocq extract_literal_c
 With that lemma we prove the general lemma about the ```rocq Impossible```. Given a tree `tree` of actions `acts` over the input `inp`, if the literal extracted from `acts` is ```rocq Impossible```, then no match can exist in `tree`.
 
 #linden-theorem("Engine/Prefix.v", "extract_literal_impossible_general", proof: [
-  We induction on the ```rocq is_tree``` hypothesis and use @thm:correctness-extract-literal-char-impossible.
+  We induct on the ```rocq is_tree``` hypothesis and use @thm:correctness-extract-literal-char-impossible.
 ]) <thm:correctness-extract-literal-impossible-general>
 
 And finally, we specialize it to the case where the list of actions is exactly just the regex `r` itself. This gives us @thm:correctness-extract-literal-impossible.

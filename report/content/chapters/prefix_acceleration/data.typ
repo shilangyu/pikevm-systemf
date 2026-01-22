@@ -76,7 +76,7 @@
     + if counter {
       let p = ex-s.slice(pos + 1).position(ex-r-prefix)
       let c = if p == none {
-        $infinity$
+        $infinity "(no more occurrences)"$
       } else {
         p + 1
       }
