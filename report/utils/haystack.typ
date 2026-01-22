@@ -68,6 +68,8 @@
       highlight(fill: rgb("F6C7FC"), visual.slice(match-range.start, match-range.end))
       visual.slice(match-range.end)
     } else {
+      assert(match == none, message: "Failed to find a match")
+
       if position != none {
         if position <= seen {
           underline(visual.slice(0, position))

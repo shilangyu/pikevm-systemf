@@ -108,6 +108,23 @@ This unfolded regex definition of the size is what we bound the engine execution
 
 We follow the discussion of regexes by outlining the relevant details of the matching semantics.
 
+==== Priority
+#let ex-hay = "aaccc"
+A regex could be matched in multiple ways. Consider the regex ```re /(aa|a)c+/``` on the haystack #hay(ex-hay). We could imagine the following results of matching:
+- #hay(ex-hay, match: "aaccc"), ```re aa``` chosen in the disjunction and ```re +``` matches `c` three times
+- #hay(ex-hay, match: "accc"), ```re a``` chosen in the disjunction and ```re +``` matches `c` three times
+- #hay(ex-hay, match: "aac"), ```re aa``` chosen in the disjunction and ```re +``` matches `c` once
+However, in our semantics every potential choice during matching has priority assigned to its branches. For disjunction, the alternative that is syntactically written first has priority over the second alternative. In our example that means that the ```re aa``` alternative must be considered for the match. For quantifiers, the priority is given to the branch that tries to match the repeated regex again. The  branch that wants to finish repetitions has lower priority. When using the lazy specifier ($bot$) on quantifiers, the priority is inverted. In our example that means that the ```re c+``` construct must try to match `c` as many times as possible. Hence, only the first listed option (#hay(ex-hay, match: "aaccc")) is a valid match according to our semantics.
+
+==== Leftmost matches
+#let ex-r-src = "a+(c|d)"
+#let ex-r = raw("/" + ex-r-src + "/", lang: "re")
+#let ex-hay = "xxaadyyaac"
+When looking for a pattern anywhere in the haystack, multiple matches may exist. In such cases, #underline[the] match which is of relevance to us is the first match, called the leftmost match. For instance, the match of #ex-r in the haystack #hay(ex-hay) is #hay(ex-hay, match: regex(ex-r-src)), not #hay(ex-hay, match: regex(ex-r-src + "$")).
+
+==== Backtracking
+During matching when making decisions on which branch to take (disjunction, quantifiers) we follow the priority and leftmost principles outlined above. However, if during matching our choices have led us to point where no match is found, we backtrack to the last decision and retry with the lower-priority choice. This backtracking is performed until a match is found or all choices are exhausted. For instance, when matching ```re /a+ab/``` on #hay[aaaab], the initial choice of trying to match all #hay[a]s with ```re a+``` would not lead to a match because one more following #hay[a] required by the regex would not be found. So we backtrack an try again by making ```re +``` match one less #hay[a], which would lead to a successful match.
+
 ==== Flags <sec:flags>
 Matching of a regex can be configured by a handful of boolean flags. These modify the semantics of matching in small but sometimes significant ways. In ECMAScript syntax, these flags appear after the closing `/`. Each flag is represented by a single character. Its presence means that the flag is *enabled*, otherwise it is *disabled*. For instance, the regex ```re /a*c/im``` has the flags `i` and `m` enabled, but all others disabled. Below we mention three of the flags which are of importance for this work.
 
@@ -117,6 +134,4 @@ Matching of a regex can be configured by a handful of boolean flags. These modif
 
 In Linden, those flags are stored in the ```rocq RegExpRecord``` record type. An instance of this type will be implicitly available as the variable ```rocq rer```.
 
-
-#TODO[Describe semantics]
 #TODO[Describe the leaf type, group map]
