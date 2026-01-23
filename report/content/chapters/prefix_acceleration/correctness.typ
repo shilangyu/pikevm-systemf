@@ -115,7 +115,7 @@ Firstly, we add a new parameter to the state of the PikeTree called `future`. It
     edge(<root>, <left>),
 
     // right
-    node((1, 1), [`Consume` any character], name: <consume>),
+    node((1, 1), [`Read` any character], name: <consume>),
     edge(<root>, <consume>),
     node((1, 2), [Tree of ```re /[^]*?r/``` at position 1 of $s$], name: <right>),
     edge(<consume>, <right>),
@@ -139,7 +139,7 @@ Firstly, we add a new parameter to the state of the PikeTree called `future`. It
   caption: [Backtracking tree of ```re /[^]*?r/``` over a haystack $s$. #text(active-set-color)[Left subtree] is the initial active set tree, #text(future-color)[right subtree] is the initial `future` subtree.],
 ) <fig:unanchored-piketree-init>
 
-During execution, the `future` tree will be used to simulate the lazy prefix. This `future` subtree is crucial for the PikeTree to be able to attempt matches at positions further down the haystack. Each time we want to simulate the lazy prefix, we remove the `Consume` node from the `future` subtree which leaves us with a tree of the same shape as in @fig:unanchored-piketree-init, but with the backtracking trees representing regexes at the next haystack position. We then set the new right subtree (which is a `Consume` followed by the tree of ```re /[^]*?r/``` at the next haystack position) as the new `future` and append the new left subtree (which is the tree of ```re /r/``` at the next haystack position) to the active set. This way, we allow the PikeTree to explore matches in the haystack positions that follow. When doing filtering, we do the same unfolding but we discard the new left subtree instead of appending it to the active set.
+During execution, the `future` tree will be used to simulate the lazy prefix. This `future` subtree is crucial for the PikeTree to be able to attempt matches at positions further down the haystack. Each time we want to simulate the lazy prefix, we remove the `Read` node from the `future` subtree which leaves us with a tree of the same shape as in @fig:unanchored-piketree-init, but with the backtracking trees representing regexes at the next haystack position. We then set the new right subtree (which is a `Read` followed by the tree of ```re /[^]*?r/``` at the next haystack position) as the new `future` and append the new left subtree (which is the tree of ```re /r/``` at the next haystack position) to the active set. This way, we allow the PikeTree to explore matches in the haystack positions that follow. When doing filtering, we do the same unfolding but we discard the new left subtree instead of appending it to the active set.
 
 #let lazy-iter = {
   set text(size: 8pt)
@@ -153,7 +153,7 @@ During execution, the `future` tree will be used to simulate the lazy prefix. Th
     edge(<root>, <left>),
 
     // right
-    node((1, 1), [`Consume c`], name: <consume>),
+    node((1, 1), [`Read c`], name: <consume>),
     edge(<root>, <consume>),
     node((1, 2), [`t2`], name: <right>),
     edge(<consume>, <right>),

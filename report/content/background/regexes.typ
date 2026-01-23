@@ -104,7 +104,7 @@ Throughout this work we will often refer to the size of a regex. Most importantl
 
 This unfolded regex definition of the size is used to bound the engine executions, together with the haystack size which is just the length of the input string.
 
-=== Matching semantics
+=== Matching semantics <sec:matching-semantics>
 
 We follow the discussion of regexes by outlining the relevant details of the matching semantics. The semantics on which we base our results are known by several names: *backtracking*-, *PCRE*-, or *leftmost-greedy*- semantics. Many regex implementations in standard libraries of programming languages follow these semantics. Examples include Python, Rust, Java, Golang, and of course, ECMAScript.#note[... and .NET, Perl, PHP, Dart, Ruby.#note[... aaand C++, Raku, Julia, D, Erlang]]. We describe the important aspects of these semantics below.
 

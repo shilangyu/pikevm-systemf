@@ -3,10 +3,6 @@
 
 = Discussion
 
-== Related work
-
-#TODO[Related work]
-
 == Future work <sec:future-work>
 
 The most important item which unfortunately constitutes future work, is finishing the theorem about ```rocq Exact``` literals. It is the only theorem that has been assumed to be true in the entire Rocq formalization of this work. We believe completing this proof should not require a large amount of effort, but of course requires time nonetheless. We state the assumed theorem in @lst:exact-literal-conjecture. Given a regex with no asserts and a haystack, the matching position of the regex on this haystack is determined by a substring search. Here, we do not say anything about the values of the group map.
@@ -25,6 +21,8 @@ A dual to the optimizations formalized in this work are optimizations that analy
 In this work we have extracted a single literal for a given regex. In practice, it can be beneficial to extract multiple. Consider the regex ```re /alpaca|llama/```. Our literal extraction would return ```rocq Prefix ""```, leading to no useful optimizations. Instead, one could extract a list of literals, ```rocq [Exact "alpaca", Exact "llama"]```. Using established algorithms such as Aho-Corasick @aho-corasick, one could use a substring search algorithm that searches for multiple literals at once. This class of algorithms also performs significantly better than full regex engines. Extracting multiple literals also allows us to support case-insensitive searches. However, this change requires very careful consideration. A large amount of heuristics must go into the process to establish the balance between the number of extracted literals and the length of the strings in the extracted literals. Should we really be extracting 52 literals for ```re /[a-z]/i```? Rust's `regex` @crate does multiple-literal extraction and is full of heuristics guiding the process.
 
 Finally, the last class of future work is related to implementing and verifying more regex engines. These could be directly integrated into the Meta engine. As seen in @fig:frequencies, #percent-fmt(data.at("no_captures") / parsed) of regexes do not use captures. For such regexes, we can use a specialized engine which forgoes supporting captures in order to gain significant performance improvements. We believe that such an engine would lead to the greatest benefit for practical regex matching.
+
+#TODO[in some cases we could start new PikeVM threads not in the initial state, but in some later state corresponding to after having read the prefix. This avoids some redundant reads when the prefix is quite long.]
 
 == Conclusion
 

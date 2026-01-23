@@ -32,14 +32,8 @@
   glossary: glossary,
 )
 
-#NOTE[
-  - When referencing a heading, use the heading number and put the heading titles in the margin
-  - When referencing an glossary intro, add definition to the margin
-]
-
-#NOTE[
-  Future work) you might be missing the optimization that Clément described, where in some cases we could start new PikeVM threads not in the initial state, but in some later state correpsonding to after having read the prefix. This avoids some redundant reads when the prefix is quite long. -> short description
-]
+#TODO[When referencing a heading, use the heading number and put the heading titles in the margin]
+#TODO[When referencing an glossary intro, add definition to the margin]
 
 #include "/content/introduction.typ"
 #include "/content/background/background.typ"
