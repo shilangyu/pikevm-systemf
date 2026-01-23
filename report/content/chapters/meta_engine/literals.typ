@@ -4,7 +4,7 @@
 
 In @sec:prefix-acceleration we have seen how by using the prefix of an extracted literal of a regex we can accelerate matching by skipping parts of the haystack. We did so by deeply integrating this prefix acceleration optimization into the PikeVM engine. However, we have also discussed that under the assumption that we treat engines as @black-box:plural, which is what our engine typeclasses effectively are, a limited but nonetheless useful variant of prefix acceleration can be performed. Additionally, in @sec:literals we have created the theory of both ```rocq Impossible``` and ```rocq Exact``` literals, but have yet to leverage them for optimizations. In this section we correct this by formalizing an optimization performing this limited form of prefix acceleration as well as optimizations utilizing those two literal kinds.
 
-=== One-time prefix acceleration
+=== One-time prefix acceleration <sec:one-time-prefix-acceleration>
 
 When wanting to respect the linear runtime complexity of matching, treating an engine as a black-box makes utilizing prefix acceleration difficult. Until now, the best algorithm we know is one where we perform prefix acceleration once at the start, and from that found position run an unanchored engine. This limited optimization is regardless rather useful. For one, it allows us to give prefix acceleration to engines for which we do not know how to deeply integrate it in a way that is more beneficial than this limited variant. Additionally, if this single prefix acceleration fails to find an occurrence of the prefix, we can avoid running the full regex engine entirely and just return that no match exists. We will therefore use this optimization whenever we wish to run an unanchored engine.
 

@@ -9,7 +9,7 @@
     "--input",
     "RUSTREGEX_REF=d2c210eec94405630e3e7ebba6d6d1b19e5dc85f",
     "--input",
-    "REBAR_REF=5d534e87ee8155656dd7e08e835255b176f4fc3f",
+    "REBAR_REF=72213a4ce5ff4a804ca7a542e665c4c81f2dbeed",
     "--font-path",
     "./fonts"
   ]
