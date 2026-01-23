@@ -7,7 +7,7 @@ index=`mktemp -d`/index.md
 
 cat > "$index" <<- EOM
 ---
-title: "PikeVM optimizations and regex features formalization"
+title: "Verification of realistic regex matching"
 ---
 EOM
 
