@@ -62,6 +62,6 @@
   align(left, text(font: fonts.sans, 1.5em, weight: 700, "TODOs"))
 
   for (msg, loc) in todos.final() [
-    - #link(loc, text(todo-color, msg)) #box(width: 1fr, repeat[.]) #{ loc.page() }
+    - #link(loc, text(todo-color, msg)) #box(width: 1fr, repeat[.]) #loc.page()
   ]
 }

@@ -41,6 +41,6 @@
 
   #for (key, value) in entries.pairs().sorted(key: ((_, v)) => lower(v.short)) [
     #let long = if value.long == value.short { "" } else { " (" + capitalize(value.long) + ")" }
-    / #capitalize(value.short) #long #label(key): #{ value.description }
+    / #capitalize(value.short) #long #label(key): #value.description
   ]
 ]

@@ -98,15 +98,15 @@ Throughout the report we will tend to use the ECMAScript syntax for regexes for 
 
 === Regex size <sec:regex-size>
 
-During the work we will often refer to the size of a regex. Most importantly, the size of a regex plays a role in defining complexity characteristics. We therefore define the precise notion of the size of a regex by @lst:regex-size. From now on, whenever talking about the _"regex size"_ or $|r|$, this is the precise definition we are referring to. As seen, the regex size is equal to the size of the unfolded regex, i.e. one in which quantifier repetitions are unfolded. This does mean that the regex size can be exponentially larger than the size of the textual representation. This can be seen in the example of nested quantification ```regex /((a{5}){5}){5}/```. By just wrapping any regex $r$ with ```regex /(r){n}/``` for some number $n$, we increased its textual size by just $4 + log_10 n$ while the regex size increased by a factor of $n$.
+Throughout this work we will often refer to the size of a regex. Most importantly, the size of a regex plays a role in defining complexity characteristics. We therefore define the precise notion of the size of a regex by @lst:regex-size. From now on, whenever talking about the _"regex size"_ or $|r|$, this is the precise definition we are referring to. As seen, the regex size is equal to the size of the unfolded regex, i.e. one in which quantifier repetitions are unfolded. This does mean that the regex size can be exponentially larger than the size of the textual representation. This can be seen in the example of nested quantification ```regex /((a{5}){5}){5}/```. By just wrapping any regex $r$ with ```regex /(r){n}/``` for some number $n$, we increased its textual size by just $4 + log_10 n$ while the regex size increased by a factor of $n$.
 
 #linden-listing("Semantics/Regex.v", "regex_size")[Regex size definition.] <lst:regex-size>
 
-This unfolded regex definition of the size is what we bound the engine executions by, together with the haystack size which is just the length of the input string.
+This unfolded regex definition of the size is used to bound the engine executions, together with the haystack size which is just the length of the input string.
 
 === Matching semantics
 
-We follow the discussion of regexes by outlining the relevant details of the matching semantics.
+We follow the discussion of regexes by outlining the relevant details of the matching semantics. The semantics on which we base our results are known by several names: *backtracking*-, *PCRE*-, or *leftmost-greedy*- semantics. Many regex implementations in standard libraries of programming languages follow these semantics. Examples include Python, Rust, Java, Golang, and of course, ECMAScript.#note[... and .NET, Perl, PHP, Dart, Ruby.#note[... aaand C++, Raku, Julia, D, Erlang]]. We describe the important aspects of these semantics below.
 
 ==== Priority
 #let ex-hay = "aaccc"
@@ -123,7 +123,7 @@ However, in our semantics every potential choice during matching has priority as
 When looking for a pattern anywhere in the haystack, multiple matches may exist. In such cases, #underline[the] match which is of relevance to us is the first match, called the leftmost match. For instance, the match of #ex-r in the haystack #hay(ex-hay) is #hay(ex-hay, match: regex(ex-r-src)), not #hay(ex-hay, match: regex(ex-r-src + "$")).
 
 ==== Backtracking
-During matching when making decisions on which branch to take (disjunction, quantifiers) we follow the priority and leftmost principles outlined above. However, if during matching our choices have led us to point where no match is found, we backtrack to the last decision and retry with the lower-priority choice. This backtracking is performed until a match is found or all choices are exhausted. For instance, when matching ```re /a+ab/``` on #hay[aaaab], the initial choice of trying to match all #hay[a]s with ```re a+``` would not lead to a match because one more following #hay[a] required by the regex would not be found. So we backtrack an try again by making ```re +``` match one less #hay[a], which would lead to a successful match.
+During matching when making decisions on which branch to take (disjunction, quantifiers) we follow the priority and leftmost principles outlined above. However, if during matching our choices have led us to a point where no match is found, we backtrack to the last decision and retry with the lower-priority choice. This backtracking is performed until a match is found or all choices are exhausted. For instance, when matching ```re /a+ab/``` on #hay[aaaab], the initial choice of trying to match all #hay[a]s with ```re a+``` would not lead to a match because one more following #hay[a] required by the regex would not be found. So we backtrack and try again by making ```re +``` match one less #hay[a], which would lead to a successful match.
 
 ==== Flags <sec:flags>
 Matching of a regex can be configured by a handful of boolean flags. These modify the semantics of matching in small but sometimes significant ways. In ECMAScript syntax, these flags appear after the closing `/`. Each flag is represented by a single character. Its presence means that the flag is *enabled*, otherwise it is *disabled*. For instance, the regex ```re /a*c/im``` has the flags `i` and `m` enabled, but all others disabled. Below we mention three of the flags which are of importance for this work.
@@ -133,5 +133,3 @@ Matching of a regex can be configured by a handful of boolean flags. These modif
 - *DotAll*, `s` -- when true, the dot character descriptor matches line terminators as well. That means the regex ```re /a.c/s``` matches the string #hay("a\nc"), while ```re /a.c/``` does not.
 
 In Linden, those flags are stored in the ```rocq RegExpRecord``` record type. An instance of this type will be implicitly available as the variable ```rocq rer```.
-
-#TODO[Describe the leaf type, group map]

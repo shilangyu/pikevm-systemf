@@ -122,7 +122,7 @@
       } else if el.level == 4 {
         link(
           el.location(),
-          [Section #numbering(el.numbering, ..counter(heading).at(el.location()).slice(0, 2)) #{ el.body }],
+          [Section #numbering(el.numbering, ..counter(heading).at(el.location()).slice(0, 2)) #el.body],
         )
       } else {
         it
@@ -159,10 +159,11 @@
     v(15pt, weak: true)
     strong(it)
   }
+  show outline.entry: set block(spacing: 0.8em)
   outline(
     title: {
       text(font: fonts.body, 1.5em, weight: 700, "Contents")
-      v(15mm)
+      v(10mm)
     },
     indent: 2em,
   )
