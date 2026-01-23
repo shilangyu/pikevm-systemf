@@ -4,3 +4,4 @@
 #import "@preview/wrap-it:0.1.1"
 #import "@preview/fletcher:0.5.8"
 #import "@preview/rustycure:0.2.0"
+#import "@preview/curryst:0.6.0"
