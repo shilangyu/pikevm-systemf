@@ -32,4 +32,11 @@ From here we can prove the three axioms. We do it by proving a more generalized 
 #linden-theorem("Engine/Prefix.v", "brute_force_str_search_no_earlier")
 #linden-theorem("Engine/Prefix.v", "brute_force_str_search_not_found")
 
-#TODO[input_search proofs if needed]
+Finally, sometimes rather than operating on raw strings, we want to use Linden's `input` type. As such, we implement a simple wrapper function around the `StrSearch` typeclass which operates on `input`s rather than raw strings. Its definition is given in @lst:input-substring-search.
+
+#linden-listing(
+  "Engine/Prefix.v",
+  "input_search",
+)[Wrapper around substring search operating on `input`s.] <lst:input-substring-search>
+
+Once acquiring the offset to the occurrence of a substring, we simply advance the input by that many characters. For this input version we prove theorems analogous to the axioms of `StrSearch`, but expressed in terms of `input`s#note[#linden-permalink(linden-statement("Engine/Prefix.v", "input_search_starts_with")), #linden-permalink(linden-statement("Engine/Prefix.v", "input_search_no_earlier")), #linden-permalink(linden-statement("Engine/Prefix.v", "input_search_not_found"))]. Additionally we prove that the result of `input_search` is always a suffix of the original input#note[Proven in #linden-permalink(linden-statement("Engine/Prefix.v", "input_search_strict_suffix"))].
