@@ -12,20 +12,6 @@
   start-date: datetime,
   submission-date: datetime,
 ) = {
-  let title-table(entries) = {
-    align(
-      center,
-      grid(
-        columns: 2,
-        gutter: 1em,
-        align: left,
-        ..for (term, desc) in entries {
-          ([*#term:*], desc)
-        }
-      ),
-    )
-  }
-
   assert(
     degree in ("Bachelor", "Master"),
     message: "The degree must be either 'Bachelor' or 'Master'",
@@ -45,7 +31,6 @@
 
   set par(leading: 0.5em)
 
-  v(1cm)
   align(center, image("/figures/EPFL_logo.pdf", width: 26%))
 
   v(5mm)
@@ -56,7 +41,6 @@
     "École Polytechnique Fédérale de Lausanne",
   ))
 
-  v(5mm)
   align(center, text(
     font: fonts.sans,
     1.5em,
@@ -64,8 +48,11 @@
     school,
   ))
 
-  v(15mm)
+  align(center, image("/figures/SYSTEMF_logo.svg", width: 26%))
 
+  v(1fr)
+
+  align(center, text(font: fonts.sans, 2em, weight: 700, title))
   align(center, text(
     font: fonts.sans,
     1.3em,
@@ -73,10 +60,7 @@
     degree + "'s Thesis in " + program + "\n(" + specialization + ")",
   ))
 
-  v(8mm)
-
-
-  align(center, text(font: fonts.sans, 2em, weight: 700, title))
+  v(1fr)
 
   let entries = ()
   entries.push(("Author", author))
@@ -92,6 +76,15 @@
     submission-date.display("[day].[month].[year]"),
   ))
 
-  v(1cm)
-  title-table(entries)
+  align(
+    center,
+    grid(
+      columns: 2,
+      gutter: 1em,
+      align: left,
+      ..for (term, desc) in entries {
+        ([*#term:*], desc)
+      }
+    ),
+  )
 }
