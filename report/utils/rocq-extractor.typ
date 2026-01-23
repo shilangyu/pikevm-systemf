@@ -80,7 +80,7 @@
 ///
 /// - file (str): Linden Rocq source file
 /// - name (str): Name of the Rocq statement
-#let find-statement(file, name) = {
+#let linden-statement(file, name) = {
   let stmt = list-statements(file).find(e => e.name == name)
   assert(stmt != none, message: "Statement '" + name + "' not found in file '" + file + "'")
   stmt
@@ -90,7 +90,7 @@
 ///
 /// - stmt ():
 /// -> link
-#let source-permalink(stmt) = {
+#let linden-permalink(stmt) = {
   let (file, line) = stmt
 
   let url = (
@@ -129,7 +129,7 @@
 /// -> content
 #let linden-listing(file, names, caption) = {
   let names-normalized = if type(names) != array { (names,) } else { names }
-  let stmts = names-normalized.map(name => find-statement(file, name))
+  let stmts = names-normalized.map(name => linden-statement(file, name))
 
   figure(
     align(left)[
@@ -138,13 +138,13 @@
           dir: ltr,
           if names-normalized.len() > 1 {
             note(
-              source-permalink(stmt),
+              linden-permalink(stmt),
               dy: 0.4em,
               keep-order: true,
             )
           } else {
             note(
-              source-permalink(stmt),
+              linden-permalink(stmt),
               dy: 0.4em,
               keep-order: true,
               numbering: none,
@@ -161,11 +161,11 @@
 
 
 #let linden-theorem(file, name, proof: none) = {
-  let stmt = find-statement(file, name)
+  let stmt = linden-statement(file, name)
 
   theorem(
     name,
-    [#note(source-permalink(stmt), numbering: none) #raw(stmt.code-body, lang: "rocq")],
+    [#note(linden-permalink(stmt), numbering: none) #raw(stmt.code-body, lang: "rocq")],
     proof: proof,
     supplement: stmt.kind,
   )

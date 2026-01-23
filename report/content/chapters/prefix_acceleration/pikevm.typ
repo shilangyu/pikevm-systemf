@@ -10,8 +10,6 @@ In this work we have emphasized several times the importance of linear engines a
 
 ==== Compilation
 Before the PikeVM can execute a regex $r$ on any haystack $s$, the PikeVM first compiles the regex down into a bytecode representation. This bytecode is a sequence of instructions that represent the operations needed to perform matching. It describes the exploration of an extended form of NFA corresponding to the regex $r$. This extended NFA encodes things that are not present in traditional NFAs, such as priority and capture groups. Each instruction has a label that uniquely identifies it within the bytecode.
-#TODO[mention this only once it becomes relevant]
-// While the bytecode aspect is very important to the formalization of the PikeVM and posed challenges solved in @linden, it is not directly relevant to our work on prefix acceleration. Hence, here we will focus on the visual NFA representation of regexes which will aide in understanding the execution of the PikeVM.
 
 ==== Execution
 #let recall-r-src = "aa|aab"
@@ -87,7 +85,3 @@ We can now summarize the execution of the PikeVM. It repeatedly performs work on
 ]
 
 Despite a match existing at the tail end of the exemplified haystack, no match is found due to the PikeVM being inherently an anchored engine. In the next section we will devise a way to turn it into an unanchored engine all whilst integrating prefix acceleration.
-
-#TODO[mention this only once it becomes relevant]
-// ==== The PikeVM in Linden
-// We briefly detail how the PikeVM is formalized in Linden. The compilation is done by the ```rocq compilation : regex -> code``` function. We formalize the execution model through small-step semantics defined by ```rocq pike_vm_step : code -> pike_vm_state -> pike_vm_state```. The expression ```rocq pike_vm_step code pvs1 pvs2``` states that for some bytecode `code` and an input state `pvs1`, the PikeVM transitions into the state `pvs2`.
