@@ -23,20 +23,20 @@ Now that we have `tr`, we can extract the ```rocq option leaf``` from it using `
 
 We conclude this discussion by showing two concrete rules of the `is_tree` relation to give better intuition about how trees are constructed. We omit the group map and the direction. Consider the rule for the ```re +``` and for a successful character descriptor match:
 
-#[
-  #set text(size: 10pt)
-  #set align(center)
+#{
+  set text(size: 10pt)
+  set align(center)
 
-  #prooftree(rule(
+  prooftree(rule(
     name: smallcaps[Plus],
     ```rocq is_tree (Areg r1 :: Areg (Quantified greedy 0 Inf r1) :: cont) inp titer```,
     ```rocq is_tree (Areg (Quantified greedy (S 0) Inf r1) :: cont) inp titer```,
   ))
 
-  #prooftree(rule(
+  prooftree(rule(
     name: smallcaps[Star],
     ```rocq read_char cd inp = Some (c, inp')```,
     ```rocq is_tree cont inp' tcont```,
     ```rocq is_tree (Areg (Character cd) :: cont) inp (Read c tcont)```,
   ))
-]
+}

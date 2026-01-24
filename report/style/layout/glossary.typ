@@ -6,17 +6,30 @@
   }
 }
 
-// TODO: add panic for unknown modifiers
-#let format-with-modifiers(modifiers, entry) = {
-  let cap(term) = if modifiers.contains("cap") { capitalize(term) } else { term }
-  let short = if modifiers.contains("plural") { entry.short-plural } else { entry.short }
-  let long = if modifiers.contains("plural") { entry.long-plural } else { entry.long }
+#let get-format-modifiers(modifiers) = {
+  let map = (
+    intro: "intro" in modifiers,
+    cap: "cap" in modifiers,
+    plural: "plural" in modifiers,
+    long: "long" in modifiers,
+  )
 
-  if modifiers.contains("intro") {
+  // there should be no other unknown modifiers
+  assert(modifiers.all(mod => mod in map.keys()), message: "Used some unknown glossary modifier: " + repr(modifiers))
+
+  map
+}
+
+#let format-with-modifiers(modifiers, entry) = {
+  let cap(term) = if modifiers.cap { capitalize(term) } else { term }
+  let short = if modifiers.plural { entry.short-plural } else { entry.short }
+  let long = if modifiers.plural { entry.long-plural } else { entry.long }
+
+  if modifiers.intro {
     if long == short {
       cap(long)
     } else [#cap(long) (#short)]
-  } else if modifiers.contains("long") {
+  } else if modifiers.long {
     cap(long)
   } else {
     cap(short)
@@ -27,7 +40,10 @@
   show ref: it => {
     let parts = str(it.target).split(":")
     if parts.at(0) in entries.keys() {
-      link(label(parts.at(0)))[#format-with-modifiers(parts.slice(1), entries.at(parts.at(0)))]
+      let modifiers = get-format-modifiers(parts.slice(1))
+      let entry = entries.at(parts.at(0))
+
+      link(label(parts.at(0)), format-with-modifiers(modifiers, entry))
     } else {
       it
     }

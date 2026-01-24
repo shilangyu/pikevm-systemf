@@ -1,5 +1,6 @@
 #import "/style/thesis.typ": *
 #import "/metadata.typ": *
+#import "/content/glossary.typ": glossary
 #import "prelude.typ": catppuccin.catppuccin
 
 #set document(title: title, author: author)

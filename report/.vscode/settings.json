@@ -10,6 +10,7 @@
     "RUSTREGEX_REF=d2c210eec94405630e3e7ebba6d6d1b19e5dc85f",
     "--input",
     "REBAR_REF=72213a4ce5ff4a804ca7a542e665c4c81f2dbeed",
+    "--ignore-system-fonts",
     "--font-path",
     "./fonts"
   ]

@@ -16,8 +16,10 @@
 }
 
 #figure(
-  columns(2)[
-    #bnf(
+  grid(
+    columns: (auto, auto),
+    gutter: 4%,
+    bnf(
       Prod($r$, {
         Or[$epsilon$][Epsilon]
         Or[$c d$][Character descriptor]
@@ -40,11 +42,8 @@
         Or[$\<=$][Positive lookbehind]
         Or[$< #h(0pt) !$][Negative lookbehind]
       }),
-    )
-
-    #colbreak()
-
-    #bnf(
+    ),
+    bnf(
       Prod($c d$, {
         Or[$c$][Single character]
         Or[$[range(c_1, c_2)]$][Range]
@@ -61,9 +60,9 @@
         Or[$esc("b")$][Word boundary]
         Or[$esc("B")$][Non-word boundary]
       }),
-    )
+    ),
+  ),
 
-  ],
   caption: [Abstract syntax of Linden regexes],
   supplement: "Figure",
 ) <fig:regex>
