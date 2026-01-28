@@ -93,7 +93,7 @@
   let (file, line) = stmt
 
   let url = (
-    "https://github.com/epfl-systemf/Linden/blob/"
+    "https://github.com/LindenRegex/Linden/blob/"
       + linden-ref
       + "/"
       + file

@@ -98,7 +98,7 @@ The three prefix acceleration strategies we compare are:
 All of these strategies are implemented in the PikeVM of the `regex` crate. As baseline, we also include results for no prefix acceleration at all.
 
 ==== Experimental setup
-We modify the `regex` crate and implement the two other prefix acceleration strategies that were not previously present. This fork can be found under #link("https://github.com/epfl-systemf/rust-regex/tree/" + rustregex-ref). We use the rebar @rebar benchmarking tool. Rebar is a benchmarking framework and collection of benchmarks for regex engines. It serves as a trusted source of performance comparisons. We modify the rebar repository to add our modified `regex` crate and enable only benchmarks that test the PikeVM directly. This fork can be found under #link("https://github.com/epfl-systemf/rebar/tree/" + rebar-ref). The benchmarks were run on an idle Macbook Air M1 with 16GB of RAM. The following commands were used to produce the results:
+We modify the `regex` crate and implement the two other prefix acceleration strategies that were not previously present. This fork can be found under #link("https://github.com/LindenRegex/rust-regex/tree/" + rustregex-ref). We use the rebar @rebar benchmarking tool. Rebar is a benchmarking framework and collection of benchmarks for regex engines. It serves as a trusted source of performance comparisons. We modify the rebar repository to add our modified `regex` crate and enable only benchmarks that test the PikeVM directly. This fork can be found under #link("https://github.com/LindenRegex/rebar/tree/" + rebar-ref). The benchmarks were run on an idle Macbook Air M1 with 16GB of RAM. The following commands were used to produce the results:
 
 ```sh
 rebar build -e 'rust/regex/pikevm/(?:noAcc|accOnce|accEmptyStates|accOneAhead)'
@@ -106,7 +106,7 @@ rebar measure -e 'rust/regex/pikevm/(?:noAcc|accOnce|accEmptyStates|accOneAhead)
 ```
 
 ==== Results
-The full report of the results can be found at #link("https://github.com/epfl-systemf/rebar/blob/" + rebar-ref + "/prefilters.md"). The summary of the results is presented in @fig:rust-regex-benchmarks.
+The full report of the results can be found at #link("https://github.com/LindenRegex/rebar/blob/" + rebar-ref + "/prefilters.md"). The summary of the results is presented in @fig:rust-regex-benchmarks.
 
 #figure(
   table(

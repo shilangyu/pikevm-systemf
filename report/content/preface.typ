@@ -36,8 +36,8 @@ I cannot take much credit for arriving to this point. I credit it to the people 
   name[Rust code used for experiments],
   name[Benchmarks for regex matching],
 
-  qr("https://github.com/epfl-systemf/Linden/tree/" + linden-ref),
-  qr("https://github.com/epfl-systemf/RegElk/tree/" + regelk-ref),
-  qr("https://github.com/epfl-systemf/rust-regex/tree/" + rustregex-ref),
-  qr("https://github.com/epfl-systemf/rebar/tree/" + rebar-ref),
+  qr("https://github.com/LindenRegex/Linden/tree/" + linden-ref),
+  qr("https://github.com/LindenRegex/RegElk/tree/" + regelk-ref),
+  qr("https://github.com/LindenRegex/rust-regex/tree/" + rustregex-ref),
+  qr("https://github.com/LindenRegex/rebar/tree/" + rebar-ref),
 )

@@ -11,12 +11,12 @@ REGELK_REF=$(echo "$ARGS" | sed -n 's/.*REGELK_REF=\([^ ]*\).*/\1/p')
 if [[ ! "$*" =~ --skip-setup ]]; then
   # Linden: contains all the Rocq source code of this project
   rm -rf Linden || true
-  git clone https://github.com/epfl-systemf/Linden Linden
+  git clone https://github.com/LindenRegex/Linden Linden
   git -C Linden reset --hard "$LINDEN_REF"
 
   # RegElk: contains the regex corpora frequency analysis
   rm -rf RegElk || true
-  git clone https://github.com/epfl-systemf/RegElk RegElk
+  git clone https://github.com/LindenRegex/RegElk RegElk
     git -C RegElk reset --hard "$REGELK_REF"
   # Build RegElk and generate the frequency analysis data
   pushd RegElk > /dev/null
