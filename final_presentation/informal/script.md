@@ -1,0 +1,139 @@
+![](./presentation.svg)
+
+# Introduction
+
+- Regular expressions are this
+  - Describe a language using a pattern
+  - Studied for decades, well understood
+- Well, modern regexes have much more features
+  - Matching backrefrences is NP-hard
+  - Capture groups transform the matching problem
+- And cumbersome semantics
+- Optimizations
+- Rename "Regular Expression" to "Regex"
+
+We want to not shy away from all this complexity but to tame it instead. In this work, we focus on the optimizations.
+
+Everything is formalized in the Rocq proof assistant and proven to follow the ECMAScript 2023 specification.
+
+# Agenda
+
+- I want you to leave with an understanding of what the PikeVM is how prefix acceleration works
+- Give an intuition of how the proof was approached
+- Meta engine and its optimizations
+
+# PikeVM
+
+- Most widely used regex engine
+- Linear time, supports all regex features for which we know a linear time impl
+
+## NFA
+
+- A PikeVM executes an NFA against some input string
+- But only at a particular string position!
+  - **we want to find anywhere in the string**
+- Let's look at how the PikeVM works and try to fix it
+
+## Algorithm
+
+- PikeVM is a linear NFA simulation algorithm
+- Explore states in parallel and synchronize on the input
+- **Active**: states currently being explored
+- **Blocked**: states waiting for the advancement of the input
+
+## Trace
+
+- Order of states gives priority
+- But there is a match later in the string! Let's try to find matches anywhere in the input
+
+# Looking for a match anywhere
+
+We cannot just run the engine at every input position: this will ruin our complexity
+
+1. Lazy dot star, if we fail to find matches we will advance the input by one and try `r` again
+
+   - Lazy `?` means we find the left-most match. Without it it would be the right-most match
+
+2. Simulate it ourselves
+
+   - Better performance
+   - Allows for optimizations
+
+# Regex prefix
+
+- We know every potential match has to start with _"ab"_
+- I have formalized this static analysis and proved this result
+
+# Traced PikeVM+
+
+- Optim 1: no prefix
+- Not filtering: maybe it leads to a match
+- Optim 2: skipping many input positions
+
+# In practice
+
+- Implemented in the rust-regex crate (Optim 2 already present, optim 1 implemented by me)
+- This is done by doing classical substring searches which are much faster than running an engine
+  - We keep a counter indicating in how many characters the prefix will match
+  - If the counter is non-zero, we do Optim 1
+- In rebar which is supposed to be a real world benchmarking suit
+  1. optim 2 can lead to 600x times speedups -> skipping large portions of the input
+  2. optim 1 can lead to 20x times speedups -> not keeping the PikeVM alive when not needed
+- Arguably the most important regex matching optimization for large inputs
+
+# Proof
+
+Hopefully by now you have the intuition that this algorithm is correct. But how to approach the proof?
+
+## Backtracking trees
+
+- Proven to follow exactly the ECMAScript 2023 semantics
+- Materialization of matching a regex against a specific input (execution trace)
+  - This is opposed to the NFA, which is only a program
+- As we said, we want to essentially return the same result as for `/.*?r/`
+- The result is the leftmost accepting leaf
+
+## PikeTree
+
+- Operates on backtracking trees -> firstLeaf equivalence
+  - Each step of the PikeTree preserves the result
+- Explores like the PikeVM -> PikeVM equivalence
+  - There exists an execution of the PikeTree which corresponds to one from the PikeVM
+- The subtrees are $\alpha$ at different positions
+- When we added $\alpha$ in the PikeVM, here we add a subtree. But we optimize by not adding the subtree if it contains no results
+
+# Meta engine
+
+- Each engine has it's own strengths and weaknesses
+  - Some support only a subset of regex features, some have high memory requirements
+  - OnePass: only NFAs that have one transition per character+state
+  - Lazy DFA: no groups support
+  - PikeVM: slow, supports everything
+  - Memoized backtracker: memory intensive
+- Everything is composed to find matches the fastest way
+  - Sometimes it is faster to use the Lazy DFA to find the bounds of the match, and then run an anchored PikeVM
+
+  ## Anchored searches
+
+  - Can only match at the start of the string
+  - Tests the regex only on a single haystack position
+
+  ## Impossible regexes
+
+  - The number of occurrences will go up when we rewrite
+  - Skips any matching
+
+  ## Exact regexes
+
+  - Skips slow, fully features regex engines
+
+  ## Black-box prefix acceleration
+
+  - We do not know how to deeply integrate prefix acceleration into all engines
+  - To preserve linearity, we can only perform acceleration once for black-box engines
+
+  ## Conclusion
+
+  We have proven a realistic regex engine with all of the ugly sides of modern regex matching and with real-world optimizations.
+
+  Goal: towards the formalization of modern regex engines and extraction into executable code.
