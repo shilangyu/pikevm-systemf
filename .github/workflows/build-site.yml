@@ -30,6 +30,23 @@ jobs:
         with:
           ocaml-compiler: 5.0.0
           dune-cache: true
+          opam-disable-sandboxing: true
+
+      - name: Cache external repositories
+        uses: actions/cache@v4
+        with:
+          path: |
+            report/Linden
+            report/RegElk
+          key: repos-${{ hashFiles('report/.vscode/settings.json') }}
+
+      - name: Cache RegElk build artifacts
+        uses: actions/cache@v4
+        with:
+          path: |
+            report/RegElk/_build
+            report/regex_frequencies-*.csv
+          key: regelk-build-${{ hashFiles('report/.vscode/settings.json') }}
 
       - name: Build site
         run: |
