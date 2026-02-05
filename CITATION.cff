@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this thesis or the associated work, please cite it as below."
+type: software
+title: "Verification of realistic regex matching"
+authors:
+  - family-names: Wojnarowski
+    given-names: Marcin
+    orcid: https://orcid.org/0009-0005-8813-5486
+repository-code: "https://github.com/shilangyu/pikevm-systemf"
+url: "https://github.com/shilangyu/pikevm-systemf"
+abstract: "Master thesis on verification of realistic regex matching at EPFL in the SYSTEMF lab."
+keywords:
+  - regex
+  - verification
+  - formal methods
+  - pike vm
+license: MIT
+date-released: 2026-01-23
