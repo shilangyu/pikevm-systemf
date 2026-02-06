@@ -33,8 +33,6 @@
   glossary: glossary,
 )
 
-#TODO[When referencing a heading, use the heading number and put the heading titles in the margin]
-#TODO[When referencing an glossary intro, add definition to the margin]
 
 #include "/content/introduction.typ"
 #include "/content/background/background.typ"

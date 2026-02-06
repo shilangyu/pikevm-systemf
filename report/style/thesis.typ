@@ -25,8 +25,6 @@
   glossary: dictionary,
   body,
 ) = {
-  show: setup-theorems
-  show: glossary-setup.with(glossary)
   // Links which link within the document have this style
   let document-link-style = underline.with(stroke: (thickness: 1pt, dash: "loosely-dotted"))
   show link: it => {
@@ -37,6 +35,10 @@
     }
   }
   show ref: document-link-style
+
+  show: glossary-setup.with(glossary)
+  show: setup-theorems
+
   // Resize text in code blocks to avoid line breaks
   show raw.where(block: true): it => layout(size => {
     context {

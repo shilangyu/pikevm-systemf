@@ -58,7 +58,7 @@
   if draft { stickybox(rotation: 3deg, width: 100%, body) }
 }
 
-#let TODO-outline = context if draft {
+#let TODO-outline = context if draft and todos.final().len() > 0 {
   align(left, text(font: fonts.sans, 1.5em, weight: 700, "TODOs"))
 
   for (msg, loc) in todos.final() [

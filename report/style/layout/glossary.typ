@@ -1,3 +1,5 @@
+#import "/utils/todo.typ": *
+
 #let capitalize(word) = {
   if word.len() == 0 {
     ""
@@ -44,6 +46,10 @@
       let entry = entries.at(parts.at(0))
 
       link(label(parts.at(0)), format-with-modifiers(modifiers, entry))
+
+      if modifiers.intro {
+        note(entry.description)
+      }
     } else {
       it
     }
