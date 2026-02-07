@@ -23,20 +23,13 @@
     number-align: center,
   )
 
-  set text(
-    font: fonts.body,
-    size: 12pt,
-    lang: "en",
-  )
-
   set par(leading: 0.5em)
 
   align(center, image("/figures/EPFL_logo.pdf", width: 26%))
 
-  v(5mm)
   align(center, text(
     font: fonts.sans,
-    2em,
+    1.8em,
     weight: 700,
     "École Polytechnique Fédérale de Lausanne",
   ))

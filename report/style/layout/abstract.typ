@@ -1,10 +1,7 @@
 #import "/style/fonts.typ": *
 
 #let abstract(body) = {
-  set text(
-    font: fonts.body,
-    size: 12pt,
-  )
+  set text(font: fonts.sans)
 
   set par(
     leading: 1em,

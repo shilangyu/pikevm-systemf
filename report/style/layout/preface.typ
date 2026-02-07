@@ -6,12 +6,6 @@
     numbering: none,
   )
 
-  set text(
-    font: fonts.body,
-    size: 12pt,
-    lang: "en",
-  )
-
   set par(
     leading: 1em,
     justify: true,

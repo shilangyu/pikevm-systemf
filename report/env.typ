@@ -9,4 +9,4 @@
 /// Whether we are rendering in book mode.
 #let book = "BOOK" in sys.inputs
 /// Whether this is a draft build.
-#let draft = not ("FINAL" in sys.inputs)
+#let draft = not "FINAL" in sys.inputs

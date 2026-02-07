@@ -25,6 +25,27 @@
   glossary: dictionary,
   body,
 ) = {
+  let a4-width = 210mm
+  set page(
+    width: a4-width,
+    height: a4-width
+      * if book {
+        1
+      } else {
+        calc.sqrt(2)
+      },
+    margin: (top: 20mm, bottom: 20mm),
+  )
+
+  set text(
+    font: fonts.body,
+    size: 12pt,
+    lang: "en",
+  )
+  show math.equation: set text(weight: 400)
+  show raw: set text(font: fonts.mono)
+  set raw(syntaxes: syntaxes)
+
   // Links which link within the document have this style
   let document-link-style = underline.with(stroke: (thickness: 1pt, dash: "loosely-dotted"))
   show link: it => {
@@ -72,34 +93,56 @@
   )
 
   pagebreak()
+  if book { pagebreak() }
 
   abstract-layout(abstract)
 
   pagebreak()
+  if book { pagebreak() }
 
   preface-layout(preface)
 
-  set page(
-    numbering: none,
-    // TODO: alternate pages between left/right align
-    number-align: center,
+  // --- Table of Contents ---
+  show outline.entry.where(level: 1): it => {
+    v(if book { 0.65em } else { 1.5em }, weak: true)
+    strong(it)
+  }
+  show outline.entry: set block(spacing: if book { 0.4em } else { 0.8em })
+  outline(
+    title: {
+      text(1.5em, weight: 700)[Contents]
+      v(if book { 0.5em } else { 1em })
+    },
+    indent: 2em,
   )
 
+  pagebreak()
+  if book { pagebreak() }
+
+  set page(
+    numbering: none,
+    footer: if book {
+      context if here().page() > 1 {
+        let outer-padding = page.margin.bottom - 1em - marginalia._config.get().outer.far
+        marginalia.header(
+          if calc.odd(here().page()) {
+            set align(right)
+            counter(page).display("1")
+            h(outer-padding)
+          } else {
+            set align(left)
+            h(outer-padding)
+            counter(page).display("1")
+          },
+        )
+      }
+    } else { auto },
+  )
   show: marginalia.setup.with(
     inner: (width: 7mm),
     outer: (width: 40mm),
     book: book,
   )
-
-  set text(
-    font: fonts.body,
-    size: 12pt,
-    lang: "en",
-  )
-
-  show math.equation: set text(weight: 400)
-  show raw: set text(font: fonts.mono)
-  show: set raw(syntaxes: syntaxes)
 
   // --- Headings ---
   show heading: set block(below: 0.85em, above: 1.75em)
@@ -134,6 +177,11 @@
       it
     }
   }
+  // First-level headings start on odd pages in book mode
+  show heading.where(level: 1): it => context {
+    pagebreak(to: "odd", weak: true)
+    it
+  }
 
   // --- Paragraphs ---
   set par(leading: 1em)
@@ -156,22 +204,6 @@
     keep-order: true,
     dy: -0.01pt, // this is so that the caption is placed above wide figures.
   )
-
-  // --- Table of Contents ---
-  show outline.entry.where(level: 1): it => {
-    v(15pt, weak: true)
-    strong(it)
-  }
-  show outline.entry: set block(spacing: 0.8em)
-  outline(
-    title: {
-      text(font: fonts.body, 1.5em, weight: 700, "Contents")
-      v(10mm)
-    },
-    indent: 2em,
-  )
-
-  pagebreak()
 
   // Main body. Reset page numbering.
   set page(numbering: "1")

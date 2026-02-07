@@ -83,7 +83,9 @@ For that we analyze the large corpora of regexes collected in @regex-in-the-wild
   Some entries in the figure represent optimizations which are closely related to those implemented in this work, but are missing a full formalization. This notably includes offseted literals and back optimizations. Completing them requires some additional work which can use the foundations laid in this work. The figure additionally mentions that a very large portion of regexes contain no captures at all (#percent-fmt(data.at("no_captures") / parsed)). This motivates a different line of work, namely around new regex engines. All of those potential extensions are discussed in @sec:future-work.
 ]
 
-#wrap-it.wrap-content(fig, body, align: right)
+#context wrap-it.wrap-content(fig, body, align: if book and calc.even(here().page()) { left } else {
+  right
+})
 
 == Prefix acceleration in Rust's `regex` <sec:rust-regex>
 
