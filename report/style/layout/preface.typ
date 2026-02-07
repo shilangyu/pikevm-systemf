@@ -2,7 +2,7 @@
 
 #let preface(body) = {
   set page(
-    margin: (left: 30mm, right: 30mm, top: 40mm, bottom: 20mm),
+    margin: (left: 30mm, right: 30mm, top: 30mm, bottom: 30mm),
     numbering: none,
   )
 
@@ -18,7 +18,7 @@
   )
 
   heading(level: 1, outlined: false, text(font: fonts.sans, 1.5em, weight: 700, "Preface"))
-  v(12mm)
+  v(5mm)
 
   body
 }
