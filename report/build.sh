@@ -20,10 +20,15 @@ if [[ ! "$*" =~ --skip-setup ]]; then
     git -C RegElk reset --hard "$REGELK_REF"
   # Build RegElk and generate the frequency analysis data
   pushd RegElk > /dev/null
+    # there are some linux-only deps. We do this custom install to avoid them
     opam install . -y || true
     eval $(opam env)
-    make stats
-    ./stats.native > ../regex_frequencies-$REGELK_REF.csv
+    # copy of commands from Makefile but we only build needed things
+    ocamllex -o parser/regex_lexer.ml parser_src/regex_lexer.mll
+    menhir parser_src/regex_parser.mly 2>/dev/null
+	mv parser_src/regex_parser.ml parser_src/regex_parser.mli parser
+    ocamlbuild -I parser -package yojson stats.native
+    ./stats.native --csv > ../regex_frequencies-$REGELK_REF.csv
   popd > /dev/null
 fi
 
