@@ -179,7 +179,7 @@
   }
   // First-level headings start on odd pages in book mode
   show heading.where(level: 1): it => context {
-    pagebreak(to: "odd", weak: true)
+    if book { pagebreak(to: "odd", weak: true) }
     it
   }
 
