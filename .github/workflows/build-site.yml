@@ -22,6 +22,8 @@ jobs:
 
       - name: Install pandoc
         uses: pandoc/actions/setup@v1
+        env:
+          GH_TOKEN: ${{ github.token }}
         with:
           version: 3.8.2.1
 
