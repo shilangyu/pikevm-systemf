@@ -283,3 +283,85 @@ aho-corasick:
       location: New York, NY, USA
     issue: 6
     volume: 18
+
+lean-regex:
+  type: Web
+  title: Lean regex
+  author:
+    - pandaman
+  url: https://github.com/pandaman64/lean-regex
+  abstract: A formally verified regular expression engine for the Lean programming language.
+
+chattopadhyay2025:
+  type: article
+  title: Verified and Efficient Matching of Regular Expressions with Lookaround
+  author:
+    - Chattopadhyay, Agnishom
+    - Li, Angela W.
+    - Mamouras, Konstantinos
+  date: 2025
+  page-range: 198-213
+  url: https://doi.org/10.1145/3703595.3705884
+  serial-number:
+    doi: 10.1145/3703595.3705884
+    isbn: "9798400713477"
+  abstract: Regular expressions can be extended with lookarounds for contextual matching. This paper discusses a Coq formalization of the theory of regular expressions with lookarounds. We provide an efficient and purely functional algorithm for matching expressions with lookarounds and verify its correctness. The algorithm runs in time linear in both the size of the regular expression as well as the input string. Our experimental results provide empirical support to our complexity analysis. To the best of our knowledge, this is the first formalization of a linear-time matching algorithm for regular expressions with lookarounds.
+  parent:
+    type: proceedings
+    title: Proceedings of the 14th ACM SIGPLAN International Conference on Certified Programs and Proofs
+    publisher:
+      name: Association for Computing Machinery
+      location: Denver, CO, USA
+    parent:
+      type: proceedings
+      title: CPP '25
+
+zhuchko2024:
+  type: article
+  title: Lean Formalization of Extended Regular Expression Matching with Lookarounds
+  author:
+    - Zhuchko, Ekaterina
+    - Veanes, Margus
+    - Ebner, Gabriel
+  date: 2024
+  page-range: 118-131
+  url: https://doi.org/10.1145/3636501.3636959
+  serial-number:
+    doi: 10.1145/3636501.3636959
+    isbn: "9798400704888"
+  abstract: We present a formalization of a matching algorithm for extended regular expression matching based on locations and symbolic derivatives which supports intersection, complement and lookarounds and whose implementation mirrors an extension of the recent .NET NonBacktracking regular expression engine. The formalization of the algorithm and its semantics uses the Lean 4 proof assistant. The proof of its correctness is with respect to standard matching semantics.
+  parent:
+    type: proceedings
+    title: Proceedings of the 13th ACM SIGPLAN International Conference on Certified Programs and Proofs
+    publisher:
+      name: Association for Computing Machinery
+      location: London, UK
+    parent:
+      type: proceedings
+      title: CPP 2024
+
+deriv-backtracking:
+  type: article
+  title: Derivative Based Nonbacktracking Real-World Regex Matching with Backtracking Semantics
+  author:
+    - Moseley, Dan
+    - Nishio, Mario
+    - Perez Rodriguez, Jose
+    - Saarikivi, Olli
+    - Toub, Stephen
+    - Veanes, Margus
+    - Wan, Tiki
+    - Xu, Eric
+  date: 2023-06
+  url: https://doi.org/10.1145/3591262
+  serial-number:
+    doi: 10.1145/3591262
+  abstract: We develop a new derivative based theory and algorithm for nonbacktracking regex matching that supports anchors and counting, preserves backtracking semantics, and can be extended with lookarounds. The algorithm has been implemented as a new regex backend in .NET and was extensively tested as part of the formal release process of .NET7. We present a formal proof of the correctness of the algorithm, which we believe to be the first of its kind concerning industrial implementations of regex matchers. The paper describes the complete foundation, the matching algorithm, and key aspects of the implementation involving a regex rewrite system, as well as a comprehensive evaluation over industrial case studies and other regex engines.
+  parent:
+    type: periodical
+    title: Proc. ACM Program. Lang.
+    publisher:
+      name: Association for Computing Machinery
+      location: New York, NY, USA
+    issue: PLDI
+    volume: 7

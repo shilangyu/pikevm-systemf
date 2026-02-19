@@ -3,6 +3,12 @@
 
 = Discussion
 
+== Related work
+
+@lean-regex implements a regex matching library in the Lean theorem prover. It supports the same set of modern regex features as the PikeVM in this work. As opposed to our work, their algorithms are directly executable thanks to the Lean compiler. While the Lean implementation contains a proof soundness and completeness of its matching algorithms, it does not contain a proof of that the returned result is the highest priority one#note[See https://github.com/pandaman64/lean-regex/blob/6756b6292659ba672644767a855156df5415999a/correctness/RegexCorrectness/Spec.lean#L26.], but just one of them. In contrast, our work expresses correctness theorems in terms of the highest priority match. That work also formalizes a prefix acceleration strategy#note[See https://github.com/pandaman64/lean-regex/blob/6756b6292659ba672644767a855156df5415999a/regex/Regex/Regex/OptimizationInfo.lean] different from ours. They extract a set of characters with which a match could potentially start with. This acceleration is not integrated in the matching algorithms directly, but rather sit on top of them leading to less opportunities for them to be useful. Additionally, while extracting multiple prefixes (rather than just one like in our work) is beneficial, extracting such short prefixes (1 character long) could potentially lead to a large number of false positives during acceleration.
+
+@chattopadhyay2025 @zhuchko2024 formalize modern regex matching algorithms, in Rocq and Lean respectively. Both formalizations support lookarounds in their linear-time engines. However, neither of them support capture groups. The engine algorithms differ from the PikeVM, they are respectively based on Marked Regular Expressions and Regex Derivatives. Neither of them formalize backtracking semantics and have no notion of priority, thus are different semantics from those of this work.
+
 == Future work <sec:future-work>
 
 The most important item which unfortunately constitutes future work, is finishing the theorem about ```rocq Exact``` literals. It is the only theorem that has been assumed to be true in the entire Rocq formalization of this work. We believe completing this proof should not require a large amount of effort, but of course requires time nonetheless. We state the assumed theorem in @lst:exact-literal-conjecture. Given a regex with no asserts and a haystack, the matching position of the regex on this haystack is determined by a substring search. Here, we do not say anything about the values of the group map.
