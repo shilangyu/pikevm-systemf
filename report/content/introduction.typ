@@ -14,7 +14,7 @@ The main contributions of this work are:
 
 + Formalization of *literal extraction* @sec:literal-extraction, a static analysis of constant strings in a regex
 + Formalization of *substring search* @sec:substring-search, a generic description of substring search algorithms
-+ _First_ formal proof of *prefix acceleration* @sec:prefix-acceleration in the PikeVM engine, an optimization that uses literal extraction and substring search to skip parts of the haystack
++ Formal proof of *prefix acceleration* @sec:prefix-acceleration in the PikeVM engine, an optimization that uses literal extraction and substring search to skip parts of the haystack
 + Formalization of *anchored regex* @sec:anchored-optimization and *impossible matches* @sec:exact-impossible-literals optimizations
 + Formalization of a *Meta engine* @sec:meta-engine that combines multiple linear engines with heuristics and optimizations to speed up matching in practice
 
