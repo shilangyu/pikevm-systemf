@@ -17,7 +17,7 @@ if [[ ! "$*" =~ --skip-setup ]]; then
   # RegElk: contains the regex corpora frequency analysis
   rm -rf RegElk || true
   git clone https://github.com/LindenRegex/RegElk RegElk
-    git -C RegElk reset --hard "$REGELK_REF"
+  git -C RegElk reset --hard "$REGELK_REF"
   # Build RegElk and generate the frequency analysis data
   pushd RegElk > /dev/null
     # there are some linux-only deps. We do this custom install to avoid them
