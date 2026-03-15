@@ -34,6 +34,11 @@
 )
 
 
+#text(size: 30pt)[
+  The Report is temporarily in construction while I migrate it to the new Linden codebase.
+]
+
+
 #include "/content/introduction.typ"
 #include "/content/background/background.typ"
 #include "/content/chapters/chapters.typ"

@@ -15,8 +15,13 @@ The typeclass describing an anchored regex engine given in @lst:anchored-engine-
 To describe unanchored engines, we first define the @lazy-prefix:intro as simply being the sequencing of ```re /[^]*?/``` with a regex `r`. Then, the typeclass definition of an unanchored engine seen in @lst:unanchored-engine-class is very similar to that of an anchored engine. The sole difference is that for the correctness axiom, we require that the engine, when given a regex `r` and a haystack `s`, returns the same result as the one defined by the semantics of a backtracking tree for ```re /[^]*?r/```! All typeclass member names are prefixed with `un_`.
 
 #linden-listing(
+  "Semantics/Regex.v",
+  ("dot_star", "lazy_prefix"),
+)[The definition of the lazy prefix and the typeclass describing an unanchored engine] <lst:unanchored-engine-class1>
+
+#linden-listing(
   "Engine/Meta/EngineSpec.v",
-  ("dot_star", "lazy_prefix", "UnanchoredEngine"),
+  "UnanchoredEngine",
 )[The definition of the lazy prefix and the typeclass describing an unanchored engine] <lst:unanchored-engine-class>
 
 Given those definitions we can now exhibit some instances of those typeclasses. Naturally, the anchored PikeVM defined in @sec:pikevm is an instance of the anchored engine typeclass#note[Proven in #linden-permalink(linden-statement("Engine/Meta/EngineSpec.v", "PikeVMAnchoredEngine"))]. Its proof of ```rocq exec``` correctness is derived from proofs previously present in Linden. We also show that the unanchored PikeVM defined in @sec:unanchored-pikevm is an instance of the unanchored engine typeclass#note[Proven in #linden-permalink(linden-statement("Engine/Meta/EngineSpec.v", "PikeVMUnanchoredEngine"))]. Its proof of ```rocq un_exec``` correctness is derived from proofs discussed in @sec:unanchored-pikevm-correctness. For both PikeVMs, the ```rocq supported_regex```#note[The PikeVM regex support predicate can be found in #linden-permalink(linden-statement("Engine/PikeSubset.v", "is_pike_regex"))] predicate notably excludes regexes with backreferences (due to not having a linear-time implementation) and with lookarounds (which have yet to be verified in the PikeVM#note[A very recent development @linearjsregex has found a way to incorporate lookarounds into the PikeVM under the ECMAScript semantics. No mechanization of this fact has been yet completed.]). Similarly, the already verified MemoBT engine is an instance of an anchored engine#note[Proven in #linden-permalink(linden-statement("Engine/Meta/EngineSpec.v", "MemoBTAnchoredEngine"))]. There is currently, however, no verified specialized unanchored version of the MemoBT engine in Linden. Instead, we notice that every anchored engine can be turned into an unanchored one.

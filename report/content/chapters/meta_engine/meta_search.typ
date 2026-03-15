@@ -15,12 +15,10 @@ The anchored Meta engine is simple and its definition can be found in @lst:meta-
 
 #linden-listing(
   "Engine/Meta/Meta.v",
-  "meta_search_anchored",
+  "meta_search",
 )[Definition of the anchored Meta search function.] <lst:meta-anchored-engine>
 
-The correctness follows directly from the correctness of the individual engines. The heuristic of picking an engine does not affect correctness; regardless which engine was picked, the engine will produce a correct result. Heuristics affect only the practical aspect of performing matching. We state this correctness theorem in @thm:meta-anchored-correctness. For any configuration, supported regex, and haystack, running the anchored Meta engine produces the same result as defined by the formal semantics of backtracking trees. ```rocq meta_supported_regex``` accepts exactly the same regexes as the PikeVM and the MemoBT. Thus, this Meta anchored matching function is another instance of the ```rocq AnchoredEngine``` typeclass#note[Proven in #linden-permalink(linden-statement("Engine/Meta/Meta.v", "MetaSearchAnchored")).].
-
-#linden-theorem("Engine/Meta/Meta.v", "meta_search_anchored_correct") <thm:meta-anchored-correctness>
+The correctness follows directly from the correctness of the individual engines. The heuristic of picking an engine does not affect correctness; regardless which engine was picked, the engine will produce a correct result. Heuristics affect only the practical aspect of performing matching. We state this correctness theorem in . For any configuration, supported regex, and haystack, running the anchored Meta engine produces the same result as defined by the formal semantics of backtracking trees. ```rocq meta_supported_regex``` accepts exactly the same regexes as the PikeVM and the MemoBT. Thus, this Meta anchored matching function is another instance of the ```rocq AnchoredEngine``` typeclass.
 
 We are now ready to define the final, neat, all-encompassing unanchored Meta engine given by ```rocq search``` seen in @lst:meta-unanchored-engine.
 
@@ -31,8 +29,4 @@ This function first tries to dispatch matching methods that do not require runni
   "search",
 )[Definition of the unanchored Meta search function.] <lst:meta-unanchored-engine>
 
-We conclude with proving the correctness of this unanchored Meta engine in @thm:meta-unanchored-correctness. For any configuration, supported regex, and haystack, running the unanchored Meta engine produces the same result as defined by the formal semantics of backtracking trees for a regex with the lazy prefix. This, of course, is another instance of an ```rocq UnanchoredEngine```#note[Proven in #linden-permalink(linden-statement("Engine/Meta/Meta.v", "MetaEngine")).].
-
-#linden-theorem("Engine/Meta/Meta.v", "search_correct", proof: [
-  By @thm:try-lit-search-correctness, @thm:try-anchored-search-correctness, @thm:search-acc-once-correctness, and the correctness of the individual engines and the unanchoring construction.
-]) <thm:meta-unanchored-correctness>
+We conclude with proving the correctness of this unanchored Meta engine in . For any configuration, supported regex, and haystack, running the unanchored Meta engine produces the same result as defined by the formal semantics of backtracking trees for a regex with the lazy prefix. This, of course, is another instance of an ```rocq UnanchoredEngine```#note[Proven in #linden-permalink(linden-statement("Engine/Meta/Meta.v", "MetaEngine")).].

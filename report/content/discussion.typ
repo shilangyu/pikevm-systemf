@@ -11,9 +11,8 @@
 
 == Future work <sec:future-work>
 
-The most important item which unfortunately constitutes future work, is finishing the theorem about ```rocq Exact``` literals. It is the only theorem that has been assumed to be true in the entire Rocq formalization of this work. We believe completing this proof should not require a large amount of effort, but of course requires time nonetheless. We state the assumed theorem in @lst:exact-literal-conjecture. Given a regex with no asserts and a haystack, the matching position of the regex on this haystack is determined by a substring search. Here, we do not say anything about the values of the group map.
+The most important item which unfortunately constitutes future work, is finishing the theorem about ```rocq Exact``` literals. It is the only theorem that has been assumed to be true in the entire Rocq formalization of this work. We believe completing this proof should not require a large amount of effort, but of course requires time nonetheless. We state the assumed theorem in . Given a regex with no asserts and a haystack, the matching position of the regex on this haystack is determined by a substring search. Here, we do not say anything about the values of the group map.
 
-#linden-theorem("Engine/Prefix.v", "no_asserts_exact_literal") <lst:exact-literal-conjecture>
 
 Other kinds of optimizations can be built directly on top of the formalizations presented in this work. We discuss three such extensions which can benefit the most from the work already completed.
 
