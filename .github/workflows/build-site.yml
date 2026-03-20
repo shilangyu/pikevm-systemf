@@ -16,7 +16,7 @@ jobs:
           fetch-depth: "0"
           lfs: true
 
-      - uses: typst-community/setup-typst@v4
+      - uses: typst-community/setup-typst@v5
         with:
           typst-version: ${{ vars.TYPST_VERSION }}
 
