@@ -34,7 +34,12 @@
   {
     // This makes the styling of the proof the same as the one used in a figure
     show figure: _ => if proof != none {
-      [*Proof.* #proof]
+      block(
+        stroke: (left: 1pt),
+        inset: (x: 1em),
+        breakable: true,
+        [*Proof.* #proof],
+      )
     }
     figure(none)
   }
