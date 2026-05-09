@@ -38,12 +38,7 @@ To take advantage of the ```rocq Exact``` and ```rocq Impossible``` literals, we
 
 Other than taking as arguments the regex and a haystack, it additionally expects to have an instance of a substring search algorithm defined in @sec:substring-search. Notably, no engine is passed as an argument as here we focus on optimizations not requiring them. This function starts by extracting the literal of the given regex. If that literal is a ```rocq Prefix```, without an engine we cannot determine the match so we return ```rocq Unsupported```. In the case of ```rocq Impossible```, we can immediately return that no match exists, ```rocq Ok None```. But if the literal is an ```rocq Exact s```, more cases must be considered.
 
-If the regex additionally has any assertions, we cannot leverage ```rocq Exact``` literals because typically substring search algorithms do not support assertions. In case assertions are present, we thus exit with ```rocq Unsupported```. An assertion is a regex construct which does not consume any characters during matching but instead inspects the surrounding context of the match. Anchors and lookarounds precisely constitute assertions. We define ```rocq has_asserts``` in @lst:has-asserts. Consider the regex ```re /\babc/``` for which we extract the literal ```rocq Exact "abc"```. This is what we want; a match of this regex will always be exactly the string #hay[abc]. However, due to the word boundary assertion (```re \b```) at the start, we cannot simply search for #hay[abc] in the haystack. We must also ensure that at the position where #hay[abc] is found, a word boundary exists. Without an engine to check this assertion, we cannot proceed and thus return ```rocq Unsupported```. Luckily, this ```rocq Exact``` literal will be leveraged during prefix acceleration which will exactly find the instances of #hay[abc] while verifying the assertions.
-
-#linden-listing(
-  "Engine/Prefix.v",
-  "has_asserts",
-)[Function checking whether a regex contains assertions.] <lst:has-asserts>
+If the regex additionally has any assertions, we cannot leverage ```rocq Exact``` literals. Without an engine to check this assertion, we cannot proceed and thus return ```rocq Unsupported```. Luckily, this ```rocq Exact``` literal will be leveraged during prefix acceleration which will exactly find the instances of #hay[abc] while verifying the assertions.
 
 Once we know no assertions are present, we can proceed to using the substring search algorithm to find the first occurrence of the string $s$ in the haystack. If no such occurrence exists, we can return with ```rocq Ok None```. Otherwise, we have found a position which we know corresponds precisely to the leftmost-greedy match. However, if the regex contained any captures, we would have to additionally enter a "_capture reconstruction_" phase to determine the values of each capture. Capture reconstruction has not been verified in this work, so for now we will exit with ```rocq Unsupported``` if any captures are present. To check for captures, we define the function ```rocq has_groups``` in @lst:has-captures.
 
@@ -74,5 +69,5 @@ Having this, we formulate the correctness theorem of ```rocq try_lit_search``` i
 #linden-theorem("Engine/Meta/MetaLiterals.v", "try_lit_search_correct", proof: [
   If the extracted literal is ```rocq Impossible```, proof follows from @thm:correctness-extract-literal-impossible. If the extracted literal is ```rocq Exact``` and we have no assertions, we split into two cases depending on the result of the substring search.
   + The result is ```rocq None``` -- proof follows from @thm:no-substring-no-match.
-  + The result is ```rocq Some``` -- proof follows from @thm:empty-group-map and a missing lemma about ```rocq Exact``` literals not completed on time in this work.
+  + The result is ```rocq Some``` -- if the regex has no captures, proof follows from @thm:empty-group-map and @thm:exact-literal-result-unanchored.
 ]) <thm:try-lit-search-correctness>

@@ -2,7 +2,7 @@
 
 == Correctness of literal extraction <sec:literal-extraction-correctness>
 
-We now prove that the extracted literals gives us some useful information about the matches of a regex. The properties which we care about are those which will allow us to accelerate regex matching. For that, we will consider three useful properties separately. For any literal whose prefix (@lst:prefix) is `s`, we want to show that any match of a regex $r$ must start with the string $s$. Through the contrapositive (if a match does not start with $s$, it is not a match of $r$) we will be able to do prefix acceleration by skipping haystack positions where $s$ does no occur. For ```rocq Impossible``` literals, we want to show that no match of $r$ whose literal is ```rocq Impossible``` can exist. This will allow us to immediately say that for such a regex and any haystack, there is no match. Finally, for ```rocq Exact s``` literals, we want to show that any match of a regex $r$ whose literal is ```rocq Exact s``` is exactly the string $s$. This will allow us to skip running regex engines entirely and just use a much faster substring search.
+We now prove that the extracted literals gives us some useful information about the matches of a regex. The properties which we care about are those which allow us to accelerate regex matching. For that, we consider three useful properties separately. For any literal whose prefix (@lst:prefix) is `s`, we show that any match of a regex $r$ must start with the string $s$. Through the contrapositive (if a match does not start with $s$, it is not a match of $r$) we are able to do prefix acceleration by skipping haystack positions where $s$ does no occur. For ```rocq Impossible``` literals, we show that no match of $r$ whose literal is ```rocq Impossible``` can exist. This allows us to immediately say that for such a regex and any haystack, there is no match. Finally, for ```rocq Exact s``` literals, we show that any match of a regex $r$ whose literal is ```rocq Exact s``` is exactly the string $s$. This allows us to skip running regex engines entirely and just use a much faster substring search.
 
 #linden-listing("Engine/Prefix.v", (
   "extract_action_literal",
@@ -62,3 +62,28 @@ And finally, we specialize it to the case where the list of actions is exactly j
 ]) <thm:correctness-extract-literal-impossible>
 
 === Correctness of ```rocq Exact``` literals
+
+For exact literals, we want to argue that the first occurrence of the literal in the haystack corresponds to the match of the regex. We must first notice, however, that if a regex has any assertions, we cannot leverage ```rocq Exact``` literals because typically substring search algorithms do not support assertions. An assertion is a regex construct which does not consume any characters during matching but instead inspects the surrounding context of the match. Anchors and lookarounds precisely constitute assertions. We define ```rocq has_asserts``` in @lst:has-asserts. Consider the regex ```re /\babc/``` for which we extract the literal ```rocq Exact "abc"```. This is what we want; a match of this regex will always be exactly the string #hay[abc]. However, due to the word boundary assertion (```re \b```) at the start, we cannot simply search for #hay[abc] in the haystack. We must also ensure that at the position where #hay[abc] is found, a word boundary exists.
+
+#linden-listing(
+  "Engine/Prefix.v",
+  "has_asserts",
+)[Function checking whether a regex contains assertions.] <lst:has-asserts>
+
+We first prove that exact character descriptors always match the extracted character, as seen in @thm:extract-literal-char-exact-char-match.
+
+#linden-theorem("Engine/Prefix.v", "extract_literal_char_exact_char_match", proof: [
+  Induction on `cd`.
+]) <thm:extract-literal-char-exact-char-match>
+
+With that we prove that if the haystack starts with the exact literal, then the end of that match is at our position advanced by the length of the literal. This is formalized in @thm:exact-literal-result. Since we know nothing about the resulting group map, we existentially quantify it.
+
+#linden-theorem("Engine/Prefix.v", "exact_literal_result", proof: [
+  Induction on `is_tree`.
+]) <thm:exact-literal-result>
+
+This theorem is not yet useful, as it only states the result for anchored searches. We therefore must additionally prove a similar result for unanchored searches seen in @thm:exact-literal-result-unanchored. If we have no asserts, an exact literal, a position of the literal found by substring search, then the result of the unanchored search is precisely that position found by the substring search advanced by the length of the literal. Again, we know nothing about the group map.
+
+#linden-theorem("Engine/Prefix.v", "exact_literal_result_unanchored", proof: [
+  Induction on `inp`.
+]) <thm:exact-literal-result-unanchored>
