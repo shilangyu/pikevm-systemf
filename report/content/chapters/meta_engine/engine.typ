@@ -12,17 +12,17 @@ The typeclass describing an anchored regex engine given in @lst:anchored-engine-
 )[Typeclass describing an anchored engine.] <lst:anchored-engine-class>
 
 
-To describe unanchored engines, we first define the @lazy-prefix:intro as simply being the sequencing of ```re /[^]*?/``` with a regex `r`. Then, the typeclass definition of an unanchored engine seen in @lst:unanchored-engine-class is very similar to that of an anchored engine. The sole difference is that for the correctness axiom, we require that the engine, when given a regex `r` and a haystack `s`, returns the same result as the one defined by the semantics of a backtracking tree for ```re /[^]*?r/```! All typeclass member names are prefixed with `un_`.
+To describe unanchored engines, we first define the @lazy-prefix:intro as simply being the sequencing of ```re /[^]*?/``` with a regex `r` (@lst:lazy-prefix). Then, the typeclass definition of an unanchored engine seen in @lst:unanchored-engine-class is very similar to that of an anchored engine. The sole difference is that for the correctness axiom, we require that the engine, when given a regex `r` and a haystack `s`, returns the same result as the one defined by the semantics of a backtracking tree for ```re /[^]*?r/```! All typeclass member names are prefixed with `un_`.
 
 #linden-listing(
   "Semantics/Regex.v",
-  ("dot_star", "lazy_prefix"),
-)[The definition of the lazy prefix and the typeclass describing an unanchored engine] <lst:unanchored-engine-class1>
+  ("lazy_star", "dot_star", "lazy_prefix"),
+)[The definition of the lazy prefix.] <lst:lazy-prefix>
 
 #linden-listing(
   "Engine/Meta/EngineSpec.v",
   "UnanchoredEngine",
-)[The definition of the lazy prefix and the typeclass describing an unanchored engine] <lst:unanchored-engine-class>
+)[The typeclass describing an unanchored engine.] <lst:unanchored-engine-class>
 
 Given those definitions we can now exhibit some instances of those typeclasses. Naturally, the anchored PikeVM defined in @sec:pikevm is an instance of the anchored engine typeclass#note[Proven in #linden-permalink(linden-statement("Engine/Meta/EngineSpec.v", "PikeVMAnchoredEngine"))]. Its proof of ```rocq exec``` correctness is derived from proofs previously present in Linden. We also show that the unanchored PikeVM defined in @sec:unanchored-pikevm is an instance of the unanchored engine typeclass#note[Proven in #linden-permalink(linden-statement("Engine/Meta/EngineSpec.v", "PikeVMUnanchoredEngine"))]. Its proof of ```rocq un_exec``` correctness is derived from proofs discussed in @sec:unanchored-pikevm-correctness. For both PikeVMs, the ```rocq supported_regex```#note[The PikeVM regex support predicate can be found in #linden-permalink(linden-statement("Engine/PikeSubset.v", "is_pike_regex"))] predicate notably excludes regexes with backreferences (due to not having a linear-time implementation) and with lookarounds (which have yet to be verified in the PikeVM#note[A very recent development @linearjsregex has found a way to incorporate lookarounds into the PikeVM under the ECMAScript semantics. No mechanization of this fact has been yet completed.]). Similarly, the already verified MemoBT engine is an instance of an anchored engine#note[Proven in #linden-permalink(linden-statement("Engine/Meta/EngineSpec.v", "MemoBTAnchoredEngine"))]. There is currently, however, no verified specialized unanchored version of the MemoBT engine in Linden. Instead, we notice that every anchored engine can be turned into an unanchored one.
 
@@ -32,3 +32,11 @@ As stated in @sec:prefix-acceleration, by running an anchored engine on a regex 
   "Engine/Meta/EngineSpec.v",
   ("lazy_prefix_supported", "UnanchorEngine"),
 )[Turning any anchored engine into an unanchored one.] <lst:unanchor-engine>
+
+Finally, we define a small utility type, ```rocq search_result``` (@lst:search-result), which will be returned from various optimizations. Returning ```rocq Unsupported``` indicates that the optimization is not applicable. ```rocq Ok``` means the stored result is the correct result of matching.
+
+
+#linden-listing(
+  "Engine/Meta/EngineSpec.v",
+  "search_result",
+)[Type definition for optimization search results.] <lst:search-result>
