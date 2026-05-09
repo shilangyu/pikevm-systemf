@@ -49,8 +49,6 @@ Similarly we must first state the correctness lemma of ```rocq extract_literal_c
 
 With that lemma we prove the general lemma about the ```rocq Impossible```. Given a tree `tree` of actions `acts` over the input `inp`, if the literal extracted from `acts` is ```rocq Impossible```, then no match can exist in `tree`.
 
-#pagebreak(weak: true)
-
 #linden-theorem("Engine/Prefix.v", "extract_literal_impossible_general", proof: [
   We induct on the ```rocq is_tree``` hypothesis and use @thm:correctness-extract-literal-char-impossible.
 ]) <thm:correctness-extract-literal-impossible-general>

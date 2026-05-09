@@ -104,7 +104,7 @@
 
   // --- Table of Contents ---
   show outline.entry.where(level: 1): it => {
-    v(if book { 0.65em } else { 1.5em }, weak: true)
+    v(if book { 0.65em } else { 1.4em }, weak: true)
     strong(it)
   }
   show outline.entry: set block(spacing: if book { 0.4em } else { 0.8em })
