@@ -89,7 +89,7 @@ Those two optimizations together allow us to potentially skip large parts of the
       ex-r-nfa, trace,
     ),
     supplement: "Figure",
-    caption: [Left: the NFA of the regex #ex-r. Right: execution trace of the unanchored PikeVM with the extracted literal $ell = #```rocq Prefix "ab"```$ on the haystack #s(). #new[We color-code new threads previously not created by the anchored PikeVM.]],
+    caption: [Left: the NFA of the regex #ex-r. Right: execution trace of the unanchored PikeVM with the extracted literal $ell = #```rocq Prefix "ab"```$ on the haystack #s(). #new[We color-code new threads previously not created by the anchored PikeVM].],
   ) <fig:unanchored-pikevm-execution>
 ]
 

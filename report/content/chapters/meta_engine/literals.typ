@@ -56,11 +56,11 @@ Finally, if no captures are present we can return a match consisting of the hays
 
 
 ==== Correctness
-Before we state the correctness theorem of ```rocq try_lit_search```, we must prove an intermediate lemma. It states that the value of group maps under the assumption that no captures are present in the regex. For the same reason as in @sec:literal-extraction-correctness, we need to generalize the result over the list of tree actions. As such, we define ```rocq has_groups_action``` which for the regex action it delegates to ```rocq has_groups``` and for the ```rocq Aclose``` action returns true since it corresponds to a capture being closed. For the last action we return false. We intuitively extend this definition to a list of actions. Both definitions are given in @lst:has-captures-actions.
+Before we state the correctness theorem of ```rocq try_lit_search```, we must prove an intermediate lemma. It states that the value of group maps under the assumption that no captures are present in the regex. For the same reason as in @sec:literal-extraction-correctness, we need to generalize the result over the list of tree actions. As such, we define ```rocq has_groups_actions``` which for the regex action it delegates to ```rocq has_groups``` and for the ```rocq Aclose``` action returns true since it corresponds to a capture being closed. For the last action we return false.The definition is given in @lst:has-captures-actions.
 
 #linden-listing(
   "Engine/Meta/MetaLiterals.v",
-  ("has_groups_action", "has_groups_actions"),
+  "has_groups_actions",
 )[Definitions checking whether a list of actions contains captures.] <lst:has-captures-actions>
 
 With that we state the lemma of empty group maps in @thm:empty-group-map. It states that given a backtracking tree `tree` of actions `acts`, if no captures are present in `acts` and `tree` contains a match, this match's group map is empty.

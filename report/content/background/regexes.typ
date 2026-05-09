@@ -63,7 +63,7 @@
     ),
   ),
 
-  caption: [Abstract syntax of Linden regexes],
+  caption: [Abstract syntax of Linden regexes.],
 ) <fig:regex>
 
 The abstract syntax of Linden regexes is shown in @fig:regex. This syntax slightly differs from the syntax of ECMAScript regexes, but regardless every ECMAScript regex can be expressed using the abstract regex syntax of Linden. We now outline the most important aspects of the syntax and underline the differences between the Linden and ECMAScript representation.
