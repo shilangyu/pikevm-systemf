@@ -22,10 +22,6 @@ Once we have the bytecode, we can execute it on a particular haystack $s$. The e
 
 Finally, there is one additional item in the state of a PikeVM: a _"seen set"_. The seen set stores labels of instructions which have already been executed at the current haystack position. A thread is discarded when it revisits one of those labels. This caching is crucial for giving the PikeVM a linear runtime.
 
-We can now summarize the execution of the PikeVM. It repeatedly performs work on the active set until it is exhausted. If the blocked set is empty, it returns the best match found so far. Otherwise, it advances the haystack position by one and transfers the blocked set into the new active set. We illustrate this execution model with an example trace seen in @fig:pikevm-execution. For ease of understanding, we visualize the NFA as a simplified state machine instead of bytecode instructions. The nodes annotated with Greek letters represent the labels and the arrows are annotated with the characters they expect to see in the current haystack position. When relevant, we indicate the priority of the arrows with the smallest number being the highest priority.
-
-Despite a match existing at the tail end of the exemplified haystack, no match is found due to the PikeVM being inherently an anchored engine. In the next section we will devise a way to turn it into an unanchored engine all whilst integrating prefix acceleration.
-
 #let trace = {
   set par(leading: 0.3em)
 
@@ -74,7 +70,7 @@ Despite a match existing at the tail end of the exemplified haystack, no match i
   )
 }
 
-#wideblock[
+#let fig = wideblock[
   #figure(
     grid(
       columns: (auto, auto),
@@ -85,3 +81,17 @@ Despite a match existing at the tail end of the exemplified haystack, no match i
     caption: [Left: the NFA of the regex #ex-r. Right: execution trace of the PikeVM on #s().],
   ) <fig:pikevm-execution>
 ]
+
+#let prose = [
+  We can now summarize the execution of the PikeVM. It repeatedly performs work on the active set until it is exhausted. If the blocked set is empty, it returns the best match found so far. Otherwise, it advances the haystack position by one and transfers the blocked set into the new active set. We illustrate this execution model with an example trace seen in @fig:pikevm-execution. For ease of understanding, we visualize the NFA as a simplified state machine instead of bytecode instructions. The nodes annotated with Greek letters represent the labels and the arrows are annotated with the characters they expect to see in the current haystack position. When relevant, we indicate the priority of the arrows with the smallest number being the highest priority.
+
+  Despite a match existing at the tail end of the exemplified haystack, no match is found due to the PikeVM being inherently an anchored engine. In the next section we will devise a way to turn it into an unanchored engine all whilst integrating prefix acceleration.
+]
+
+#if book {
+  fig
+  prose
+} else {
+  prose
+  fig
+}

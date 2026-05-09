@@ -104,14 +104,14 @@
 
   // --- Table of Contents ---
   show outline.entry.where(level: 1): it => {
-    v(if book { 0.65em } else { 1.4em }, weak: true)
+    v(if book { 0.58em } else { 1.4em }, weak: true)
     strong(it)
   }
-  show outline.entry: set block(spacing: if book { 0.4em } else { 0.8em })
+  show outline.entry: set block(spacing: if book { 0.35em } else { 0.8em })
   outline(
     title: {
-      text(1.5em, weight: 700)[Contents]
-      v(if book { 0.5em } else { 1em })
+      text(1.5em, weight: 700, font: fonts.sans)[Contents]
+      v(if book { 0.3em } else { 1em })
     },
     indent: 2em,
   )
@@ -141,6 +141,8 @@
   show: marginalia.setup.with(
     inner: (width: 7mm),
     outer: (width: 40mm),
+    top: if book { 20mm } else { 25mm },
+    bottom: if book { 20mm } else { 25mm },
     book: book,
   )
 

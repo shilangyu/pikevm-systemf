@@ -29,12 +29,12 @@ With that, the correctness of ```rocq search_acc_once``` is expressed as returni
 
 === ```rocq Exact``` and ```rocq Impossible``` literals <sec:exact-impossible-literals>
 
-To take advantage of the ```rocq Exact``` and ```rocq Impossible``` literals, we define the function ```rocq try_lit_search``` as seen in @lst:try-lit-search.
-
 #linden-listing(
   "Engine/Meta/MetaLiterals.v",
   "try_lit_search",
 )[Definition of the function which attempts to use literals to find definitive matches.] <lst:try-lit-search>
+
+To take advantage of the ```rocq Exact``` and ```rocq Impossible``` literals, we define the function ```rocq try_lit_search``` as seen in @lst:try-lit-search.
 
 Other than taking as arguments the regex and a haystack, it additionally expects to have an instance of a substring search algorithm defined in @sec:substring-search. Notably, no engine is passed as an argument as here we focus on optimizations not requiring them. This function starts by extracting the literal of the given regex. If that literal is a ```rocq Prefix```, without an engine we cannot determine the match so we return ```rocq Unsupported```. In the case of ```rocq Impossible```, we can immediately return that no match exists, ```rocq Ok None```. But if the literal is an ```rocq Exact s```, more cases must be considered.
 
