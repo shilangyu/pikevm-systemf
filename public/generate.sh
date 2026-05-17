@@ -38,6 +38,7 @@ for f in ../meeting_notes/*.md; do
 	pandoc "$f" -H headers.html --katex -s -o "meeting-notes/${filename_no_ext}.html"
 	echo "- [${filename_no_ext}](meeting-notes/${filename_no_ext}.html)" >> "$index"
 done
+cp ../meeting_notes/*.svg meeting-notes/
 
 echo "" >> "$index"
 
