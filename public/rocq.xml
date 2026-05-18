@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language>
+<language name="Rocq" version="1" kateversion="5.0" section="Scientific" extensions="*.v;*.rocq" mimetype="text/x-rocq" author="Gemini" license="MIT">
+  <highlighting>
+
+    <list name="vernacular_decl">
+      <item>Theorem</item>
+      <item>Lemma</item>
+      <item>Fact</item>
+      <item>Remark</item>
+      <item>Corollary</item>
+      <item>Proposition</item>
+      <item>Property</item>
+      <item>Definition</item>
+      <item>Example</item>
+      <item>Let</item>
+      <item>Inductive</item>
+      <item>CoInductive</item>
+      <item>Fixpoint</item>
+      <item>CoFixpoint</item>
+      <item>Record</item>
+      <item>Structure</item>
+      <item>Class</item>
+      <item>Instance</item>
+      <item>Axiom</item>
+      <item>Conjecture</item>
+      <item>Parameter</item>
+      <item>Parameters</item>
+      <item>Variable</item>
+      <item>Variant</item>
+      <item>Variables</item>
+      <item>Hypothesis</item>
+      <item>Hypotheses</item>
+      <item>Context</item>
+    </list>
+
+    <list name="vernacular_proof">
+      <item>Proof</item>
+      <item>Qed</item>
+      <item>Defined</item>
+      <item>Admitted</item>
+      <item>Abort</item>
+      <item>Save</item>
+    </list>
+
+    <list name="vernacular_cmd">
+      <item>Require</item>
+      <item>Import</item>
+      <item>Export</item>
+      <item>Include</item>
+      <item>Module</item>
+      <item>Section</item>
+      <item>End</item>
+      <item>Print</item>
+      <item>Check</item>
+      <item>Eval</item>
+      <item>Compute</item>
+      <item>Search</item>
+      <item>SearchAbout</item>
+      <item>SearchPattern</item>
+      <item>SearchRewrite</item>
+      <item>Locate</item>
+      <item>Opaque</item>
+      <item>Transparent</item>
+      <item>Hint</item>
+      <item>Resolve</item>
+      <item>Rewrite</item>
+      <item>Unfold</item>
+      <item>Notation</item>
+      <item>Infix</item>
+      <item>Reserved</item>
+      <item>Global</item>
+      <item>Local</item>
+      <item>Set</item>
+      <item>Unset</item>
+      <item>Arguments</item>
+      <item>Implicit</item>
+      <item>Types</item>
+      <item>Ltac</item>
+      <item>Tactic</item>
+    </list>
+
+    <list name="gallina">
+      <item>match</item>
+      <item>with</item>
+      <item>end</item>
+      <item>fun</item>
+      <item>forall</item>
+      <item>exists</item>
+      <item>if</item>
+      <item>then</item>
+      <item>else</item>
+      <item>let</item>
+      <item>in</item>
+      <item>as</item>
+      <item>return</item>
+      <item>struct</item>
+    </list>
+
+    <list name="sorts">
+      <item>Prop</item>
+      <item>Set</item>
+      <item>Type</item>
+    </list>
+
+    <contexts>
+      <context name="Normal" attribute="Normal Text" lineEndContext="#stay">
+        <DetectSpaces />
+
+        <Detect2Chars attribute="Comment" context="Comment" char="(" char1="*" beginRegion="Comment" />
+
+        <DetectChar attribute="String" context="String" char="&quot;" />
+
+        <keyword attribute="Declaration" context="#stay" String="vernacular_decl" />
+        <keyword attribute="Proof Command" context="#stay" String="vernacular_proof" />
+        <keyword attribute="Command" context="#stay" String="vernacular_cmd" />
+        <keyword attribute="Gallina Keyword" context="#stay" String="gallina" />
+        <keyword attribute="Sort" context="#stay" String="sorts" />
+
+        <RegExpr attribute="Terminator" context="#stay" String="\.(?=\s|$)" />
+
+        <StringDetect attribute="Symbol" context="#stay" String="-&gt;" />
+        <StringDetect attribute="Symbol" context="#stay" String="=&gt;" />
+        <StringDetect attribute="Symbol" context="#stay" String=":=" />
+        <StringDetect attribute="Symbol" context="#stay" String="&lt;-" />
+
+        <AnyChar attribute="Symbol" context="#stay" String=":|={}()[]_+*\,;@" />
+
+        <DetectIdentifier />
+      </context>
+
+      <context name="Comment" attribute="Comment" lineEndContext="#stay">
+        <Detect2Chars attribute="Comment" context="Comment" char="(" char1="*" beginRegion="Comment" />
+        <Detect2Chars attribute="Comment" context="#pop" char="*" char1=")" endRegion="Comment" />
+        <DetectSpaces />
+        <IncludeRules context="##Alerts" />
+        <DetectIdentifier />
+      </context>
+
+      <context name="String" attribute="String" lineEndContext="#stay">
+        <Detect2Chars attribute="String" context="#stay" char="&quot;" char1="&quot;" />
+        <DetectChar attribute="String" context="#pop" char="&quot;" />
+      </context>
+    </contexts>
+
+    <itemDatas>
+      <itemData name="Normal Text"     defStyleNum="dsNormal" spellChecking="false" />
+      <itemData name="Declaration"     defStyleNum="dsKeyword" bold="1" spellChecking="false" />
+      <itemData name="Proof Command"   defStyleNum="dsControlFlow" bold="1" spellChecking="false" />
+      <itemData name="Command"         defStyleNum="dsKeyword" spellChecking="false" />
+      <itemData name="Gallina Keyword" defStyleNum="dsControlFlow" spellChecking="false" />
+      <itemData name="Sort"            defStyleNum="dsDataType" italic="1" spellChecking="false" />
+      <itemData name="Terminator"      defStyleNum="dsAlert" bold="1" spellChecking="false" />
+      <itemData name="Symbol"          defStyleNum="dsOperator" spellChecking="false" />
+      <itemData name="String"          defStyleNum="dsString" />
+      <itemData name="Comment"         defStyleNum="dsComment" />
+    </itemDatas>
+  </highlighting>
+
+  <general>
+    <comments>
+      <comment name="multiLine" start="(*" end="*)" region="Comment" />
+    </comments>
+    <keywords casesensitive="1" />
+  </general>
+</language>

@@ -35,7 +35,7 @@ echo "## Meeting notes" >> "$index"
 for f in ../meeting_notes/*.md; do
 	filename=$(basename -- "$f")
 	filename_no_ext="${filename%.*}"
-	pandoc "$f" -H headers.html --katex -s -o "meeting-notes/${filename_no_ext}.html"
+	pandoc "$f" -H headers.html --katex -s -o "meeting-notes/${filename_no_ext}.html" --syntax-definition rocq.xml
 	echo "- [${filename_no_ext}](meeting-notes/${filename_no_ext}.html)" >> "$index"
 done
 cp ../meeting_notes/*.svg meeting-notes/
